@@ -11,7 +11,7 @@ description: Develop AI-generated educational animated voiceover videos about ph
 2. **确定视觉风格与参考图。** 复用用户已确认的风格参考，或先生成新参考图并经用户确认。根据全片分镜列出人物，为主要人物和重要配角准备独立人物参考图。
 3. **为全部片段编写视频提示词。** 先定稿每段旁白，再设计参考素材职责、镜头、动作与切换。编写、修改或排查 Prompt 时，完整读取 [视频提示词写作指南](references/video-prompt-guide.md)。
 4. **先只生成片段 1。** 如果用户没有提供已确认的音色参考，片段 1 暂不连接音频参考，只在 Prompt 中写明需要的声音特征。检查片段 1 的旁白、音色、画风、人物与实际画幅，确认可作为后续片段的锚点。
-5. **从片段 1 剥离音频。** 在 LibTV 路径中，先通过 LibTV CLI 下载已确认的片段 1，再使用 macOS `afconvert` 在本地剥离为 48kHz、双声道、16-bit PCM WAV，然后通过 LibTV CLI 上传为独立音频节点。该 WAV 规格已验证可用；M4A 曾被 Seedance 拒绝，未重新验证前不要使用。
+5. **从片段 1 剥离音频。** 在 LibTV 路径中，先通过 LibTV CLI 下载已确认的片段 1，再根据当前操作系统完整读取并执行 [音频剥离与格式转换指南](references/audio-extraction-guide.md)：macOS 可使用 `afconvert` 或 FFmpeg，Windows 与 Linux 使用 FFmpeg。统一输出 48kHz、双声道、16-bit PCM WAV，再通过 LibTV CLI 上传为独立音频节点。M4A 曾被 Seedance 拒绝，未重新验证前不要使用。
 6. **并行生成后续片段。** 从片段 2 开始，将片段 1 剥离出的纯音频作为每个视频节点的 `音频1`，只参考音色；当前片段的准确旁白仍只由当前 Prompt 中的文本决定。上游参考素材、Prompt 和生成参数全部核对后，并行提交所有后续片段。
 7. **质检并拼接成片。** 逐片检查旁白完整性、音色稳定、人物一致、镜头动作、实际画幅和片尾音频；只将通过质检的片段按顺序拼接。
 
@@ -88,7 +88,7 @@ description: Develop AI-generated educational animated voiceover videos about ph
 
 1. 如果有现成音色参考，只在片段 1 中连接它；如果没有，片段 1 不连接音频参考，并在 Prompt 中写明用户要求的必要声音特征。先只生成片段 1。
 2. 检查片段 1 的旁白完整性、音色、音量、语速和片尾噪音；确认音色可用后才建立锚点。
-3. 通过 LibTV CLI 下载片段 1，用 macOS `afconvert` 分离为 48kHz、双声道、16-bit PCM WAV，再通过 LibTV CLI 上传为独立音频节点。该格式已通过 Seedance 2.0 合规检测；M4A 上传节点曾被拒绝，未重新验证前不要使用。
+3. 通过 LibTV CLI 下载片段 1，完整读取 [音频剥离与格式转换指南](references/audio-extraction-guide.md)，按当前操作系统转换为 48kHz、双声道、16-bit PCM WAV，再通过 LibTV CLI 上传为独立音频节点。该格式已通过 Seedance 2.0 合规检测；M4A 上传节点曾被拒绝，未重新验证前不要使用。
 4. 从片段 2 开始，为所有后续片段连接该纯音频作为 `音频1`，或使用目标平台提供的同一音色 ID。核对素材、Prompt 和参数后，并行提交后续片段。
 5. Prompt 只说明该音频负责参考音色，并使用用户已经确认的必要声音特征。当前片段准确旁白只由当前 Prompt 中 `{}` 内的文本决定，不复述样本原台词，也不借用其语义。
 6. 后续只连接纯音频，不直接把整段视频作为音色参考，因为视频参考成本更高，也可能污染视觉结果。
