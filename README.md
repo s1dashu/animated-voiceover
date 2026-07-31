@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://github.com/s1dashu/animated-voiceover/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/s1dashu/animated-voiceover?style=for-the-badge&logo=github&color=F4C430"></a>
   <a href="https://github.com/s1dashu/animated-voiceover/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/s1dashu/animated-voiceover?style=for-the-badge&logo=github"></a>
-  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/s1dashu/animated-voiceover?style=for-the-badge&color=2EA44F"></a>
+  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2EA44F?style=for-the-badge"></a>
   <a href="https://github.com/s1dashu/animated-voiceover/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/s1dashu/animated-voiceover?style=for-the-badge"></a>
   <img alt="Codex skill" src="https://img.shields.io/badge/Codex-Skill-111111?style=for-the-badge&logo=openai&logoColor=white">
 </p>
