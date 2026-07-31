@@ -1,32 +1,32 @@
-# Seedance 2.0 社区导演与连续性笔记
+# Seedance 2.0 Community Direction and Continuity Notes
 
-> 定位：GitHub 社区经验的可追踪摘要，不是官方文档。与 Doubao 官方指南、LibTV 实时 schema 或用户确认规则冲突时，以后三者为准。
+> Scope: a traceable summary of community practice, not official documentation. If these notes conflict with official Doubao guidance, the live LibTV schema, or user-approved requirements, those sources take precedence.
 
-## 来源快照
+## Source Snapshot
 
-- [Emily2040/seedance-2.0](https://github.com/Emily2040/seedance-2.0/tree/6c51262377b96592b9f87a8c8b0219e6335378f7)，提交 `6c51262377b96592b9f87a8c8b0219e6335378f7`，重点参考：
+- [Emily2040/seedance-2.0](https://github.com/Emily2040/seedance-2.0/tree/6c51262377b96592b9f87a8c8b0219e6335378f7), commit `6c51262377b96592b9f87a8c8b0219e6335378f7`, especially:
   - `skills/seedance-prompt/SKILL.md`
   - `skills/seedance-camera/SKILL.md`
   - `skills/seedance-motion/SKILL.md`
   - `skills/seedance-sequence/SKILL.md`
   - `skills/seedance-prompt-short/SKILL.md`
-- [dexhunter/seedance2-skill](https://github.com/dexhunter/seedance2-skill/tree/e06c7c63a766d623004a2807881c30685ce517af)，提交 `e06c7c63a766d623004a2807881c30685ce517af`，重点参考 `zh/SKILL.md`。
-- [nolanx-ai/nolanx.ai](https://github.com/nolanx-ai/nolanx.ai/tree/595d86364377f654e24ddf2c9e875496d85e8246)，提交 `595d86364377f654e24ddf2c9e875496d85e8246`，重点参考 `skills/sd2-pe/SKILL.md`。
+- [dexhunter/seedance2-skill](https://github.com/dexhunter/seedance2-skill/tree/e06c7c63a766d623004a2807881c30685ce517af), commit `e06c7c63a766d623004a2807881c30685ce517af`, especially `zh/SKILL.md`.
+- [nolanx-ai/nolanx.ai](https://github.com/nolanx-ai/nolanx.ai/tree/595d86364377f654e24ddf2c9e875496d85e8246), commit `595d86364377f654e24ddf2c9e875496d85e8246`, especially `skills/sd2-pe/SKILL.md`.
 
-核验日期：2026-07-30。
+Verified on 2026-07-30.
 
-## 本 skill 采用的经验
+## Practices Adopted by This Skill
 
-1. 把 Prompt 当作简洁的拍摄方案，而不是形容词堆叠。先确定每个镜头唯一的叙事任务。
-2. 为每个镜头写清起始构图、主要动作或运镜、速度和结束状态。运镜必须有终点，动作必须产生可见后果。
-3. 允许电影式硬切。切镜可以主动改变景别、角度、运动方向、场景或叙事焦点；硬切本身不是连续性错误。
-4. 跟踪“运镜阶段”和“动作阶段”。上一镜已经完成的推近、变焦、跟拍、聚焦或主体动作，不在下一镜从相似状态重新开始，除非这是明确设计的重复。
-5. 每一镜结束后都应形成新的画面状态；下一镜从该状态之后的叙事动作继续，而不是回放已经完成的动作。动作有起因、落点和结果，循环而不改变状态会产生明显的 AI 生成感。
-6. 精简 Prompt 时优先保留参考素材职责、主体、动作动词、可见终点和一种主要运镜；先删除重复风格形容词、空泛质量词、次要动作和次要运镜。
+1. Treat a prompt as a concise shooting plan, not a pile of adjectives. Give each shot one distinct narrative job.
+2. Define each shot's starting composition, principal subject or camera movement, speed, and end state. Camera moves need destinations; actions need visible consequences.
+3. Allow cinematic hard cuts. A cut may deliberately change shot size, angle, direction, setting, or narrative focus; the cut itself is not a continuity error.
+4. Track both camera-move progress and action progress. Do not restart a completed push-in, zoom, follow, focus pull, or subject action from a similar state in the next shot unless repetition is intentional.
+5. End each shot in a visibly new state. Continue after that result instead of replaying the completed action. Loops that do not change state create a conspicuous AI-generated feel.
+6. When shortening a prompt, preserve reference responsibilities, the subject, action verbs, a visible end state, and one principal camera move. Remove repeated style adjectives, vague quality terms, secondary actions, and secondary camera moves first.
 
-## 本 skill 不采用的经验
+## Practices Not Adopted by This Skill
 
-- 不把精确秒数分镜设为默认。官方指南说明模型对精确时间约束的响应不稳定，本 skill 继续使用“镜头 1、镜头 2……”的事件顺序。
-- 不复制社区技能中的模型调用、供应商、价格、分辨率或素材上限；这些能力只以 LibTV 实时 schema 为准。
-- 不复制冗长负面词模板。只保留当前项目或用户明确要求的必要约束，不由 skill 擅自决定字幕、Logo、水印、背景音乐或口型策略。
-- 不把风格形容词重复写进视频 Prompt。已确认风格参考只写“参考图 1 的画风。”。
+- Do not make exact timestamped shot lists the default. Official guidance notes that precise timing constraints can be unstable, so use event order such as `Shot 1`, `Shot 2`, and so on.
+- Do not copy provider calls, prices, resolutions, or asset limits from community skills. Resolve those from the live LibTV schema.
+- Do not copy long negative-prompt templates. Include only constraints required by the user or active project; the skill must not choose subtitle, logo, watermark, music, or lip-sync policy on its own.
+- Do not repeat style adjectives in the video prompt. When an approved image controls style only, write: `Use Image 1 only as the visual-style reference.`

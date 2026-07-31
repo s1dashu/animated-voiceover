@@ -1,128 +1,128 @@
-# 动画解说视频封面图生成指南
+# Animated Voiceover Cover Image Guide
 
-## 文档导航
+## Navigation
 
-- 封面 brief
-- 人物与画风参考
-- 构图与文字
-- LibTV 生成
-- 下载与记录
-- 质量检查
+- Cover brief
+- Character and style references
+- Composition and text
+- LibTV generation
+- Downloading and records
+- Quality control
 
-## 适用范围
+## Scope
 
-本指南用于为动画解说视频生成、修改、对比和质检带字封面、缩略图、标题卡或海报式主视觉。封面属于 `animated-voiceover` 的生产环节，不是独立 skill。
+Use this guide to generate, revise, compare, and review text-forward covers, thumbnails, title cards, and poster-like key art for animated voiceover videos. Cover creation is one stage of `animated-voiceover`, not a separate skill.
 
-所有封面图像操作先读取当前项目的工具与媒体策略，并沿用当前项目已经确认的人物、画风与可复用资产。当前 skill 正式维护的封面生成路径使用 LibTV CLI；如果项目指定其他平台，则按主 skill 的平台可移植性规则读取最新官方文档后执行。
+Before any cover operation, read the active project's tool and media policy. Reuse its approved characters, visual styles, and reference assets. LibTV CLI is the currently maintained cover-generation path. When a project specifies another platform, follow the portability rules in the main skill and read that platform's latest official documentation first.
 
-## 封面 brief
+## Cover Brief
 
-写 Prompt 前锁定：
+Lock these decisions before writing a prompt:
 
-1. 标题与可选副标题的逐字文案。
-2. 用户要求的比例与投放位置，不自动继承视频画幅。
-3. 代表本期内容的单一视觉命题。
-4. 已确认主要人物参考节点及其职责。
-5. 独立画风参考；若人物参考同时负责画风则明确说明。
-6. 使用的模型，以及多模型结果是否用于同 brief 对比。
+1. Exact title and optional subtitle copy.
+2. The user-required aspect ratio and placement context; do not inherit the video's ratio automatically.
+3. One visual proposition that represents the episode.
+4. Approved main-character reference nodes and the responsibility of each one.
+5. A separate style reference, unless a character reference explicitly controls both identity and style.
+6. The model or models to use and whether their outputs will be compared under the same brief.
 
-用户要求对比多个模型时，保持文案、参考图、布局层级、象征物和核心美术方向相同，只调整实时 schema 要求的模型参数，确保比较公平。
+For a multi-model comparison, keep the copy, references, layout hierarchy, symbols, and core art direction constant. Change only model parameters required by each live schema.
 
-## 人物与画风参考
+## Character and Style References
 
-- 封面中的每个主要人物都必须使用已确认人物参考图。缺参考时先补齐并确认，不在封面生成时临时创造。
-- 明确每张参考图负责人物身份、整体画风或两者兼有。
-- 保持人物的脸、年龄、发型、服装和可识别轮廓，不把一个人物参考套给其他角色。
-- 群演没有独立参考时，统一继承指定人物或画风参考的媒介、造型语言、材质、比例、配色和光影，不复制参考人物的具体脸和服装。
-- 同一封面不得混用写实真人、风格化 3D、手绘插画等割裂体系。
+- Use an approved identity reference for every main character on the cover. If one is missing, create and approve it before generating the cover.
+- State whether each image controls character identity, overall style, or both.
+- Preserve face, age, hairstyle, clothing, and recognizable silhouette. Do not apply one character reference to another character.
+- Extras without identity references must inherit the specified character or style reference's medium, design language, materials, proportions, palette, and lighting without copying a referenced person's face or clothes.
+- Do not mix incompatible systems such as photorealistic people, stylized 3D animation, and hand-drawn illustration on one cover.
 
-## 构图与缩略图可读性
+## Composition and Thumbnail Legibility
 
-优先只保留：
+Prefer only:
 
-1. 一个主导人物、面孔或象征物。
-2. 一个阅读顺序明确的标题区。
-3. 一个与本期中心命题直接相关的辅助符号。
-4. 清楚的前后景对比和安全边距。
+1. One dominant character, face, or symbol.
+2. One title area with an unmistakable reading order.
+3. One supporting symbol directly tied to the video's central idea.
+4. Clear foreground/background separation and safe margins.
 
-人物在手机缩略图中仍应可识别。提前留出干净文字区，不让标题压住脸部或关键象征物。除非用户明确要求，避免拼贴、多重边框和多个争夺注意力的视觉中心。
+The character must remain recognizable at phone-thumbnail size. Reserve an uncluttered text area and keep the title away from faces and critical symbols. Unless requested, avoid collages, multiple frames, and several competing focal points.
 
-## 直接生成准确文字
+## Direct Text Rendering
 
-模型支持文字渲染时，把文案直接写进生图 Prompt，并说明：
+When the selected model supports text rendering, include the exact copy in the image prompt and define:
 
-- 每一行的准确文字。
-- 主标题与副标题的层级。
-- 位置、大小、对齐、颜色、对比和安全边距。
-- 清晰的中文标题字体方向。
+- Exact text on every line.
+- Main-title and subtitle hierarchy.
+- Position, size, alignment, color, contrast, and safe margins.
+- A legible type direction appropriate to the copy's language.
 
-固定增加文字约束：
+Include this constraint:
 
-> 画面中只允许出现以下指定文字：[逐行列出准确文案]。不得出现其他中文、英文、数字、标点、Logo 或水印。
+> Only the following specified text may appear in the image: [list the exact copy line by line]. Do not add any other letters, words, numbers, punctuation, logos, or watermarks.
 
-不得改写标题，不自动添加钩子、期数、引语或英文翻译。生成后逐字比对，不因为“看起来差不多”而放过错字、异体字、缺字、重字或乱码。
+Do not rewrite the title or add hooks, episode numbers, quotations, or translations. Compare the generated text character by character. Reject misspellings, variants, omissions, repetitions, reordering, deformation, and gibberish even when the result looks approximately correct.
 
-## Prompt 顺序
+## Prompt Order
 
-1. 参考图职责与必须保持的人物身份特征。
-2. 封面用途、主体位置和视觉层级。
-3. 背景、象征物、色彩、光线与空间深度。
-4. 每行准确文案及排版层级。
-5. 禁止额外文字和其他构图约束。
+1. Reference-image responsibilities and identity features that must remain stable.
+2. Cover purpose, subject placement, and visual hierarchy.
+3. Background, symbols, color, lighting, and spatial depth.
+4. Exact line-by-line copy and typographic hierarchy.
+5. The prohibition on extra text and any other composition constraints.
 
-创意构图写进 Prompt；`ratio`、清晰度、画质、数量和 `modeType` 只通过 LibTV 参数传递。
+Put creative composition in the prompt. Pass `ratio`, resolution, quality, output count, and `modeType` only through LibTV parameters.
 
-## LibTV 生成
+## LibTV Generation
 
-正式运行前：
+Before production:
 
-1. 确认 `libtv` 已安装、已登录，当前目录绑定正确工作区与画布。
-2. 解析目标画布 UUID，正式命令显式传入 `-p <projectUuid>`。
-3. 完整读取 [libtv/model-name-map.md](libtv/model-name-map.md) 解析用户模型名。
-4. 执行 `libtv model search --type image ...` 和 `libtv model <modelName|modelKey>`，以实时 schema 为准。
-5. 确认所有参考节点属于目标画布。
+1. Confirm that `libtv` is installed and authenticated and that the current directory is bound to the correct workspace and canvas.
+2. Resolve the target canvas UUID and pass `-p <projectUuid>` explicitly to production commands.
+3. Read [libtv/model-name-map.md](libtv/model-name-map.md) in full to resolve the user's model name.
+4. Run `libtv model search --type image ...` and `libtv model <modelName|modelKey>`. Treat the live schema as authoritative.
+5. Confirm that every reference node belongs to the target canvas.
 
-常用映射：
+Common mappings:
 
-| 用户名称 | LibTV `modelName` |
+| Common name | LibTV `modelName` |
 | --- | --- |
 | GPT Image 2 | `Lib Image` |
 | Nano Banana Pro | `General image Pro` |
 | Seedream 5.0 Pro | `Seedream 5.0 Pro` |
 
-映射只是快照；实时结果变化时更新 `libtv/model-name-map.md`。
+These mappings are only a snapshot. Update `libtv/model-name-map.md` when live results change.
 
-连接任何图片参考时显式传入 `modeType=image2image`。LibTV 会拒绝带图片入边但仍处于 `text2image` 的节点。
+When attaching any image reference, pass `modeType=image2image` explicitly. LibTV rejects nodes that have image inputs but remain in `text2image` mode.
 
-每个模型和版本使用唯一节点名；通过 `--left` 连接确认参考；除非用户要求多候选，默认 `count=1`；用 `--run` 同步等待终态，不添加外部轮询。
+Use a unique node name for every model and version. Attach approved references with `--left`. Default to `count=1` unless the user requests several candidates. Use `--run` to wait for the terminal state instead of adding an external polling loop.
 
-## 下载与追踪
+## Downloads and Traceability
 
-使用 `libtv download` 下载完成节点并显式传入目标画布 UUID。多个模型的同轮结果放在同一比较目录，文件名包含主题、模型、带字状态和版本。
+Download completed nodes with `libtv download` and pass the target canvas UUID explicitly. Put same-round outputs from several models in one comparison directory. Include the subject, model, text status, and version in each filename.
 
-保留：
+Retain:
 
-- 画布 UUID。
-- 节点名、nodeKey 与 taskId。
-- 终态、模型显示名与 modelKey。
-- 实际参数与完整 Prompt。
-- 本地路径与实际尺寸。
+- Canvas UUID.
+- Node name, node key, and task ID.
+- Terminal state, model display name, and model key.
+- Actual parameters and complete prompt.
+- Local path and actual dimensions.
 
-任务成功但节点没有资源 URL 时，不得声称封面完成。
+Do not claim completion when a task succeeds but the node has no asset URL.
 
-## 质量检查
+## Quality Control
 
-以原尺寸和手机缩略图尺寸检查每张封面。出现以下任一问题就修改 Prompt 并通过 LibTV 重生成：
+Inspect every cover at full size and phone-thumbnail size. Revise the prompt and regenerate through LibTV if any of these failures appear:
 
-- 比例或实际尺寸不符，出现边框、黑边、参考图边框或意外拼贴。
-- 任一标题字缺失、错误、重复、变形、乱序、遮挡，或出现额外文字、Logo、水印。
-- 主要人物与确认参考不一致，或多个人物互相套脸、换装。
-- 群演与主角的媒介、造型或渲染风格割裂。
-- 标题在缩略图中不可读、对比不足或越过安全边距。
-- 人物、标题和象征物缺少明确主次。
+- Wrong ratio or dimensions, borders, black bars, inherited reference-image frames, or an accidental collage.
+- Missing, wrong, repeated, deformed, reordered, or obscured title characters, or any extra text, logo, or watermark.
+- A main character diverges from the approved reference, or characters exchange faces or clothes.
+- Extras use a different medium, design language, or rendering system from the main character.
+- The title is illegible at thumbnail size, has weak contrast, or crosses safe margins.
+- Character, title, and symbol lack a clear hierarchy.
 
-除非用户明确要求本地后期，不用局部修补掩盖文字或人物失败。
+Do not hide textual or identity failures with local patchwork unless the user explicitly requests local post-production.
 
-## 交付
+## Delivery
 
-展示各模型结果并链接比较目录。简要报告准确文案、人物与画风一致性、尺寸和各模型最明显的构图差异。只有用户明确选定后，才把某张封面记录为确认资产。
+Show each selected model's result and link the comparison directory. Briefly report exact-copy accuracy, character and style consistency, dimensions, and the most important composition difference between models. Record a cover as an approved asset only after the user explicitly selects it.
