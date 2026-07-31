@@ -1,18 +1,46 @@
-# Animated Voiceover
+<h1 align="center">Animated Voiceover</h1>
+
+<p align="center">
+  <strong>Turn complex ideas into cinematic AI-animated educational videos.</strong>
+</p>
+
+<p align="center">
+  From research and narration to multi-shot prompts, voice consistency, quality control, and final assembly.
+</p>
+
+<p align="center">
+  <a href="https://github.com/s1dashu/animated-voiceover/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/s1dashu/animated-voiceover?style=for-the-badge&logo=github&color=F4C430"></a>
+  <a href="https://github.com/s1dashu/animated-voiceover/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/s1dashu/animated-voiceover?style=for-the-badge&logo=github"></a>
+  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/s1dashu/animated-voiceover?style=for-the-badge&color=2EA44F"></a>
+  <a href="https://github.com/s1dashu/animated-voiceover/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/s1dashu/animated-voiceover?style=for-the-badge"></a>
+  <img alt="Codex skill" src="https://img.shields.io/badge/Codex-Skill-111111?style=for-the-badge&logo=openai&logoColor=white">
+</p>
+
+<p align="center">
+  <a href="#video-examples">Examples</a> ·
+  <a href="#what-it-does">Features</a> ·
+  <a href="#installation">Installation</a> ·
+  <a href="#usage">Usage</a>
+</p>
 
 `animated-voiceover` is an open-source Codex skill for creating AI-generated educational animated voiceover videos about philosophy, psychology, history, economics, finance, technology, and related subjects.
 
-It turns a topic into a complete narration, balanced video clips, consistent visual references, production-ready multimodal prompts, a stable narrator voice, and a quality-controlled final assembly plan.
-
 ## Video Examples
 
-Replace the placeholders below with representative 16:9 screenshots from finished videos.
-
-<!-- Suggested image paths: assets/examples/example-01.jpg, example-02.jpg, example-03.jpg -->
-
-| Video example 1 | Video example 2 | Video example 3 |
-| :---: | :---: | :---: |
-| *Add screenshot* | *Add screenshot* | *Add screenshot* |
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./assets/examples/video-effect-01.png" alt="Animated philosophy voiceover video frame" width="100%">
+    </td>
+    <td width="50%">
+      <img src="./assets/examples/video-effect-02.png" alt="Animated psychology voiceover video frame" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Philosophy explainer</b> — cinematic character storytelling</sub></td>
+    <td align="center"><sub><b>Psychology explainer</b> — abstract ideas made visual</sub></td>
+  </tr>
+</table>
 
 ## What It Does
 
@@ -62,3 +90,7 @@ See [SKILL.md](./SKILL.md) for the complete workflow and [references](./referenc
 ## License
 
 Original material in this repository is released under the [MIT License](./LICENSE). Third-party documentation and linked materials remain subject to their respective owners' terms.
+
+<p align="center">
+  If this workflow helps you create something worth sharing, consider starring the repository.
+</p>
