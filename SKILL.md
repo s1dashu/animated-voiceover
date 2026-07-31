@@ -1,9 +1,9 @@
 ---
-name: animated-voiceover-video
+name: animated-voiceover
 description: Develop AI-generated educational animated voiceover videos about philosophy, psychology, history, economics, finance, and technology. Use when Codex needs to research or structure a topic, write narration, divide a 1–5 minute video into balanced Seedance clips, design image or multi-shot video prompts, maintain narrator voice consistency, create text-forward cover images, or plan CLI-based multimodal generation and assembly. The currently maintained execution path uses LibTV CLI, while the production method can be adapted to Higgsfield, Jimeng, and comparable multimodal CLIs after consulting their latest official documentation.
 ---
 
-# Animated Voiceover Video
+# Animated Voiceover
 
 ## 整体工作流程
 
