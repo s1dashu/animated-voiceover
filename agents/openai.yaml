@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animated Voiceover Video"
+  short_description: "创作哲学、心理、历史、经济、金融与科技科普动画解说视频"
+  default_prompt: "Use $animated-voiceover-video to develop an educational animated voiceover video."
