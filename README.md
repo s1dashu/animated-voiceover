@@ -9,11 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/s1dashu/animated-voiceover/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/s1dashu/animated-voiceover?style=for-the-badge&logo=github&color=F4C430"></a>
-  <a href="https://github.com/s1dashu/animated-voiceover/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/s1dashu/animated-voiceover?style=for-the-badge&logo=github"></a>
+  <a href="./SKILL.md"><img alt="Codex skill" src="https://img.shields.io/badge/Codex-Skill-111111?style=for-the-badge&logo=openai&logoColor=white"></a>
+  <a href="#what-it-does"><img alt="AI video workflow" src="https://img.shields.io/badge/AI%20Video-Workflow-7C3AED?style=for-the-badge"></a>
+  <a href="#tool-support"><img alt="Seedance 2.0" src="https://img.shields.io/badge/Seedance-2.0-2563EB?style=for-the-badge"></a>
+  <a href="#core-workflow"><img alt="15-second clips" src="https://img.shields.io/badge/Clips-15s-0EA5E9?style=for-the-badge"></a>
+  <a href="#tool-support"><img alt="LibTV CLI" src="https://img.shields.io/badge/CLI-LibTV-F97316?style=for-the-badge"></a>
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2EA44F?style=for-the-badge"></a>
-  <a href="https://github.com/s1dashu/animated-voiceover/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/s1dashu/animated-voiceover?style=for-the-badge"></a>
-  <img alt="Codex skill" src="https://img.shields.io/badge/Codex-Skill-111111?style=for-the-badge&logo=openai&logoColor=white">
 </p>
 
 <p align="center">
