@@ -1,236 +1,236 @@
-# Animated Voiceover Video Prompt Guide
+# 动画解说视频提示词写作指南
 
-## Navigation
+## 文档导航
 
-- Inputs and fixed prompt order
-- Voice references
-- Reference-asset responsibilities
-- Shot design and continuity
-- Full-frame composition and aspect-ratio review
-- Content that does not belong in the prompt
-- Conversational delivery format
-- Preflight and post-generation checks
+- 写作前准备与 Prompt 固定顺序
+- 音色参考
+- 参考素材职责
+- 镜头设计与连续性
+- 满幅构图与画幅检查
+- 禁止写入的内容
+- 对话交付格式
+- 生成前后检查
 
-## Scope
+## 适用范围
 
-Use this guide to convert an approved 15-second narration segment into a Seedance 2.0 animated voiceover prompt. The goal is to make reference responsibilities, narration, visible action, and shot progression unambiguous while preserving voice and visual consistency across clips.
+本指南用于把已经确认的 15 秒旁白片段转化为 Seedance 2.0 动画解说视频 Prompt。目标是让参考素材职责、旁白、画面动作和镜头推进彼此清楚，同时保持各片段的音色与画风一致。
 
-Use [official-seedance-2.0-prompt-guide.md](official-seedance-2.0-prompt-guide.md) as the official-source index and operational digest. Use [community-directing-notes.md](community-directing-notes.md) only as a supplement for directing practice. Resolve model parameters, input modes, and asset limits from the live LibTV schema.
+提示词方法以 `official-seedance-2.0-prompt-guide.md` 为官方参考，以 `community-directing-notes.md` 为导演实践补充；模型参数、输入模式和素材上限始终以 LibTV 实时 schema 为准。
 
-## Inputs
+## 写作前准备
 
-Confirm all of the following before writing a prompt:
+开始写 Prompt 前，先确认以下输入：
 
-1. The final narration for the current clip and its spoken Han-character count.
-2. For Clip 1, whether the user provided an approved voice reference. For later clips, whether the pure audio extracted from Clip 1 is attached as `Audio 1`, or whether the target platform's equivalent voice identity is configured.
-3. Which approved visual-style reference to use and whether it controls style only.
-4. Whether the full-video cast list is complete and every main or important supporting character in the current clip has an approved identity reference.
-5. Whether the character-to-reference-to-clip table is complete and the node has every reference actually required by this clip.
-6. The clip's single knowledge, emotional, or narrative task.
-7. Which visible actions will translate the abstract narration into images.
+1. 当前片段最终旁白，以及实际朗读汉字数。
+2. 如果当前是片段 1，确认用户是否已提供音色参考；如果是后续片段，确认从片段 1 剥离的已确认纯音频是否已作为 `音频1` 连接，或是否配置了目标平台的等价音色身份。
+3. 使用哪一份已确认图像风格参考，以及它是否只负责画风。
+4. 全片人物清单是否已经完成；当前片段的每个主要人物和重要配角是否都有已确认人物参考图。
+5. “人物—参考节点—出现片段”对应表是否完整，当前节点是否连接了所有实际需要的人物参考图。
+6. 当前片段唯一的知识任务、情绪任务或叙事任务。
+7. 计划用哪些可见动作把抽象旁白转化为画面。
 
-Do not revise narration while storyboarding. Finalize the narration first; shots must not compensate for missing facts.
+不要一边改旁白一边写分镜。旁白先定稿，再设计镜头；镜头不得补救旁白缺少的关键事实。
 
-## Fixed Prompt Order
+## Prompt 的固定顺序
 
-Build every clip as an independent, complete prompt in this order:
+每个片段都按同一结构独立构造完整 Prompt：
 
-1. The current audio's voice-reference responsibility; omit when no audio reference exists.
-2. The responsibility of every reference image.
-3. Narration language, voice source, delivery, and the exact text for this clip.
-4. Necessary global visual requirements.
-5. Shots in event order.
+1. 当前音频的音色参考职责；没有音频参考时省略。
+2. 参考图片的职责。
+3. 旁白语言、音色来源、语速和当前片段准确正文。
+4. 必要的全局画面要求。
+5. 按事件顺序排列的镜头。
 
-Standard structure:
-
-```markdown
-Use Audio 1 only as the reference for {approved voice characteristics}.
-
-Use Image 1 only as the visual-style reference.
-
-Use off-screen narration in Chinese, with the voice identity from Audio 1 and {approved speaking rate and delivery}. Speak the following text completely, exactly, and in order: {exact narration for this clip}. {approved sound and music constraints}
-
-Shot 1:
-[shot size or camera geometry + subject + setting + starting state -> visible change -> end state + one principal camera move]
-
-Shot 2:
-[shot size or camera geometry + subject + setting + starting state -> visible change -> end state + one principal camera move]
-
-Shot 3:
-[shot size or camera geometry + subject + setting + starting state -> visible change -> end state + one principal camera move]
-```
-
-A 15-second clip normally extends the structure to Shot 5. Adjust for the material instead of fixing the count at three. Include narration once, inside `{}`. Shot paragraphs describe visuals only and must not repeat narration.
-
-When Clip 1 has no approved voice reference, omit the `Audio 1` line and directly specify only the voice characteristics the user requires. Starting with Clip 2, use the approved pure audio extracted from Clip 1.
-
-## Voice Reference
-
-- When the user supplies an approved voice reference, use it to generate Clip 1. Otherwise generate Clip 1 from a voice description. In both cases, extract pure audio after Clip 1 passes review.
-- Starting with Clip 2, attach the same Clip 1 audio as `Audio 1` to every later clip, or use one equivalent voice ID on the target platform.
-- The exact text for the current clip comes only from the narration inside `{}`. Never repeat or borrow the reference sample's original words or meaning.
-- Unless the user explicitly changes the voice, do not regenerate the sample, switch to another candidate, or substitute a video clip for the pure-audio reference.
-
-## Reference-Asset Responsibilities
-
-### Audio as a Voice Reference
-
-- Starting with Clip 2, attach the same approved pure audio extracted from Clip 1 and ensure the prompt refers to it as `Audio 1`.
-- State that `Audio 1` controls voice identity only. Add only necessary voice traits already approved by the user.
-- Take current narration solely from the text inside `{}`.
-- When combining `Audio 1` with a visual-style image, select a live-schema-supported mode such as `mixed2video`. The Seedance 2.0 VIP schema observed on 2026-07-30 supported this combination; query it again before production.
-- Do not attach a video merely for voice identity. Download approved Clip 1 through LibTV CLI, follow [Audio Extraction and Format Conversion Guide](audio-extraction-guide.md), produce a 48 kHz stereo 16-bit PCM WAV, and upload it through LibTV CLI as a separate audio node. This WAV format passed Seedance 2.0 validation; M4A was rejected. Video references cost more and may contaminate the visual result.
-
-### Image as a Visual-Style Reference
-
-- When an image controls only visual style, write exactly: `Use Image 1 only as the visual-style reference.`
-- Do not restate its material, palette, lighting, or linework, and do not copy its characters, setting, composition, or plot.
-- If an image also controls a character, prop, setting, or composition, enumerate those responsibilities precisely instead of using a vague `refer to the image` instruction.
-- A style reference is not a first or last frame. Unless explicitly requested and supported by the live schema, do not instruct the model to start from the reference or use it as an endpoint.
-- Attach only assets that perform a real job. Do not connect unrelated images, videos, or audio merely because they might help.
-
-### Character References and Extra Styling
-
-- After the full storyboard is approved, list the entire cast. Create and obtain approval for a separate identity reference for every recurring or narratively important main and supporting character.
-- Do not let an important character first appear through text-only improvisation. Stop and create the missing reference instead of substituting a similar person, vague description, or another character's image.
-- Attach only the character references needed by the current clip. State precise responsibilities such as `Image N controls the identity of Character X` or `Image N controls both the identity of Character X and the overall visual style`.
-- When one character image controls both identity and style, prevent its appearance from being copied to other people. Separate `preserve this character's identity` from `other characters inherit only the style`.
-- Extras and one-off background characters may omit identity references, but state: `Background characters without separate identity references inherit the overall visual style and character-design language of Image N without copying the referenced person's face, hairstyle, or clothing.`
-- Keep extras and main characters in the same visual medium and rendering system. If the main cast uses stylized 3D animation, extras must not become photorealistic humans, flat illustration, or another cartoon style.
-- Maintain a character-to-reference-to-clip table before generation. If a newly added character gains a distinct narrative role, treat that character as important, create a reference, and update affected nodes before production.
-
-## Shot Design
-
-### Shot Count and Rhythm
-
-- A 15-second clip normally uses five shots so that approximately 60 spoken Han characters continue to receive new visual information.
-- Five shots is the validated default rhythm, not a requirement to break apart one naturally long action. Use fewer shots for a deliberately unhurried action and more for a tight montage.
-- Use six or seven shots only for a very dense montage, and reduce action and camera complexity in each one.
-- Do not default to exact ranges such as `0–3 seconds`. Express event order with `Shot 1`, `Shot 2`, and so on, and let the model allocate timing.
-
-### Add Spatial Continuity Only When Needed
-
-When several shots revisit one identifiable location and spatial continuity matters, add one shared description before those shots. Define only what needs to remain stable:
-
-1. The basic shape and scale of the setting.
-2. The direction and placement of subjects, large furniture, doors, windows, and background objects.
-3. The fixed left-to-right or front-to-back order of critical props.
-4. The principal light direction and which surfaces receive warm or cool light.
-5. Which spatial relationships and object positions remain unchanged after cuts.
-
-Use the shared description to define the location once. Each related shot should choose a camera position within that space and advance the action. Do not redescribe a slightly different room in every shot.
-
-A 15-second runtime does not require all five shots to share one place or continuous timeline. A clip may use hard cuts across independent settings, parallel examples, symbolic images, or different periods. In that case, do not force a shared layout or state transition. Define a clear setting, subject, starting state, visible change, and endpoint for each shot.
-
-### Required Content in Every Shot
-
-Give each shot one principal narrative task and specify:
-
-1. The subject.
-2. The setting and visible starting state.
-3. A clear, visible change in the subject or setting.
-4. The new visual state at the end.
-5. Shot size, camera geometry, or one principal camera move.
-
-An action may be slow, but it must create a visible result. Prefer displacement, a major posture change, moving or separating objects, aggregation, fracture, deformation, a door or window opening, scene construction, or spatial reconfiguration. Do not rely only on breathing, hesitation, micro-expressions, or slowly shifting light.
-
-Interpret `one principal narrative task` as `one principal action result`. Closing a book and sliding it beside a candle can be one shot. Standing, walking around a table, crossing the room, unlocking and opening a window, then turning toward the camera contains several results and should be divided. Long action chains often stop halfway.
-
-### Eliminate Visual Ambiguity
-
-Write every shot for a cinematographer and production designer who cannot ask follow-up questions and cannot see the image in your head. Any unresolved choice can become visual drift. A different reader should stage almost the same image from the words alone.
-
-1. Identify the subject precisely: identity, appearance, facing direction, frame position, and shot size. Avoid vague references such as `a person`, `something`, or `it`. Use stable names and descriptions across adjacent shots.
-2. Define the space: location, foreground/midground/background placement, and light direction. Describe the camera geometrically—at the doorway, outside a window, to the character's left, or directly above a table; at eye, shoulder, or table height; facing a specific direction. State what occupies the left, center, and right when needed.
-3. Refine body movement and quantify degree: specify the moving hand, head, shoulder, foot, or torso, then give amplitude, speed, force, and direction. Write `slowly raises the right hand to chest height`, not `moves slightly`.
-4. Externalize abstract concepts and emotions as visible objects, actions, or body details. Do not ask the image itself to be `pain`, `desire`, `will`, or `freedom`. For example, repeated reaches that close on empty space can visualize desire.
-5. Make starting state, change, and endpoint concrete. Avoid `slowly changes` or `gradually appears` without stating what changes into what and by what visible process.
-6. Prefer a longer deterministic shot description over a short ambiguous one. When trimming, remove repeated style words and vague quality terms, not spatial and action details that make the result unique.
-
-Use one principal camera move per shot. Do not combine push, pull, pan, truck, and orbit. Simplify the camera when subject action is complex; simplify subject action when camera movement is complex.
-
-### Hard Cuts and Continuity
-
-- Use cinematic hard cuts freely and change shot size, angle, motion direction, setting, or visual focus when useful.
-- Continuity does not require a smooth transition or identical composition between every shot.
-- Give every shot a `start -> movement -> end`. Land the action before cutting, then continue with new information or a new action.
-- Carry a completed state forward only when adjacent shots intentionally divide one continuous action. For example: `Begin with the pen tip already suspended above the paper, then lower it to make the first mark.` Independent settings, parallel examples, symbols, and different times should start from newly defined states.
-- Do not complete a push-in and then restart another push-in from a similar medium shot. Do not repeat a completed look-up, stand, focus pull, enlargement, tug, release, or door opening.
-- Reset only when repetition has explicit narrative meaning, and identify it as a new, intentional repetition.
-
-## Full-Frame Composition and Aspect-Ratio Review
-
-- Read target aspect ratio and resolution from the user or active configuration. Pass actual `ratio` and `resolution` explicitly through the current CLI whenever creating or regenerating a node. Do not inherit old canvas values, copied node settings, or model defaults.
-- Pass ratio, resolution, and clip duration as CLI parameters. Do not repeat them in the creative prompt.
-- A correct technical container does not guarantee a full-frame image. The model may create internal letterboxing or pillarboxing.
-- Avoid phrases such as `ultrawide cinema`, `anamorphic`, `cinematic matte`, and `letterbox` unless that effect is required.
-- When earlier output contains internal bars, add this positive composition requirement on regeneration: `Every shot uses a full-frame composition; the scene and background cover the entire visible image area.` Do not restate technical parameters.
-- After generation, inspect both metadata and actual frames at the beginning, middle, and end. Reject top, bottom, or side bars; shrunken content; a centered image inside a mismatched container; or an inherited frame from a reference image.
-- Mark a clip as failed when its container or effective image does not match the target ratio. Keep task and node logs and regenerate it; do not include it in the final assembly.
-
-## Content That Does Not Belong in the Prompt
-
-- Do not submit external management labels such as `Clip 1:`. Begin with reference responsibilities or narration requirements.
-- Do not repeat duration, aspect ratio, resolution, sound controls, count, or `modeType` already passed through LibTV.
-- Do not expand `Use Image 1 only as the visual-style reference.` into a long style description.
-- Do not choose project policy by adding no-subtitles, no-logo, no-watermark, no-lip-sync, or no-background-music constraints by default. Include only constraints explicitly required by the user or active project.
-- Do not submit the full script, creative rationale, character counts, or storyboard reasoning with a clip prompt.
-- Do not mislabel a style image as a first frame, last frame, keyframe, or composition to reproduce.
-- Do not stack vague quality terms such as premium, stunning, cinematic, epic, or beautiful when they do not translate into a concrete visual instruction.
-
-## Conversational Delivery Format
-
-When presenting several prompts to the user, use external headings and blank lines, not fenced `text` or `plaintext` blocks:
+标准结构：
 
 ```markdown
-### Clip 1
+音频1仅用于参考{当前项目已经确认的音色特征}。
 
-*Narration: 60 Han characters*
+参考图 1 的画风。
 
-Use Image 1 only as the visual-style reference.
+画外旁白使用中文，以音频1的音色，用{当前项目确认的语速与表达方式}，完整、准确、按原顺序说出{当前片段的准确旁白}。{当前项目确认的声音与背景音乐约束}
 
-Use off-screen narration in Chinese. Speak...
+镜头 1：
+[景别或机位 + 主体 + 场景 + 起始状态 → 显著变化 → 结束状态 + 一种主要运镜]
 
-...
+镜头 2：
+[景别或机位 + 主体 + 场景 + 起始状态 → 显著变化 → 结束状态 + 一种主要运镜]
+
+镜头 3：
+[景别或机位 + 主体 + 场景 + 起始状态 → 显著变化 → 结束状态 + 一种主要运镜]
 ```
 
-`Clip 1` and the character count exist only for review. Remove them before copying the prompt into LibTV. The text inside `{}` remains the sole source of narration.
+15 秒片段一般扩展到镜头 5；根据内容节奏增减，不机械固定为三个。旁白正文只出现一次，放在 `{}` 中；镜头段落只写画面，不重复旁白。
 
-## Preflight Checklist
+片段 1 没有现成音色参考时，省略模板中的“音频1”职责，改为直接描述用户需要的声音特征。从片段 2 开始，使用从片段 1 剥离并确认的纯音频填入该职责。
 
-- For Clip 1, did you correctly distinguish between an existing approved voice reference and no established anchor? For a later clip, did you attach the approved pure audio extracted from Clip 1 instead of a video or another candidate?
-- Does upstream asset order match references such as `Audio 1` and `Image 1`?
-- Does the prompt make `Audio 1` responsible only for approved voice identity without importing its original words or meaning?
-- Are the complete cast list and character-to-reference-to-clip table ready?
-- Does every main and important supporting character in this clip have an approved reference attached to the node?
-- Is each character image's identity and style responsibility precise, without copying a referenced appearance to other characters?
-- Do unreferenced extras explicitly inherit the selected style and character-design language?
-- Does the node explicitly set required `ratio` and `resolution` instead of inheriting old or default values?
-- Does the prompt refer only to assets that are actually attached?
-- Does narration match the final copy exactly, appear once, and sit inside `{}`?
-- Were external labels such as `Clip N` and count notes removed?
-- Does every shot have a subject, starting state, visible change, and end state?
-- Is each shot deterministic about identity, facing direction, position, shot size, camera geometry, light direction, moving body part, amplitude, and speed?
-- Have abstract ideas and emotions become visible objects, actions, or body details?
-- Are vague phrases such as `slowly changes`, `gradually appears`, and `moves slightly` eliminated?
-- Does a 15-second clip normally use five shots, each with one executable principal action result?
-- If several shots revisit one space and continuity matters, is there one consistent spatial description without conflicting props, doors, windows, or light directions?
-- Does each camera position specify location, height, direction, and necessary left/center/right distribution?
-- When adjacent shots divide one continuous action, does the next shot inherit the completed state? When settings are independent, did you avoid forcing an unrelated transition?
-- Does each adjacent shot add new information instead of restarting an action or camera move?
-- Is there one principal camera move per shot, and is the shot count suitable for 15 seconds?
-- Did you avoid exact timestamps, first/last-frame misuse, technical parameters, and repeated style descriptions?
-- Are sound, subtitles, logos, watermarks, and music constraints limited to explicit requirements?
-- If earlier outputs contained internal bars, is the positive full-frame requirement included?
+## 音色参考
 
-## Post-Generation Checklist
+- 用户提供已确认的音色参考时，将它用于生成片段 1；没有现成参考时，直接用声音特征生成片段 1。无论是否使用上游参考，都在片段 1 通过质检后剥离其纯音频。
+- 从片段 2 开始，所有后续片段连接同一份片段 1 纯音频作为 `音频1`，或使用目标平台的同一音色 ID。
+- 当前片段正文只由当前 Prompt 中 `{}` 内的旁白决定；不得复述样本原台词，也不得借用其语义内容。
+- 除非用户明确要求更换音色，否则不重新生成样本、不切换到其他候选音频，也不使用某个视频片段替代纯音频参考。
 
-- Is narration complete and in the right order, with stable voice identity, volume, and pace?
-- Was Clip 1's voice approved as the anchor? Do later clips match the attached `Audio 1` or equivalent voice ID?
-- Do both the container and effective image match the target aspect ratio?
-- Does every shot create a clear, visible change, or has the clip degraded into a static illustration?
-- Do hard cuts advance to new images without repeated push-ins, enlargements, or action resets?
-- Does every main character match the correct approved reference without face swaps or improvised redesigns?
-- Do extras and background characters share the main cast's visual medium, design language, and rendering system?
-- Are style, character identity, and critical props stable within and across clips?
-- Does the ending contain cut-off speech, a click, or abrupt noise?
+## 参考素材职责
+
+### 音频的音色参考
+
+- 从片段 2 开始，为每个后续片段连接从片段 1 剥离并确认的同一份纯音频，并确保它在 Prompt 中对应 `音频1`。
+- 说明“音频1仅用于参考音色”，并只补充用户已经确认且确有必要的声音特征；没有提供时不擅自补充。
+- 当前片段正文只由当前 Prompt 中 `{}` 内的旁白决定。
+- 同时使用 `音频1` 和图像风格参考时，选择实时 schema 支持的 `mixed2video`。2026-07-30 查询到的 Seedance 2.0 VIP schema 支持该组合，但正式生成前仍须重新查询。
+- 不用视频片段直接代替音频参考。通过 LibTV CLI 下载已确认的片段 1，再按 [音频剥离与格式转换指南](audio-extraction-guide.md) 使用当前操作系统支持的工具输出 48kHz、双声道、16-bit PCM WAV，并通过 LibTV CLI 上传为独立音频节点；后续只连接纯音频。该 WAV 格式已验证可通过 Seedance 2.0 合规检测，M4A 曾被拒绝。视频参考成本显著更高，不得仅为音色而连接整段视频。
+
+### 图像风格参考
+
+- 当图片只负责画风时，固定只写“参考图 1 的画风。”。
+- 不复述参考图的材质、配色、光影和线条描述，也不照搬其中的人物、场景、构图或情节。
+- 如果图片还负责角色、道具、场景或构图，逐项说明对应职责，不用含糊的“参考图片”概括全部用途。
+- 风格参考不是首帧或尾帧。除非用户明确要求并且实时 schema 支持，不写“以参考图作为首帧”“从参考图开始”或首尾帧衔接指令。
+- 只接入真实需要的素材。不要为了“可能有帮助”把无关图片、视频或音频全部连接给模型。
+
+### 人物参考与群演画风
+
+- 在完整分镜确认后先列出全片人物。凡是承担叙事或知识表达任务、会被观众辨认为同一身份的主要人物和重要配角，都先生成独立人物参考图并由用户确认。
+- 不允许主要人物第一次在视频生成时只靠文字出现。缺参考图就停止生成并补图，不使用相似人物、临时描述或其他角色参考代替。
+- 为每个视频节点只连接本片段实际出现的人物参考图，并逐张说明“参考图 N 负责角色 X 的身份”“参考图 N 同时负责角色 X 的身份与整体画风”等明确职责。
+- 同一张人物参考同时承担身份与画风时，不把该人物外貌套给其他角色。Prompt 要把“参考角色的身份一致”与“其他角色只继承画风”分开写。
+- 群演、路人和一次性背景人物可以没有独立身份参考，但 Prompt 必须明确：“未单独提供身份参考的背景人物，统一继承参考图 N 的整体画风与角色造型语言，不复制参考人物的具体脸部、发型和服装。”
+- 群演与主要人物必须使用同一种视觉媒介和渲染体系。主要人物为风格化 3D 动漫时，群演也应是同套风格化 3D 动漫；不得漂移成写实真人、平面插画或另一种卡通风格。
+- 在生成前维护“人物—参考节点—出现片段”对应表；新增一个承担明确戏份的角色时，先判断其是否已经升级为重要配角。若是，先补人物参考图，再修改相关视频节点。
+
+## 镜头设计
+
+### 镜头数量与节奏
+
+- 15 秒片段一般规划 5 个镜头，让约 60 个汉字的旁白持续获得新的视觉信息。
+- 五镜是当前已经验证的默认节奏，不是强制把一个自然长动作切碎。需要舒缓长动作时可以减少镜头，需要非常紧凑的蒙太奇时可以增加。
+- 6–7 个镜头只用于非常紧凑的蒙太奇；此时降低每一镜的动作和运镜复杂度。
+- 不默认写“0–3 秒”等精确时间段。按“镜头 1、镜头 2……”表达事件顺序，让模型自然分配节奏。
+
+### 按需建立空间连续性说明
+
+只有当多个镜头反复拍摄同一个可识别空间，并且需要保持空间连续性时，才在分镜前写一段这些镜头共同遵守的空间说明。可以按需固定：
+
+1. 场景的基本形状与尺度。
+2. 主体、大型家具、门窗和背景物分别位于哪个方向。
+3. 关键道具从左到右或从前到后的固定排列。
+4. 主光源来自哪里，冷暖光分别照亮哪些表面。
+5. 哪些空间关系与物品位置在切镜后保持不变。
+
+空间说明负责同一地点的连续性，每个相关镜头只从既定空间选择机位并推动动作。不要在这些镜头中重新描述一套略有不同的房间，否则模型容易把它们理解成不同场景。
+
+15 秒只是片段时长，不代表五个镜头必须处于同一地点或同一条连续时间线。片段可以通过硬切呈现多个完全独立的空间、并列案例、象征画面或跨时空蒙太奇。此时不建立跨空间的统一布局，也不强求前后状态承接；只需为每个镜头分别写清新场景、主体、起始状态、可见变化和终点。
+
+### 每一镜必须写清的内容
+
+每个镜头只承担一个主要叙事任务，并写清：
+
+1. 谁或什么是主体。
+2. 主体位于什么场景、处于什么起始状态。
+3. 主体或场景发生什么清楚可见的变化。
+4. 变化最终落到什么新的画面状态。
+5. 使用什么景别、机位或一种主要运镜。
+
+动作可以低缓，但必须产生可见结果。优先使用位移、姿势明显改变、物体移动、拆开、聚合、破裂、变形、门窗开启、场景搭建或空间重构；不要只依赖呼吸、迟疑、细微表情或缓慢光影。
+
+把“一个主要叙事任务”落实为“一个主要动作结果”。例如“把书合上并推到蜡烛旁”可以是一镜；“起身、绕过桌子、行走、开锁、拉开窗户、转身面对摄影机”包含多个主要结果，应拆到不同镜头。动作链过长时，模型常只执行前半段或停在中间状态。
+
+### 画面必须具体到没有想象偏差
+
+把每个镜头当成写给一位无法追问的摄影师和美术：他只能照字面执行，看不到你脑中的画面。凡是留给模型自由发挥的空白，都会变成画面漂移和片段之间的不连贯。因此每一镜都要写到“换一个人读也会摆出几乎相同的画面”的程度。
+
+1. 主体要具体到可辨认：谁、外形、朝向、在画面中的位置和景别，不用“一个人”“某物”“抽象的它”这类模糊指代。同一主体在相邻镜头保持同一称呼和同一外形。
+2. 空间要具体：场景是什么地方、主体处在前景中景还是背景、光从哪个方向来。用几何关系写明摄影机位于门口、窗外、人物左侧或桌面正上方，与主体眼睛、肩膀或桌面多高，朝向哪里；必要时说明画面左、中、右分别出现什么，让构图唯一确定。
+3. 动作按官方“肢体细化 + 程度量化”写：指明动到哪个部位（手、头、肩、脚、躯干），以及幅度、速度、力度和方向，例如“缓慢抬起右手到胸前”，而不是“他动了一下”。
+4. 抽象概念和情绪必须外化成可见的具体物象或身体细节，不能直接把“痛苦”“欲望”“意志”“自由”当画面。先想清楚“这个概念在镜头里到底长什么样、由什么东西、什么动作来表现”，再写成看得见的对象和动作，例如用反复伸手抓取却抓空来表现欲望。
+5. 起点、变化、终点三者都要是具体可见的画面状态，中间的变化过程也要交代清楚，不允许出现“慢慢变化”“逐渐出现”这类没有指明变成什么、如何变的措辞。
+6. 宁可把一镜写长写死，也不要为了简洁留下多种合理解读；删减时删的是重复风格词和空泛质量词，不是使画面唯一确定的具体信息。
+
+一个镜头尽量只指定一种主要运镜。不要同时要求推、拉、摇、移和环绕；复杂动作镜头优先简化运镜，复杂运镜镜头优先简化主体动作。
+
+### 硬切与连续性
+
+- 允许像电影一样硬切，并主动改变景别、角度、运动方向、场景或视觉焦点。
+- 连续性不等于所有镜头平滑过渡，也不等于始终保持同一构图。
+- 每一镜都要有“起点 → 运动 → 终点”；切镜前让动作落地，下一镜从新的信息或新的动作继续。
+- 只有相邻镜头有意拆分同一条连续动作时，下一镜才明确承接上一镜已经完成的状态，例如“从上一镜笔尖悬停在纸面上方的状态开始落笔”。若硬切到独立场景、并列案例、象征画面或不同时间地点，则直接定义新的起始状态，不需要承接上一镜。
+- 不要让上一镜完成推近，下一镜回到相似中景再次推近；也不要重复完成过的抬头、起身、聚焦、放大、拉扯、释放或开门动作。
+- 只有重复本身具有明确叙事意义时才允许重置，并在 Prompt 中说明它是新的、有意设计的重复。
+
+## 满幅构图与画幅检查
+
+- 目标画幅和分辨率来自用户要求或当前项目配置。每次创建或重生成视频节点都通过当前 CLI 显式传递实际 `ratio` 与 `resolution`，不得依赖画布旧值、复制节点参数或模型默认值。
+- `ratio`、`resolution` 和片段时长通过 CLI 参数传递，不在 Prompt 中重复横竖屏比例、分辨率或时长。
+- 技术容器符合目标比例，不代表模型生成的有效画面一定满幅。模型仍可能在容器内生成上下或左右遮幅。
+- 默认避免使用“超宽银幕”“变形宽银幕”“电影遮幅”“letterbox”等容易诱发内部黑边的描述。
+- 某一风格或片段曾出现内部遮幅时，在重生成 Prompt 中加入正向构图要求：“所有镜头采用满幅画面，场景与背景完整覆盖整个可见构图区域。”不要改写成技术参数。
+- 生成后同时检查文件元数据和实际画面。至少查看开头、中段和结尾的代表帧，确认没有上下黑边、左右黑边、内容缩在不匹配的容器中、缩在中央的有效画面或参考图边框被继承。只检查容器尺寸不足以确认画幅正确。
+- 容器或实际有效画面不符合当前项目目标画幅时，将该片段标记为画幅失败，保留任务和节点日志并重新生成；不得把失败片段直接加入最终拼接。
+
+## 不要写进 Prompt 的内容
+
+- 不提交“片段 1：”等外部管理标签；实际 Prompt 直接从参考素材职责或旁白要求开始。
+- 不重复 LibTV 已传递的时长、比例、分辨率、声音开关、数量和 `modeType`。
+- 不把“参考图 1 的画风。”扩写成长篇风格形容词。
+- 不默认加入无字幕、无 Logo、无水印、不做口型或无背景音乐等项目选择。只写当前项目或用户明确要求的必要约束，避免堆叠冗长负面词。
+- 不把完整剧本、创作解释、字数统计或镜头设计理由一起提交给模型。
+- 不把风格参考误写成首帧、尾帧、关键帧或需要复刻的构图。
+- 不堆叠“高级、震撼、电影感、史诗、唯美”等不能转化为具体画面的空泛质量词。
+
+## 对话中的交付格式
+
+向用户展示多个 Prompt 时，使用清楚的外部标题和空行，但不使用 `text` 或 `plaintext` 代码块：
+
+```markdown
+### 片段 1
+
+*旁白：60 个汉字*
+
+参考图 1 的画风。
+
+画外旁白使用中文。旁白为……
+
+……
+```
+
+“片段 1”和字数只用于审稿；复制到 LibTV 前必须剥离。实际旁白仍以 `{}` 中的文本为唯一提交内容。
+
+## 提交前检查
+
+- 如果当前是片段 1，是否正确处理了“有现成音色参考”与“尚未建立音色锚点”两种情况？如果是后续片段，是否连接了从片段 1 剥离的已确认纯音频，而不是视频本身或其他候选音频？
+- 上游素材顺序是否与 `音频1`、`参考图 1` 的指代一致？
+- Prompt 是否明确 `音频1` 只负责当前项目已经确认的音色，而没有把其原台词或语义带入当前片段？
+- 全片人物清单和“人物—参考节点—出现片段”对应表是否已经完成？
+- 当前片段的所有主要人物和重要配角是否都有已确认人物参考图，并实际连接到当前视频节点？
+- 每张人物参考图的身份与画风职责是否逐项写清，是否避免把参考人物外貌套到其他角色身上？
+- 无独立身份参考的群演是否明确继承指定参考图的整体画风与角色造型语言？
+- 当前视频节点是否显式设置项目要求的 `ratio` 与 `resolution`，而不是继承旧值或模型默认值？
+- 是否只引用了真实连接的素材？
+- 旁白是否与定稿逐字一致，只出现一次，并放在 `{}` 中？
+- 是否误把“片段 N”或字数标签带进 Prompt？
+- 每镜是否有主体、起始状态、可见变化和结束状态？
+- 每镜是否具体到没有想象偏差：主体、朝向、位置、景别、机位、光向、动作部位与幅度速度是否都唯一确定，换一个人读也会摆出几乎相同的画面？
+- 抽象概念与情绪是否已外化成可见的具体物象或身体细节，而不是直接把“痛苦”“欲望”“意志”当画面？
+- 是否残留“慢慢变化”“逐渐出现”“动了一下”等没有指明变成什么、如何变的模糊措辞？
+- 15 秒片段是否一般规划为 5 个镜头，并让每镜只承担一个模型能够完整执行的主要动作结果？
+- 若多个镜头反复拍摄同一个空间且连续性重要，是否给出必要的空间连续性说明，并避免道具位置、门窗方位与光线方向互相冲突？
+- 每个机位是否写清摄影机位置、高度、朝向和画面左中右的空间分布？
+- 若有意把同一条连续动作拆到多个镜头，下一镜是否明确承接已完成状态？若是独立场景，是否避免强行制造无关的状态承接？
+- 相邻镜头是否提供新信息，而不是重启同一个动作或运镜？
+- 是否只有一种主要运镜，镜头数量是否适合 15 秒？
+- 是否误写精确秒数、首尾帧、技术参数或重复画风描述？
+- 是否只写入用户明确要求的声音、字幕、Logo、水印和背景音乐约束？
+- 若历史输出出现内部黑边，是否加入了满幅画面的正向构图要求？
+
+## 生成后检查
+
+- 旁白是否完整、顺序正确，音色、音量和语速是否稳定？
+- 片段 1 的音色是否已经确认可作为锚点？后续片段的输出音色是否与该 `音频1` 或音色 ID 保持一致？
+- 容器和实际有效画面是否都符合当前项目目标画幅，而不只是节点参数显示正确？
+- 每一镜是否真的发生清楚可见的变化，有无退化为静态插画？
+- 硬切是否推进到新画面，有无循环式重复推近、放大或动作重置？
+- 所有主要人物是否分别与其确认参考图保持身份一致，有无角色互相套脸或临时换造型？
+- 群演、路人和背景人物是否与主要人物使用同一视觉媒介、造型语言和渲染体系，有无写实、3D、手绘等风格割裂？
+- 画风、人物和关键道具是否在片段内以及跨片段稳定？
+- 片尾是否有旁白截断、咔哒声或突兀噪音？

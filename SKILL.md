@@ -1,174 +1,174 @@
 ---
 name: animated-voiceover
-description: Develop AI-generated educational animated voiceover videos about philosophy, psychology, history, economics, finance, and technology. Use when Codex needs to research or structure a topic, write narration, divide a 1–5 minute video into balanced Seedance clips, design image or multi-shot video prompts, maintain narrator voice consistency, create text-forward cover images, or plan CLI-based multimodal generation and assembly. The currently maintained execution path uses LibTV CLI, while the production method can be adapted to Higgsfield, Jimeng, and comparable multimodal CLIs after consulting their latest official documentation.
+description: 制作哲学、心理、历史、经济、金融与科技等主题的 AI 动画解说视频。适用于 Codex 需要研究和组织选题、编写旁白、将 1–5 分钟视频拆成均衡的 Seedance 片段、设计图像或多镜头视频提示词、保持旁白音色一致、制作带字封面，或规划基于 CLI 的多模态生成与拼接流程。当前正式维护的执行路径使用 LibTV CLI；查阅最新官方文档后，也可将该生产方法适配到 Higgsfield、即梦及其他同类多模态 CLI。
 ---
 
 # Animated Voiceover
 
-## End-to-End Workflow
+## 整体工作流程
 
-1. **Write the complete narration first.** Confirm the topic, audience, and final runtime. Finish the full script before dividing it into clips. Read [Narration Script Guide](references/narration-script-guide.md) in full before writing or revising narration.
-2. **Lock the visual style and reference images.** Reuse a user-approved style reference or generate a new one and obtain approval. Build a cast list from the complete storyboard, then create separate reference images for every main character and important supporting character.
-3. **Write prompts for every clip.** Finalize each narration segment before designing reference responsibilities, shots, actions, and cuts. Read [Video Prompt Guide](references/video-prompt-guide.md) in full before writing, revising, or troubleshooting prompts.
-4. **Generate only Clip 1 first.** If the user has not supplied an approved voice reference, do not attach an audio reference to Clip 1. Describe only the required voice characteristics in the prompt. Inspect its narration, voice, style, characters, and effective aspect ratio before approving it as the anchor for later clips.
-5. **Extract audio from Clip 1.** On the maintained LibTV path, download the approved Clip 1 through LibTV CLI, then read and follow [Audio Extraction and Conversion Guide](references/audio-extraction-guide.md) for the current operating system. Use `afconvert` or FFmpeg on macOS and FFmpeg on Windows or Linux. Produce a 48 kHz, stereo, 16-bit PCM WAV and upload it through LibTV CLI as a separate audio node. M4A was previously rejected by Seedance and must not be used until revalidated.
-6. **Generate the remaining clips in parallel.** Starting with Clip 2, attach the pure audio extracted from Clip 1 as `Audio 1` on every video node and use it only as a voice reference. The exact narration for each clip must still come only from that clip's prompt. Verify all upstream assets, prompts, and generation parameters before submitting the remaining clips in parallel.
-7. **Quality-check and assemble the final video.** Inspect narration completeness, voice consistency, character identity, visible shot motion, effective framing, and end-of-clip audio. Assemble only clips that pass review.
+1. **先写完整文案。** 确定主题、受众与成片时长，先完成全篇讲稿，再拆分为多个视频片段。编写或修改讲稿时，完整读取 [旁白讲稿写作指南](references/narration-script-guide.md)。
+2. **确定视觉风格与参考图。** 复用用户已确认的风格参考，或先生成新参考图并经用户确认。根据全片分镜列出人物，为主要人物和重要配角准备独立人物参考图。
+3. **为全部片段编写视频提示词。** 先定稿每段旁白，再设计参考素材职责、镜头、动作与切换。编写、修改或排查 Prompt 时，完整读取 [视频提示词写作指南](references/video-prompt-guide.md)。
+4. **先只生成片段 1。** 如果用户没有提供已确认的音色参考，片段 1 暂不连接音频参考，只在 Prompt 中写明需要的声音特征。检查片段 1 的旁白、音色、画风、人物与实际画幅，确认可作为后续片段的锚点。
+5. **从片段 1 剥离音频。** 在 LibTV 路径中，先通过 LibTV CLI 下载已确认的片段 1，再根据当前操作系统完整读取并执行 [音频剥离与格式转换指南](references/audio-extraction-guide.md)：macOS 可使用 `afconvert` 或 FFmpeg，Windows 与 Linux 使用 FFmpeg。统一输出 48kHz、双声道、16-bit PCM WAV，再通过 LibTV CLI 上传为独立音频节点。M4A 曾被 Seedance 拒绝，未重新验证前不要使用。
+6. **并行生成后续片段。** 从片段 2 开始，将片段 1 剥离出的纯音频作为每个视频节点的 `音频1`，只参考音色；当前片段的准确旁白仍只由当前 Prompt 中的文本决定。上游参考素材、Prompt 和生成参数全部核对后，并行提交所有后续片段。
+7. **质检并拼接成片。** 逐片检查旁白完整性、音色稳定、人物一致、镜头动作、实际画幅和片尾音频；只将通过质检的片段按顺序拼接。
 
-## Narration Structure
+## 文案结构
 
-Finish the complete narration before splitting it into video clips. The argument, story, and emotional progression must work at the full-script level; never damage the overall logic merely to hit a per-clip character target.
+先完成整篇视频讲稿，再拆分视频片段。讲稿的论证、叙事和情绪推进应先在全文层面成立，不能为了凑单个片段字数破坏整体逻辑。
 
-Read [references/narration-script-guide.md](references/narration-script-guide.md) in full before writing or revising narration. It defines audience calibration, context, 15-second segmentation, the 60-Han-character counting convention, runtime-based structure, spoken style, fact-checking, visual relationships, and the default delivery format.
+编写或修改旁白讲稿前，完整读取 [references/narration-script-guide.md](references/narration-script-guide.md)。该文件规定受众校准、背景交代、15 秒片段与 60 字计数口径、按片长组织叙事、口语表达、事实核查、画面关系和默认交付格式。
 
-## Clip Segmentation
+## 片段拆分
 
-Prefer Seedance 2.0 Pro for video generation. Apply these production rules:
+优先使用 Seedance 2.0 Pro 生成视频。按以下已经验证的生产经验拆分讲稿：
 
-1. Set each video clip to 15 seconds.
-2. Target 60 spoken Chinese Han characters per clip. Prefer 59–61 and relax to 58–62 only when required for natural, complete meaning. Count only spoken Han characters, not punctuation, shot directions, reference descriptions, voice notes, or constraints.
-3. Estimate the clip count from the full narration, then redistribute and rewrite sentences so clip lengths remain balanced.
-4. Split at complete ideas and natural transitions. Rewrite the narration when the count is wrong; never cut sentences mechanically.
-5. Verify every segment with Unicode Han-character counting and review information density. Keep segment lengths even enough to avoid noticeable speaking-rate changes.
-6. Use a natural, steady narration pace with short, clear pauses. Do not stack clauses or sacrifice clarity to reach a number.
+1. 将每个视频片段设为 15 秒。
+2. 将每个片段实际朗读的中文讲稿默认目标设为 60 个汉字，越接近 60 越好；优先落在 59–61 个汉字，只有为了保持语义自然完整时才放宽到 58–62 个汉字。这里只统计会被读出的汉字，不统计标点、镜头说明、参考素材、音色描述和约束词。
+3. 先根据讲稿总字数估算片段数量，再重新分配和改写句子，使各片段字数尽量接近，不要出现明显长短不一的片段。
+4. 优先在语义完整、转折自然的位置切分；字数不合适时改写讲稿，不要机械截断句子。
+5. 拆分后使用 Unicode 汉字计数逐段复核，并同时检查信息密度。各段字数应尽量均匀，避免跨片段语速不一致。
+6. 默认使用自然、稳定的旁白语速，句间保留短而清晰的停顿；仍须保证内容易懂，不用堆叠从句或牺牲逻辑来凑字数。
 
-The 60-character target is a production preference validated through real generations, not an official Seedance limit. Proper nouns, numbers, English terms, and difficult pronunciations may require a small deviation and rebalancing elsewhere.
+“每段目标 60 个汉字，越接近越好”是根据实际生成效果确定的生产偏好，不是 Seedance 官方硬限制。优先写到 59–61 个汉字，只有为了保持语义自然完整时才放宽到 58–62 个汉字；遇到专有名词、数字、英文或复杂发音时，可以在语义自然的前提下进一步小幅浮动，并重新平衡其他片段。
 
-## Visual Language and Image Prompts
+## 视觉语言与图像提示词
 
-Prepare one user-approved visual-style reference before generating production clips. Use it to lock linework, materials, color, lighting, and rendering style without automatically copying its subject, composition, text, or story.
+在正式生成片段前，先准备一份由用户确认的图像风格参考。该参考用于锁定整个系列或单期视频的画风、线条、材质、色彩和光影，不默认复制图中的主体、构图、文字或故事内容。
 
-Let the user reuse an approved historical style reference or create a new one with the configured generation tool. Do not switch style references silently between clips.
+允许用户选择复用当前项目已确认的历史图像风格参考，或通过当前项目指定的生成工具创建新参考。新参考确认后再用于批量视频生成；不得在不同片段间静默更换风格参考。
 
-When an image is responsible only for visual style, write only: `Use Image 1 only as the visual-style reference.` Do not restate its materials, palette, lighting, or linework, and do not repeat style requirements at the end of the prompt. Keep the detailed style description in the reference-asset record and let the image carry the constraint.
+将已确认的图像风格参考提供给 Seedance 时，在 Prompt 中固定只写“参考图 1 的画风。”，不要复述线条、材质、配色、光影等画风描述，也不要在 Prompt 末尾再次补充画风要求。详细风格说明只保留在参考资产记录中，由参考图本身承担视觉约束。
 
-### Character References and Whole-Video Style Consistency
+### 人物参考与全片画风一致性
 
-Before production generation, build a cast list from the complete narration and storyboard. Separate main characters, important supporting characters, and extras:
+正式生成视频前，先根据完整讲稿和全部分镜建立全片人物清单，并区分主要人物、重要配角与群演：
 
-1. Create and obtain approval for a separate character reference image for every recurring or narratively important identifiable character. Do not let an important character first appear through text-only improvisation inside a video node.
-2. Maintain a character-to-reference-to-clip table. Attach every required character reference to each relevant clip and state precisely which image controls identity and which controls style.
-3. Stop production generation if any main or important supporting character lacks an approved reference. Do not substitute a similar character, vague description, or another person's reference.
-4. Extras and one-off background characters may omit identity references, but they must inherit the same visual medium, design language, materials, proportions, linework, palette, and lighting from a specified character or style reference.
-5. Do not mix incompatible character-rendering systems in one video. If main characters are stylized 3D animation, extras must not drift into photorealistic humans or flat 2D illustration.
-6. State whether each character reference controls identity, style, or both. Prevent the model from applying one referenced face or outfit to other characters.
+1. 每个会被观众辨认为同一身份、承担叙事或知识表达任务的主要人物和重要配角，都必须先生成独立人物参考图并经用户确认；不得让人物第一次出现在视频节点里、只靠文字临时生成。
+2. 建立“人物—参考节点—出现片段”对应表。某片段出现哪些主要人物，就把这些人物的已确认参考图连接到该视频节点，并在 Prompt 中逐项声明每张图负责的角色身份与画风职责。
+3. 缺少任一主要人物或重要配角的已确认参考图时停止正式视频生成，先补齐参考资产；不得用模糊描述、相似角色或其他人物参考图临时顶替。
+4. 群演、路人或只出现一次的背景人物可以不逐一制作身份参考图，但必须继承已确认主要人物参考图或独立画风参考中的同一造型语言、材质、渲染方式、比例、线条、配色和光影。Prompt 要明确这些无独立参考的角色与指定参考图保持同一画风。
+5. 同一支视频不得混用割裂的角色渲染风格，例如主要人物是风格化 3D 动漫，群演却变成写实真人或二维手绘；发现这种漂移时视为画风失败，不得进入拼接。
+6. 人物参考图既可能只负责身份，也可能同时负责身份与画风。必须在 Prompt 中精确声明职责，避免模型把参考人物的脸或服装错误套到其他角色身上。
 
-## Reusable Reference Assets
+## 可复用参考资产
 
-Treat approved voice and style references as reusable assets:
+已确认的音色参考与图像风格参考都支持“一次生成、确认保存、后续复用”：
 
-1. At the start of a video, inspect existing approved voice and style references and let the user reuse or replace them. Use an existing voice reference only to generate Clip 1; otherwise describe the required voice in Clip 1's prompt.
-2. After Clip 1 passes review, always extract its pure audio and use that approved audio to unify every later clip.
-3. Record a stable identifier, type, purpose, description, complete generation prompt, source LibTV workspace/canvas/node, local download path, and approval state for every approved reference.
-4. Reuse a node directly only within the same canvas. For cross-canvas reuse, download through LibTV CLI, upload to the target canvas, and attach the new resource node.
-5. Never connect nodes across canvases, construct private LibTV HTTP requests, or regenerate an existing reference through a personal API key.
-6. Create and reapprove a new version when changing a reference. Never overwrite or silently replace an approved asset.
+1. 开始新视频时，先读取已有的已确认音色与图像风格参考，让用户选择复用或新生成。已有音色参考用于生成片段 1；没有现成参考时，在片段 1 的 Prompt 中写明所需声音特征。
+2. 片段 1 通过质检后，始终从该片段剥离纯音频，并用这份已确认音频统一后续所有片段的音色。
+3. 为已确认的音色与图像参考记录稳定标识、类型、用途、描述、完整生成提示词、来源 LibTV 工作区/画布/节点、本地下载路径和确认状态。
+4. 复用同一画布中的参考时直接连接已有节点；复用其他画布中的参考时，使用 LibTV CLI 从来源画布下载，再上传到目标画布并连接新的资源节点。
+5. 不直接跨画布连接节点，不自行拼接 LibTV HTTP 请求，也不使用个人 API Key 重新生成已有参考。
+6. 修改或替换参考时创建新版本并重新确认，不覆盖或静默替换已确认版本。
 
-## Video Prompts
+## 视频提示词
 
-Plan visuals only after the narration has been segmented. Read [references/video-prompt-guide.md](references/video-prompt-guide.md) in full before writing, revising, or troubleshooting Seedance prompts.
+讲稿拆分完成后，再为每个片段规划画面。编写、改写或排查 Seedance Prompt 前，完整读取 [references/video-prompt-guide.md](references/video-prompt-guide.md)。该文件规定参考素材职责、标准 Prompt 顺序、多镜头导演方法、硬切与循环动作、首尾帧误用、满幅构图、对话交付形式以及生成前后检查。
 
-Keep these core rules:
+必须保持以下核心规则：
 
-1. Use `Clip N` only for display and task management. Remove it before model submission.
-2. Pass `duration`, `ratio`, `resolution`, `enableSound`, `count`, and `modeType` only as CLI parameters, never inside the creative prompt.
-3. A 15-second clip normally uses five shots. Adjust only for a genuinely slower long action or a tighter montage. Give every shot a clear start, visible change, and end; after a cut, advance to new information instead of restarting a completed action or camera move.
-4. Remove visual ambiguity. Specify subject, facing direction, frame position, shot size, camera geometry, light direction, moving body part, motion amplitude, and speed. Convert abstract concepts and emotions into visible objects, actions, or body details.
-5. Add a shared spatial-continuity description only when several shots revisit the same identifiable space and continuity matters. Independent scenes, parallel examples, symbolic images, and cross-time montages should define their own spaces.
-6. Treat five shots as five distinct visual events, normally with one principal action result per shot. Do not pack several mandatory outcomes into one shot.
-7. Describe camera geometry explicitly: position, height, direction, and what appears on the left, center, and right. Carry forward a completed state only when adjacent shots intentionally divide one continuous action.
-8. When a style image controls style only, write `Use Image 1 only as the visual-style reference.` Never mislabel it as a first frame, last frame, or composition to reproduce.
-9. Use approved identity references for every main and important supporting character. Explicitly make unreferenced extras inherit the overall design system without copying a referenced person's identity.
-10. Include only negative constraints explicitly required by the user or project. Do not automatically add no-subtitles, no-logo, no-watermark, no-background-music, or no-lip-sync requirements.
-11. Use an existing voice reference for Clip 1 when one is provided. Otherwise generate Clip 1 first and extract its audio. Attach that pure audio to every later clip as `Audio 1`, or use the target platform's equivalent voice-identity mechanism. The exact narration must come only from the text inside `{}` in the current prompt.
+1. “片段 N”只用于对话展示和任务管理，实际提交时剥离。
+2. `duration`、`ratio`、`resolution`、`enableSound`、`count` 和 `modeType` 只通过 LibTV 参数传递，不写进创作 Prompt。
+3. 15 秒片段一般规划 5 个镜头。只有内容需要更舒缓的长动作或更紧凑的蒙太奇时才调整镜头数；每镜都有清楚的起点、可见变化和终点，切镜后推进新信息，不重启上一镜已经完成的动作或运镜。
+4. 每镜必须具体到没有想象偏差：把镜头当成写给无法追问的摄影师，主体、朝向、位置、景别、机位、光向、动作部位与幅度速度都要唯一确定，抽象概念和情绪先外化成可见物象或身体细节，不留任何自由发挥的空白。留白会直接造成画面漂移和片段不连贯。
+5. 只有当多个镜头反复拍摄同一个可识别空间，并且空间连续性对成片重要时，才写该空间的连续性说明，固定主体、家具、道具、门窗和光线的相对位置。一个 15 秒片段可以硬切呈现多个完全独立的空间；此时分别写清每镜的新场景，不要求它们共享空间布局。
+6. 把五个镜头拆成五个清楚的视觉事件，每镜优先只承担一个主要动作结果。可以包含为该结果服务的连续小动作，但不要把多个必须完成的主要事件挤在同一镜；关键终点应单独占镜。
+7. 用摄影机几何关系写机位：摄影机位于哪里、与主体或桌面多高、朝向哪里、画面左中右分别出现什么。硬切后明确新机位、景别和新场景。只有相邻镜头有意拆分同一条连续动作时，才写下一镜承接的已完成状态；独立场景、并列案例、象征画面和跨时空蒙太奇各自从清楚的新起始状态开始。
+8. 画风参考只承担画风时，固定只写“参考图 1 的画风。”，不把它误设为首帧、尾帧或需要复刻的构图。
+9. 主要人物与重要配角必须来自已确认人物参考图；群演没有独立参考图时，必须明确继承指定人物参考图或画风参考的整体画风，不允许临时生成出另一套角色风格。
+10. 只保留当前项目或用户明确要求的必要负面约束，不自动添加无字幕、无 Logo、无水印、无背景音乐或不做口型等项目选择。
+11. 片段 1 使用用户已提供的音色参考；没有现成参考时，先生成片段 1 并剥离其音频。后续片段统一连接该纯音频作为 `音频1`，或使用目标平台提供的等价音色身份机制；当前片段的旁白只由当前 Prompt 中 `{}` 内的正文决定。
 
-## Voice Reference
+## 音色参考
 
-Use an existing voice reference only to generate Clip 1. If none exists, generate Clip 1 from an explicit voice description. In both cases, extract pure audio from the approved final Clip 1 and use it as the voice anchor for all later clips:
+已有音色参考用于生成片段 1；没有现成参考时，直接用声音特征生成片段 1。无论片段 1 是否使用了上游音色参考，都从其最终成片剥离纯音频，作为后续片段的统一音色锚点：
 
-1. If an approved voice reference exists, attach it only to Clip 1. Otherwise attach no audio reference and describe the required voice characteristics in the prompt. Generate only Clip 1 first.
-2. Inspect narration completeness, voice identity, volume, speaking rate, and end-of-clip noise. Establish an anchor only after the voice passes review.
-3. Download Clip 1 through LibTV CLI, read [Audio Extraction and Conversion Guide](references/audio-extraction-guide.md) in full, convert it to 48 kHz stereo 16-bit PCM WAV, and upload it through LibTV CLI as a separate audio node. This format passed Seedance 2.0 validation; M4A was rejected and must not be used until revalidated.
-4. Starting with Clip 2, attach the pure audio as `Audio 1` to every later clip, or use one consistent voice ID on another platform. Verify assets, prompts, and parameters before submitting later clips in parallel.
-5. State only that the audio controls voice identity, plus any necessary user-approved voice characteristics. The exact narration must come only from the current text inside `{}`. Never repeat or borrow the sample's original wording or meaning.
-6. Attach only pure audio for later clips. Do not use the whole video as a voice reference because video references cost more and may contaminate visual output.
-7. When combining audio and image references, use a live-schema-supported mode such as `mixed2video`. The Seedance 2.0 VIP (`star-video2`) schema observed on 2026-07-30 supported both; query the schema again before production.
-8. Connect an approved audio node directly only within the same canvas. Across canvases, download and re-upload through LibTV CLI, then use the new resource node as `Audio 1`.
-9. Set sound parameters from the current audio strategy and live schema. If Seedance generates narration and sound directly, explicitly keep `enableSound=on`.
-10. Create and approve a new asset record when changing voice. Never switch the selected source silently.
+1. 如果有现成音色参考，只在片段 1 中连接它；如果没有，片段 1 不连接音频参考，并在 Prompt 中写明用户要求的必要声音特征。先只生成片段 1。
+2. 检查片段 1 的旁白完整性、音色、音量、语速和片尾噪音；确认音色可用后才建立锚点。
+3. 通过 LibTV CLI 下载片段 1，完整读取 [音频剥离与格式转换指南](references/audio-extraction-guide.md)，按当前操作系统转换为 48kHz、双声道、16-bit PCM WAV，再通过 LibTV CLI 上传为独立音频节点。该格式已通过 Seedance 2.0 合规检测；M4A 上传节点曾被拒绝，未重新验证前不要使用。
+4. 从片段 2 开始，为所有后续片段连接该纯音频作为 `音频1`，或使用目标平台提供的同一音色 ID。核对素材、Prompt 和参数后，并行提交后续片段。
+5. Prompt 只说明该音频负责参考音色，并使用用户已经确认的必要声音特征。当前片段准确旁白只由当前 Prompt 中 `{}` 内的文本决定，不复述样本原台词，也不借用其语义。
+6. 后续只连接纯音频，不直接把整段视频作为音色参考，因为视频参考成本更高，也可能污染视觉结果。
+7. 同时使用音频参考和图像风格参考时，选择实时 schema 支持的 `mixed2video`。2026-07-30 查询到的 Seedance 2.0 VIP（`star-video2`）schema 支持参考音频与参考图片；每次正式生成前仍须重新查询。
+8. 同一画布直接连接已确认音频节点；跨画布时通过 LibTV CLI 下载已确认文件、上传到目标画布，再把新资源节点作为 `音频1`。
+9. 按当前声音策略和实时 schema 设置声音参数；如果由 Seedance 直接生成旁白与声音，显式保持 `enableSound=on`。
+10. 更换音色时创建新的资产记录并重新确认，不静默替换已经选定的音色来源。
 
-## Video Covers
+## 视频封面
 
-Read [references/video-cover-image-guide.md](references/video-cover-image-guide.md) in full before generating, modifying, comparing, or reviewing a cover. It defines cover briefs, character references, extra styling, direct text rendering, fair multi-model comparison, LibTV parameters, downloads, records, and quality checks.
+生成、修改、对比或质检视频封面时，完整读取 [references/video-cover-image-guide.md](references/video-cover-image-guide.md)。该子文档规定封面 brief、主要人物参考、群演画风、直接生成准确文字、跨模型公平对比、LibTV 参数、下载记录和封面质检。
 
-Reuse the approved character and style assets. Do not generate a cover with an unapproved main character. Inspect every rendered glyph in a text-forward cover; task success does not prove textual or identity accuracy.
+封面沿用当前项目确认的人物与画风资产。主要人物没有已确认参考图时不得直接生成封面；带字封面必须逐字检查实际输出，不以任务成功代替文字与人物一致性检查。
 
-## Media-Generation Portability and Support
+## 媒体生成工具的可移植性与当前支持范围
 
-LibTV CLI is the only image, audio, and video execution path currently maintained and validated by this skill. Formal support means the skill includes tested command habits, model-name mapping, task traceability, asset-node handling, and output checks. It does not mean the creative method is inherently limited to LibTV.
+本 skill 当前唯一正式维护和实际验证的图片、音频与视频生成执行路径是 LibTV CLI。这里的“正式支持”表示 skill 已经固化相应命令习惯、模型名称映射、任务追踪、素材节点和生成后检查规则，不表示整套动画解说方法只能在 LibTV 上使用。具体项目可以在自己的配置中进一步限制允许使用的平台。
 
-The production method is platform-independent: complete narration, clip segmentation, spoken-length control, reference responsibilities, character consistency, multi-shot direction, framing, voice consistency, output review, and final assembly can work with Higgsfield CLI, Jimeng CLI, or another multimodal CLI. Changing platforms changes installation, authentication, model discovery, parameter names, uploads, polling, downloads, and assembly—not the creative or quality standards unless the model's real capabilities require adaptation.
+本 skill 的核心生产方法与具体平台解耦：完整讲稿、片段拆分、旁白字数控制、参考素材职责、人物一致性、多镜头导演、画幅、音色、生成后质检和最终拼接等规则，可以配合任何能够通过 CLI 完成图片、音频、视频生成及素材管理的多模态平台使用，例如 Higgsfield CLI、即梦 CLI 或其他同类工具。更换平台时，变化的是安装、登录、模型发现、参数名称、素材上传、任务轮询、下载和拼接等接口调用细节；除非目标模型的真实能力要求调整，否则视频创作与质量规范保持不变。
 
-When only another platform CLI is available:
+当用户只有其他平台的 CLI 时：
 
-1. Find and read the platform's latest official CLI documentation. Never infer commands by translating LibTV syntax.
-2. Confirm installation and authentication. Query the live model catalog, schema, input modes, asset limits and formats, clip duration, aspect ratio, resolution, sound controls, asynchronous task behavior, download flow, and assembly options.
-3. Map this skill's asset responsibilities and generation steps to the target CLI while retaining task IDs, failure states, stderr, or equivalent logs.
-4. Keep platform-specific commands, model names, and parameter maps in separate references. Never mix LibTV, Higgsfield, Jimeng, or other provider syntax.
-5. Stop clearly when current official documentation, authentication, or required model capability is missing. Never invent commands or switch platforms silently.
+1. 先找到并阅读该平台最新的官方 CLI 文档，不根据 LibTV 命令猜测或直译参数。
+2. 实时确认 CLI 已安装并登录，查询当前模型目录、模型 schema、输入模式、素材数量与格式限制、片段时长、画幅、分辨率、声音开关、异步任务状态、下载和拼接方式。
+3. 按目标 CLI 的规范映射本 skill 所需的素材职责与生成步骤，同时保留任务 ID、失败状态、stderr 或等价日志，保证流程可追踪。
+4. 将平台专属命令、模型名称和参数映射放在独立的平台 reference 中，不把 LibTV、Higgsfield、即梦或其他工具的调用细节混写。
+5. 缺少最新官方文档、登录状态或必要模型能力时明确停止，不静默切回其他平台，也不编造命令。
 
-Current CLI documentation entry points:
+当前可查阅的 CLI 文档入口：
 
-- [Higgsfield official CLI repository and guide](https://github.com/higgsfield-ai/cli). Check its [latest release](https://github.com/higgsfield-ai/cli/releases/latest) and live model list before use.
-- [Jimeng CLI usage guide](https://bytedance.larkoffice.com/wiki/FVTwwm0bGiishxkKOoScdHR2nsg). Access may require the relevant Lark account.
+- [Higgsfield 官方 CLI 仓库与使用指南](https://github.com/higgsfield-ai/cli)；使用前同时检查其 [最新正式版本](https://github.com/higgsfield-ai/cli/releases/latest) 与实时模型列表。
+- [即梦 CLI 使用指南](https://bytedance.larkoffice.com/wiki/FVTwwm0bGiishxkKOoScdHR2nsg)；该链接可能要求相应的 Lark/飞书访问权限。
 
-The currently validated rhythm splits a 1–5 minute final video into 15-second clips, with about 60 spoken Chinese Han characters and normally five shots per clip. Seedance 2.5 Pro supports clips up to 30 seconds, but this skill has not systematically validated narration length, shot count, action density, continuity, audio stability, or cross-clip strategy at 30 seconds. Do not double 15-second rules mechanically or make 30 seconds the default before real tests confirm them.
+当前已经优化和验证的默认节奏仍是把 1–5 分钟成片拆成多个 15 秒视频片段；每段约 60 个汉字、一般 5 个镜头等经验都以 15 秒片段为前提。Seedance 2.5 Pro 已支持最长 30 秒片段，但本 skill 尚未针对 30 秒片段的旁白字数、镜头数量、动作密度、连续性、音频稳定性和跨片段策略进行系统验证。未完成真实测试与规则确认前，不把 15 秒参数机械翻倍，也不将 30 秒设为默认；后续应单独实验并补充正式支持。
 
-## LibTV Generation and Assembly
+## LibTV 生成与拼接
 
-Read [references/libtv/model-name-map.md](references/libtv/model-name-map.md) in full before resolving user model names, LibTV `modelName`, or `modelKey`. Pass the mapped LibTV `modelName` to `libtv node ... -s model=...`, not `modelKey`; still treat live search and schema as authoritative.
+在解析用户常用模型名、LibTV 展示名和 `modelKey`，或准备选择 LibTV 模型时，完整读取 [references/libtv/model-name-map.md](references/libtv/model-name-map.md)。调用 `libtv node ... -s model=...` 时使用该文件记录的 `modelName`，不要传 `modelKey`；正式生成前仍以 LibTV 实时搜索和 schema 为准。
 
-Keep provider-specific references separated. LibTV documentation belongs under `references/libtv/`; add separate directories for Higgsfield, Jimeng, or other CLIs only after practical validation.
+按 CLI/平台拆分工具专属参考文档，避免混用不同工具的模型名称和调用约束。LibTV 文档放在 `references/libtv/`；未来正式接入 Higgsfield、即梦等其他 CLI 时，分别建立独立目录并在实际验证后补充支持。
 
-Query video models and schema live through LibTV CLI. Prefer Seedance 2.0 Pro, currently mapped to Seedance 2.0 VIP (`star-video2`). The validated default clip duration is `duration=15`; read `ratio`, `resolution`, and `enableSound` from the active requirements. Pass every required value explicitly when creating or regenerating a node. Never inherit a canvas value, cloned-node setting, or model default. Resolve model labels, `modeType`, sound controls, resolution, ratio, and asset limits from the live schema.
+通过 LibTV CLI 实时查询视频模型和 schema，优先选择 Seedance 2.0 Pro；当前 LibTV 对应模型为 Seedance 2.0 VIP（`star-video2`）。当前已经验证的默认片段时长为 `duration=15`；`ratio`、`resolution` 和 `enableSound` 从当前项目配置与声音策略中读取。每次创建或重生成视频节点都显式传入实际需要的参数，不继承画布旧值、复制节点参数或模型默认值。模型展示名、`modeType`、声音开关、分辨率、比例和参考素材限制必须以当前 LibTV schema 为准，不凭经验猜测。
 
-Pass duration, aspect ratio, resolution, sound, output count, and input mode only as CLI parameters, not in the creative prompt. Let task logs remain the traceable single source of truth for actual technical settings.
+将时长、画幅、分辨率、声音开关、生成数量和输入模式只写入 LibTV 参数，不复制到创作 Prompt。这样可以避免参数与提示词出现冲突，并让任务日志中的实际配置成为可追踪的单一事实来源。
 
-After resolving the target canvas UUID, pass `-p <projectUuid>` explicitly to production create, generate, upload, download, and assembly commands. Verify the returned canvas UUID, node ID, and task ID.
+解析目标画布 UUID 后，正式创建节点、生成、上传和下载命令显式传入 `-p <projectUuid>`；不要只依赖可能被其他任务改写的目录绑定。命令返回后核对实际画布 UUID、节点 ID 和任务 ID。
 
-Follow the active tool and media policy for every image, video, reference, generation, and assembly operation. Stop and report a policy conflict instead of choosing silently.
+所有图像、视频、参考素材、生成任务和拼接操作同时遵守当前项目的工具与媒体策略；项目规则与 skill 的通用规则冲突时，先停止并向用户说明冲突，不静默选择其中一套。
 
-## Quality Control
+## 质量检查
 
-Before generation, apply the preflight checklist in [references/video-prompt-guide.md](references/video-prompt-guide.md). After generation, use its post-generation checks for narration, voice identity, effective full-frame coverage, shot motion, repeated actions, visual style, and end-of-clip audio.
+正式生成前，按 `references/video-prompt-guide.md` 的“提交前检查”逐项复核；生成后按其中的“生成后检查”检查旁白、音色、实际满幅画面、镜头运动、循环动作、风格稳定和片尾音频。
 
-Do not validate aspect ratio from `ratio`, resolution, or container metadata alone. The model may place letterboxing or pillarboxing inside a technically correct container. Inspect representative frames at the beginning, middle, and end. Mark a clip as failed and regenerate it if its container or effective image does not match the target ratio, if black bars appear, or if content is shrunk into a mismatched container.
+画幅检查不能只读取 `ratio`、分辨率或容器元数据。即使容器参数符合当前项目配置，模型仍可能在内部加入上下或左右遮幅；至少抽查开头、中段和结尾的实际画面。容器或实际有效画面不符合当前项目目标画幅，或出现黑边、内容缩在不匹配的容器中，均标记为画幅失败并重新生成，不得直接拼接。
 
-When Clip 1 had no existing voice reference, confirm that its voice was approved as the anchor. Starting with Clip 2, verify that every clip actually attaches that `Audio 1` or equivalent voice identity and matches the anchor.
+片段 1 没有现成音色参考时，检查其输出音色是否已确认可作为锚点。从片段 2 开始，检查每个片段是否实际连接该 `音频1` 或等价音色身份，并确认输出音色与锚点保持一致。
 
-Inspect every main character against the approved identity reference and confirm that extras share the same design and rendering system. Regenerate identity drift, swapped faces, or extras rendered in a visibly different medium.
+逐片检查所有主要人物是否与各自确认参考图一致，并检查群演与主要人物是否属于同一造型和渲染体系。主要人物身份漂移、不同主要人物互相套脸，或群演与主角呈现明显不同的媒介和画风，均标记为人物或画风失败并重新生成。
 
-## Output Format
+## 输出格式
 
-Return draft scripts, narration, storyboards, and Seedance prompts as normal conversational paragraphs:
+脚本、旁白、分镜和 Seedance Prompt 草稿默认直接在对话中以普通段落返回：
 
-1. Use the default review layout from `references/narration-script-guide.md`: clip heading, character count, and narration on separate lines.
-2. When showing several prompts, use clear external `Clip N` headings and blank lines. `Shot N` belongs inside the prompt. Remove external clip headings before model submission.
-3. Do not place creative scripts or prompts inside fenced `text`, `plaintext`, or language-specific code blocks.
-4. Do not create Markdown files merely to deliver a draft. Save project content only when the user explicitly requests it or confirms it as final.
-5. Technical commands, JSON, and parameter examples may use code blocks when necessary.
+1. 旁白使用 `references/narration-script-guide.md` 的默认审稿版式：片段标题、字数和正文各自独立成段，不挤在同一行。
+2. 向用户展示多个 Prompt 时，使用清楚的“片段 N”等外部标题，并用空行分隔段落，让客户端自然换行；“镜头 N”属于 Prompt 内的镜头结构。实际提交给视频模型前，必须剥离“片段 N”等外部标题。
+3. 不把脚本或 Prompt 放进标注为 `text`、`plaintext` 或其他语言的 Markdown 代码块。
+4. 不为了交付草稿而自动创建 `.md` 文件或附件；只有用户明确要求保存，或确认内容已经最终定稿时才写入项目文件。
+5. 技术命令、JSON 和参数示例仍可在确有必要时使用代码块；这条例外不适用于创作文案、旁白、分镜和视频 Prompt 本身。
 
-## Authoritative References
+## 权威参考
 
-Before writing or troubleshooting Seedance 2.0 prompts, read [references/video-prompt-guide.md](references/video-prompt-guide.md) and then [references/official-seedance-2.0-prompt-guide.md](references/official-seedance-2.0-prompt-guide.md) in full. The latter is an English source index and operational digest for the official Seedance documentation, including multimodal references, subject definition, shot sequencing, motion, camera, audio, text, extension, common failures, and examples.
+编写或排查 Seedance 2.0 提示词时，先完整读取本 skill 的 [references/video-prompt-guide.md](references/video-prompt-guide.md)，再完整读取 [references/official-seedance-2.0-prompt-guide.md](references/official-seedance-2.0-prompt-guide.md)。后者是 Doubao Seedance 2.0 官方提示词指南的本地原文镜像，包含多模态参考、主体定义、分镜时序、动作、运镜、音频、文字生成、视频延长、常见问题和完整案例。
 
-For multi-shot direction or repeated camera moves and actions, also read [references/community-directing-notes.md](references/community-directing-notes.md). It records traceable community sources and explicitly separates adopted practices from rejected ones.
+编写多镜头片段或排查循环动作、重复运镜和切镜僵硬问题时，再读取 [references/community-directing-notes.md](references/community-directing-notes.md)。该文件记录已核验的 GitHub 社区技能来源与本 skill 采用、舍弃的导演经验；它只作为实践启发，不替代官方指南或当前项目已确认的规则。
 
-When searching official material, prioritize these concepts:
+需要定向查阅时，优先搜索这些标题或关键词：
 
-- basic formula, multimodal reference, video editing, video extension
-- subject definition, shot sequence, action detail, camera movement
-- special-character rules, inaccurate voice reference, identity drift, style drift
-- extension versus segmented assembly, end noise, pronunciation
+- `基础公式`、`多模态参考`、`编辑视频`、`延长视频`
+- `定义主体`、`使用分镜时序`、`动作描述要求`、`运镜写法`
+- `特殊字符规范`、`音色参考不准`、`人物 ID 漂移`、`风格漂移`
+- `视频延长 vs 分段拼接`、`视频结尾有噪音`、`中文发音不准`
 
-Treat live LibTV schema as authoritative for model parameters and capabilities, official Seedance material as authoritative for prompt behavior, and this skill's validated production experience as authoritative for the 60-Han-character target, natural delivery, five-shot rhythm, and visible state changes.
+模型参数和可用能力以 LibTV 返回的实时 schema 为准；Seedance 提示词方法以官方参考为准；每段目标 60 个汉字并尽量贴近、自然稳定的语速、15 秒一般 5 个镜头与显著主体变化等制作节奏以本技能中的项目生产经验为准。
