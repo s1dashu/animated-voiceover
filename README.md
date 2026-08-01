@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  一个面向 Codex 的开源创作 Skill，覆盖选题研究、旁白写作、视觉设计、多镜头导演、统一音色与成片制作。
+  一个面向 Agent 的开源创作 Skill，覆盖选题研究、旁白写作、视觉设计、多镜头导演、统一音色与成片制作。
 </p>
 
 <p align="center">
-  <a href="./SKILL.md"><img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111111?style=for-the-badge&logo=openai&logoColor=white"></a>
+  <a href="./SKILL.md"><img alt="Agent Skill" src="https://img.shields.io/badge/Agent-Skill-111111?style=for-the-badge"></a>
   <a href="#内置视觉风格"><img alt="六种内置视觉风格" src="https://img.shields.io/badge/%E5%86%85%E7%BD%AE%E9%A3%8E%E6%A0%BC-6%20%E7%A7%8D-7C3AED?style=for-the-badge"></a>
   <a href="#从一句话开始创作"><img alt="Seedance" src="https://img.shields.io/badge/Seedance-Ready-2563EB?style=for-the-badge"></a>
   <a href="#工具与适用范围"><img alt="LibTV CLI" src="https://img.shields.io/badge/CLI-LibTV-F97316?style=for-the-badge"></a>
@@ -33,7 +33,7 @@
 - **把复杂知识讲清楚。** 从主题研究、内容取舍到旁白结构，帮助你建立一条观众听得懂、愿意继续听的叙事线。
 - **把抽象观点变成具体画面。** 不依赖漂浮符号和空洞意象，而是用人物、行动、场景和结果，让哲学与知识真正“发生”在镜头里。
 - **把一篇讲稿变成可生成的动画方案。** 自动拆分叙事节奏，为每个片段设计多镜头调度，并输出可以直接进入 Seedance 制作的视频 Prompt。
-- **让整支视频保持统一。** 通过视觉风格参考、人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。
+- **让整支视频保持统一。** 通过画风参考、人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。
 - **从创意一路走到成片。** 不止交付文案，还能继续完成参考素材规划、片段生成、任务追踪、视频拼接与带字封面设计。
 
 ## 视频效果参考
@@ -41,10 +41,10 @@
 <table>
   <tr>
     <td width="50%">
-      <img src="./assets/examples/video-effect-01.png" alt="动画哲学解说视频画面" width="100%">
+      <img src="./assets/examples/video-effect-01.webp" alt="动画哲学解说视频画面" width="100%">
     </td>
     <td width="50%">
-      <img src="./assets/examples/video-effect-02.png" alt="动画心理解说视频画面" width="100%">
+      <img src="./assets/examples/video-effect-02.webp" alt="动画心理解说视频画面" width="100%">
     </td>
   </tr>
   <tr>
@@ -62,13 +62,13 @@ Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔�
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.png"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.png" alt="电影感 3D 动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp" alt="电影感 3D 动画效果图" height="220"></a><br>
       <b>电影感 3D 动画</b><br>
       <sub>手绘质感、克制色彩与富有叙事感的电影光影</sub><br>
       <a href="./styles/cinematic-3d-animation.md">查看风格详情</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/clay-stop-motion.png"><img src="./assets/style-previews/clay-stop-motion.png" alt="黏土定格动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/clay-stop-motion.webp"><img src="./assets/style-previews/clay-stop-motion.webp" alt="黏土定格动画效果图" height="220"></a><br>
       <b>黏土定格动画</b><br>
       <sub>手工黏土偶、微缩布景与真实可触的逐帧质感</sub><br>
       <a href="./styles/clay-stop-motion.md">查看风格详情</a>
@@ -76,13 +76,13 @@ Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔�
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/melancholic-blue-simple-line-animation.png"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.png" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
+      <a href="./assets/style-previews/melancholic-blue-simple-line-animation.webp"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.webp" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
       <b>忧郁蓝调简笔画</b><br>
       <sub>冷灰蓝纸面、笨拙铅笔线与安静内省的情绪</sub><br>
       <a href="./styles/melancholic-blue-simple-line-animation.md">查看风格详情</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/soft-colored-pencil-cute-animation.png"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.png" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/soft-colored-pencil-cute-animation.webp"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.webp" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
       <b>柔和彩铅萌趣动画</b><br>
       <sub>柔软轮廓、温暖纸纹与轻松亲切的可爱表达</sub><br>
       <a href="./styles/soft-colored-pencil-cute-animation.md">查看风格详情</a>
@@ -90,13 +90,13 @@ Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔�
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/clean-line-crayon-animation.png"><img src="./assets/style-previews/clean-line-crayon-animation.png" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/clean-line-crayon-animation.webp"><img src="./assets/style-previews/clean-line-crayon-animation.webp" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
       <b>清爽线描蜡笔动画</b><br>
       <sub>明快色块、清楚线描与清爽有序的二维世界</sub><br>
       <a href="./styles/clean-line-crayon-animation.md">查看风格详情</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.png"><img src="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.png" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp"><img src="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
       <b>多巴胺萌趣 3D 动画</b><br>
       <sub>Q 弹角色、明亮配色与充满活力的画面层次</sub><br>
       <a href="./styles/dopamine-cute-3d-animation.md">查看风格详情</a>
@@ -124,21 +124,21 @@ Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔�
 
 ## 安装
 
-直接告诉 Codex：
+将本仓库克隆或复制到你的 Agent 可以读取的 skills 目录。
+
+如果你使用 Codex，也可以直接告诉它：
 
 > 从 `https://github.com/s1dashu/animated-voiceover` 安装 `$animated-voiceover` skill。
-
-也可以将本仓库克隆或复制到 Codex 的 skills 目录。
 
 ## 从一句话开始创作
 
 安装后，你可以这样开始：
 
-> 使用 `$animated-voiceover` 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义。
+> 使用 `animated-voiceover` Skill 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义。
 
 也可以带上自己的要求：
 
-> 使用 `$animated-voiceover` 把“为什么人会拖延”做成一支 90 秒心理科普动画。希望语气温柔，使用手绘风格，先和我确认讲稿与视觉方案。
+> 使用 `animated-voiceover` Skill 把“为什么人会拖延”做成一支 90 秒心理科普动画。希望语气温柔，使用手绘风格，先和我确认讲稿与视觉方案。
 
 Skill 会引导你完成必要选择，你不需要提前了解 Seedance Prompt、音色锚点或多模态素材连接方式。
 
