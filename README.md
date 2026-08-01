@@ -90,7 +90,7 @@
 
 可以从这样的请求开始：
 
-> 使用 `$animated-voiceover` 创作一支两分钟的动画科普视频，主题是确认偏误背后的心理机制。
+> 使用 `$animated-voiceover` 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义哲学。
 
 完整工作流请阅读 [SKILL.md](./SKILL.md)。旁白、导演、音频、封面和 LibTV 的详细规范位于 [references](./references)。
 
