@@ -98,7 +98,7 @@
       <a href="./styles/melancholic-blue-simple-line-animation.md">查看图像与视频指导</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/reference-library/image-styles/统一图像风格参考-柔和彩铅萌趣动画-v1.png"><img src="./assets/reference-library/image-styles/统一图像风格参考-柔和彩铅萌趣动画-v1.png" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/soft-colored-pencil-cute-animation.png"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.png" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
       <b>柔和彩铅萌趣动画</b><br>
       <sub>柔软铅笔轮廓、松散彩铅与粗蜡笔平涂、温暖纸纹</sub><br>
       <a href="./styles/soft-colored-pencil-cute-animation.md">查看图像与视频指导</a>
@@ -106,7 +106,7 @@
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/reference-library/image-styles/统一图像风格参考-清爽线描蜡笔动画-v1.png"><img src="./assets/reference-library/image-styles/统一图像风格参考-清爽线描蜡笔动画-v1.png" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/clean-line-crayon-animation.png"><img src="./assets/style-previews/clean-line-crayon-animation.png" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
       <b>清爽线描蜡笔动画</b><br>
       <sub>深色手绘线描、明快蜡笔色块、清爽有序的二维构图</sub><br>
       <a href="./styles/clean-line-crayon-animation.md">查看图像与视频指导</a>
