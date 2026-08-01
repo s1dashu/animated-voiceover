@@ -62,7 +62,7 @@
 | --- | --- | --- |
 | 电影感 3D 动画 | 哑光手绘材质、低饱和色彩、电影化空间与光影 | [查看图像与视频指导](./styles/cinematic-3d-animation.md) |
 | 黏土定格动画 | 手工黏土偶、微缩布景、指纹和逐帧运动质感 | [查看图像与视频指导](./styles/clay-stop-motion.md) |
-| 笨拙感手绘动画 | 不规则线条、干粉彩与彩铅、纸面动画质感 | [查看图像与视频指导](./styles/clumsy-hand-drawn-animation.md) |
+| 笨拙感手绘简笔画动画 | 歪斜简笔线条、大面积留白、粗纸逐帧重画感 | [查看图像与视频指导](./styles/clumsy-hand-drawn-animation.md) |
 
 ## 核心流程
 

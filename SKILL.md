@@ -40,7 +40,7 @@ description: 制作哲学、心理、历史、经济、金融与科技等主题�
 
 - [电影感 3D 动画](styles/cinematic-3d-animation.md)
 - [黏土定格动画](styles/clay-stop-motion.md)
-- [笨拙感手绘动画](styles/clumsy-hand-drawn-animation.md)
+- [笨拙感手绘简笔画动画](styles/clumsy-hand-drawn-animation.md)
 
 如果用户尚未指定风格，展示上述选项并等待选择，不静默指定默认风格。用户也可以提供自己的风格描述、参考图，或要求复用已经确认的风格参考图；自定义选择与内置风格具有同等优先级。
 
