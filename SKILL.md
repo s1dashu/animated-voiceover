@@ -36,7 +36,6 @@ description: 制作哲学、心理、历史、经济、金融与科技等主题�
 - [电影感 3D 动画](styles/cinematic-3d-animation.md)
 - [多巴胺萌趣 3D 动画](styles/dopamine-cute-3d-animation.md)
 - [黏土定格动画](styles/clay-stop-motion.md)
-- [笨拙感手绘简笔画动画](styles/clumsy-hand-drawn-animation.md)
 - [忧郁蓝调简笔画风格](styles/melancholic-blue-simple-line-animation.md)
 - [柔和彩铅萌趣动画](styles/soft-colored-pencil-cute-animation.md)
 - [清爽线描蜡笔动画](styles/clean-line-crayon-animation.md)

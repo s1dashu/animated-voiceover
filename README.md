@@ -64,13 +64,13 @@
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/cinematic-3d-animation.png"><img src="./assets/style-previews/cinematic-3d-animation.png" alt="电影感 3D 动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v2.png"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v2.png" alt="电影感 3D 动画效果图" height="220"></a><br>
       <b>电影感 3D 动画</b><br>
       <sub>哑光手绘材质、低饱和色彩、电影化空间与光影</sub><br>
       <a href="./styles/cinematic-3d-animation.md">查看图像与视频指导</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/dopamine-cute-3d-animation.png"><img src="./assets/style-previews/dopamine-cute-3d-animation.png" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.png"><img src="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.png" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
       <b>多巴胺萌趣 3D 动画</b><br>
       <sub>Q 弹圆润角色、高明度多巴胺配色、丰富满画幅层次</sub><br>
       <a href="./styles/dopamine-cute-3d-animation.md">查看图像与视频指导</a>
@@ -84,34 +84,25 @@
       <a href="./styles/clay-stop-motion.md">查看图像与视频指导</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/clumsy-hand-drawn-animation.png"><img src="./assets/style-previews/clumsy-hand-drawn-animation.png" alt="笨拙感手绘简笔画动画效果图" height="220"></a><br>
-      <b>笨拙感手绘简笔画动画</b><br>
-      <sub>歪斜简笔线条、大面积留白、粗纸逐帧重画感</sub><br>
-      <a href="./styles/clumsy-hand-drawn-animation.md">查看图像与视频指导</a>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center">
       <a href="./assets/style-previews/melancholic-blue-simple-line-animation.png"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.png" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
       <b>忧郁蓝调简笔画风格</b><br>
       <sub>冷灰蓝纸面、笨拙铅笔线、低对比与安静内省气质</sub><br>
       <a href="./styles/melancholic-blue-simple-line-animation.md">查看图像与视频指导</a>
     </td>
+  </tr>
+  <tr>
     <td width="50%" align="center">
       <a href="./assets/style-previews/soft-colored-pencil-cute-animation.png"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.png" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
       <b>柔和彩铅萌趣动画</b><br>
       <sub>柔软铅笔轮廓、松散彩铅与粗蜡笔平涂、温暖纸纹</sub><br>
       <a href="./styles/soft-colored-pencil-cute-animation.md">查看图像与视频指导</a>
     </td>
-  </tr>
-  <tr>
     <td width="50%" align="center">
       <a href="./assets/style-previews/clean-line-crayon-animation.png"><img src="./assets/style-previews/clean-line-crayon-animation.png" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
       <b>清爽线描蜡笔动画</b><br>
       <sub>深色手绘线描、明快蜡笔色块、清爽有序的二维构图</sub><br>
       <a href="./styles/clean-line-crayon-animation.md">查看图像与视频指导</a>
     </td>
-    <td width="50%"></td>
   </tr>
 </table>
 
