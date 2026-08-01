@@ -73,6 +73,7 @@ style 文件定义跨作品稳定的媒介、材质、线条、造型、色彩�
 ### LibTV 执行规则
 
 - 仅在 LibTV 中，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Midjourney` 解析为 `悠船`；其他平台不得沿用。正式调用前仍以实时搜索和 schema 为准。
+- 给 `libtv node ... -s "model=..."` 传模型时，必须逐字使用 `libtv model search` 返回的 `matches[].modelName`，包括其中的空格、大小写与标点；不得改用 `modelKey`，也不得使用 `libtv model <nameOrId>` 完整 schema 顶层可能出现的不一致 `modelName`。例如搜索结果是 `Seedream 5.0 Pro`，就必须传 `-s "model=Seedream 5.0 Pro"`，不能写成 `Seedream5.0 Pro`。完整 schema 只用于校验能力与参数。
 - 实时查询模型和 schema，优先使用 Seedance 2.0 Pro；当前 LibTV 对应 Seedance 2.0 VIP（`star-video2`）。已验证默认值为 `duration=15`；`ratio`、`resolution`和`enableSound`从用户要求或项目配置读取。模型展示名、`modeType`和素材限制均不得凭经验猜测。
 - 使用 Seedance 2.0 系列时，用户未明确要求 `1080p`、`4K` 或其他更高档位，`resolution` 默认使用 `720p`；即使模型或旧节点带有更高默认值，也必须在 CLI 中显式传入 `720p`。用户明确要求更高分辨率时，先以实时 schema 确认该档位确实受支持，不支持则停止并说明，不静默降级或改用其他模型。
 - 每次创建或重生成节点都显式传入实际参数，不继承旧画布、复制节点或模型默认值。`duration`、`ratio`、`resolution`、`enableSound`、`count`和`modeType`只写入 CLI 参数，不写进创作 Prompt。
@@ -96,4 +97,4 @@ style 文件定义跨作品稳定的媒介、材质、线条、造型、色彩�
 
 旁白和视频 Prompt 的具体结构分别以对应写作指南为唯一来源。旁白及其他创作草稿默认先在对话中用普通 Markdown 段落展示，不放进 `text`、`plaintext`或其他代码块；视频 Prompt 是落盘例外，生成后必须按[视频提示词写作指南](references/video-prompt-guide.md)保存为当前作品的 Markdown 文档，并向用户返回文件路径。技术命令、JSON 和参数示例在必要时仍可使用代码块。
 
-信息冲突时按以下来源判断：模型名称、输入能力和参数以当前 CLI 的实时 schema 为准；Seedance 提示词能力以官方指南为准；视觉语言以用户选择的 style 与已确认参考图为准；15 秒、约 60 个汉字和一般 5 镜等节奏以本 skill 的已验证生产经验为准。
+信息冲突时按以下来源判断：传给节点的模型展示名以 `libtv model search` 的 `matches[].modelName` 为准，输入能力和参数以当前 CLI 的实时 schema 为准；Seedance 提示词能力以官方指南为准；视觉语言以用户选择的 style 与已确认参考图为准；15 秒、约 60 个汉字和一般 5 镜等节奏以本 skill 的已验证生产经验为准。

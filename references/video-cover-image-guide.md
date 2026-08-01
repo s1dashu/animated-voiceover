@@ -79,7 +79,7 @@
 1. 确认 `libtv` 已安装、已登录，当前目录绑定正确工作区与画布。
 2. 解析目标画布 UUID，正式命令显式传入 `-p <projectUuid>`。
 3. 按主 `SKILL.md` 中的 LibTV 专属模型别名解析用户模型名。
-4. 执行 `libtv model search --type image ...` 和 `libtv model <modelName|modelKey>`，以实时 schema 为准。
+4. 执行 `libtv model search --type image ...`，逐字保留结果中的 `matches[].modelName` 作为节点的 `-s "model=..."` 值；再执行 `libtv model <modelName|modelKey>` 查询实时 schema。不得把 schema 顶层可能不一致的 `modelName` 或 `modelKey` 传给节点。
 5. 确认所有参考节点属于目标画布。
 
 连接任何图片参考时显式传入 `modeType=image2image`。LibTV 会拒绝带图片入边但仍处于 `text2image` 的节点。
