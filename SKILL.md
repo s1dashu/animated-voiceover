@@ -142,7 +142,7 @@ description: 制作哲学、心理、历史、经济、金融与科技等主题�
 
 ## LibTV 生成与拼接
 
-在解析用户常用模型名、LibTV 展示名和 `modelKey`，或准备选择 LibTV 模型时，完整读取 [references/libtv/model-name-map.md](references/libtv/model-name-map.md)。调用 `libtv node ... -s model=...` 时使用该文件记录的 `modelName`，不要传 `modelKey`；正式生成前仍以 LibTV 实时搜索和 schema 为准。
+以下别名仅适用于 LibTV CLI：`GPT-Image-2` 对应 `Lib Image`、`Nano Banana Pro` 对应 `General image Pro`、`Midjourney` 对应 `悠船`；详见 [references/libtv/model-name-map.md](references/libtv/model-name-map.md)，正式调用前仍以 LibTV 实时搜索和 schema 为准。
 
 按 CLI/平台拆分工具专属参考文档，避免混用不同工具的模型名称和调用约束。LibTV 文档放在 `references/libtv/`；未来正式接入 Higgsfield、即梦等其他 CLI 时，分别建立独立目录并在实际验证后补充支持。
 
