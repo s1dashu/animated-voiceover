@@ -1,4 +1,4 @@
 interface:
   display_name: "Animated Voiceover"
-  short_description: "创作哲学、心理、历史、经济、金融与科技科普动画解说视频"
+  short_description: "用内置音色与画风参考创作知识类动画解说视频"
   default_prompt: "使用 $animated-voiceover 创作一支优质的动画解说视频。"

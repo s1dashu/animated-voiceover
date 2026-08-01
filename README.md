@@ -40,7 +40,7 @@
   </tr>
   <tr>
     <td align="center"><sub><b>哲学科普</b>——电影感人物叙事</sub></td>
-    <td align="center"><sub><b>心理科普</b>——将抽象概念转化为画面</sub></td>
+    <td align="center"><sub><b>心理科普</b>——用具体事件讲清抽象思想</sub></td>
   </tr>
 </table>
 
@@ -51,26 +51,81 @@
 - 从可扩展的风格目录中选择视觉语言，并据此编写内容专属的图像与视频提示词。
 - 规划人物参考和多镜头导演方案。
 - 编写素材职责清楚、可以直接用于 Seedance 的视频提示词。
-- 使用已经确认的首个片段作为后续片段的统一音色锚点。
-- 在拼接前检查旁白、音色、人物身份、镜头运动、实际画幅和音频质量。
+- 从随 skill 分发的音色与图像参考库选择现成资产，或通过片段 1 新建本期音色锚点。
+- 生成后默认只确认每个任务成功返回、节点与任务信息完整、资源可下载；仅在用户明确要求或平台出现异常时进行内容质检。
+- 所有片段与最终成片统一平铺到当前作品的 `video/` 目录，不创建逐片子目录。
 
 ## 内置风格
 
 每种内置风格都有一份独立的通用指导，分别说明图像 Prompt 与视频 Prompt 应该如何体现该风格。它们定义稳定的视觉与运动语言，但不提供需要原样复制的固定 Prompt、场景或运镜模板。先结合当前内容编写专属图像 Prompt，生成并确认参考图，再为每个片段重新设计动作和镜头；也可以提供自定义风格说明或自己的参考图。
 
-| 风格 | 视觉特征 | 指导 |
-| --- | --- | --- |
-| 电影感 3D 动画 | 哑光手绘材质、低饱和色彩、电影化空间与光影 | [查看图像与视频指导](./styles/cinematic-3d-animation.md) |
-| 黏土定格动画 | 手工黏土偶、微缩布景、指纹和逐帧运动质感 | [查看图像与视频指导](./styles/clay-stop-motion.md) |
-| 笨拙感手绘简笔画动画 | 歪斜简笔线条、大面积留白、粗纸逐帧重画感 | [查看图像与视频指导](./styles/clumsy-hand-drawn-animation.md) |
+下图只用于展示媒介、材质、线条、色彩和整体气质，不代表固定人物、场景或构图。点击图片可查看原图。
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/cinematic-3d-animation.png"><img src="./assets/style-previews/cinematic-3d-animation.png" alt="电影感 3D 动画效果图" height="220"></a><br>
+      <b>电影感 3D 动画</b><br>
+      <sub>哑光手绘材质、低饱和色彩、电影化空间与光影</sub><br>
+      <a href="./styles/cinematic-3d-animation.md">查看图像与视频指导</a>
+    </td>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/dopamine-cute-3d-animation.png"><img src="./assets/style-previews/dopamine-cute-3d-animation.png" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
+      <b>多巴胺萌趣 3D 动画</b><br>
+      <sub>Q 弹圆润角色、高明度多巴胺配色、丰富满画幅层次</sub><br>
+      <a href="./styles/dopamine-cute-3d-animation.md">查看图像与视频指导</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/clay-stop-motion.png"><img src="./assets/style-previews/clay-stop-motion.png" alt="黏土定格动画效果图" height="220"></a><br>
+      <b>黏土定格动画</b><br>
+      <sub>手工黏土偶、微缩布景、压痕与逐帧运动质感</sub><br>
+      <a href="./styles/clay-stop-motion.md">查看图像与视频指导</a>
+    </td>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/clumsy-hand-drawn-animation.png"><img src="./assets/style-previews/clumsy-hand-drawn-animation.png" alt="笨拙感手绘简笔画动画效果图" height="220"></a><br>
+      <b>笨拙感手绘简笔画动画</b><br>
+      <sub>歪斜简笔线条、大面积留白、粗纸逐帧重画感</sub><br>
+      <a href="./styles/clumsy-hand-drawn-animation.md">查看图像与视频指导</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/melancholic-blue-simple-line-animation.png"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.png" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
+      <b>忧郁蓝调简笔画风格</b><br>
+      <sub>冷灰蓝纸面、笨拙铅笔线、低对比与安静内省气质</sub><br>
+      <a href="./styles/melancholic-blue-simple-line-animation.md">查看图像与视频指导</a>
+    </td>
+    <td width="50%" align="center">
+      <a href="./assets/reference-library/image-styles/统一图像风格参考-柔和彩铅萌趣动画-v1.png"><img src="./assets/reference-library/image-styles/统一图像风格参考-柔和彩铅萌趣动画-v1.png" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
+      <b>柔和彩铅萌趣动画</b><br>
+      <sub>柔软铅笔轮廓、松散彩铅与粗蜡笔平涂、温暖纸纹</sub><br>
+      <a href="./styles/soft-colored-pencil-cute-animation.md">查看图像与视频指导</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <a href="./assets/reference-library/image-styles/统一图像风格参考-清爽线描蜡笔动画-v1.png"><img src="./assets/reference-library/image-styles/统一图像风格参考-清爽线描蜡笔动画-v1.png" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
+      <b>清爽线描蜡笔动画</b><br>
+      <sub>深色手绘线描、明快蜡笔色块、清爽有序的二维构图</sub><br>
+      <a href="./styles/clean-line-crayon-animation.md">查看图像与视频指导</a>
+    </td>
+    <td width="50%"></td>
+  </tr>
+</table>
+
+## 内置参考资产
+
+Skill 随包提供 4 个标准化 WAV 音色和 2 张图像风格参考。开始新视频时会分别询问用户使用内置资产、自定义资产还是新建参考，不设置默认项。文件、描述、规格、哈希与使用边界统一登记在[内置参考资产库](./references/reference-asset-library.md)。
 
 ## 核心流程
 
 1. 编写并确认完整旁白讲稿。
-2. 选择内置或自定义视觉风格，为当前内容编写图像 Prompt，生成并确认风格参考图和人物参考图。
-3. 结合所选风格的视频指导，为全部片段分别设计动作、镜头和视频提示词。
-4. 先生成并确认片段 1，再剥离其音频作为音色参考。
-5. 并行生成后续片段，逐片质检后拼接成片。
+2. 选择内置图像参考、内置或自定义视觉风格，或新生成风格参考图；确认风格参考和人物参考图。
+3. 结合所选风格的视频指导，为全部片段分别设计动作、镜头和视频提示词，并保存为当前作品的 Markdown 文档。
+4. 选择内置音色或通过片段 1 新建音色；两条路线都先只生成并确认片段 1。
+5. 并行生成后续片段，确认全部任务成功返回并下载到 `video/` 后拼接成片。
 
 当前已经验证的生产节奏使用 15 秒片段，每段中文旁白约 60 个汉字，通常规划 5 个镜头。
 
@@ -92,7 +147,7 @@
 
 > 使用 `$animated-voiceover` 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义哲学。
 
-完整工作流请阅读 [SKILL.md](./SKILL.md)。旁白、导演、音频、封面和 LibTV 的详细规范位于 [references](./references)。
+完整工作流请阅读 [SKILL.md](./SKILL.md)。细则分别由[内置参考资产库](./references/reference-asset-library.md)、[旁白讲稿指南](./references/narration-script-guide.md)、[视频提示词指南](./references/video-prompt-guide.md)、[音色参考指南](./references/voice-reference-guide.md)和[视频封面指南](./references/video-cover-image-guide.md)维护。
 
 ## 当前支持范围
 
