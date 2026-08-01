@@ -62,7 +62,7 @@ Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔�
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v2.png"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v2.png" alt="电影感 3D 动画效果图" height="220"></a><br>
+      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.png"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.png" alt="电影感 3D 动画效果图" height="220"></a><br>
       <b>电影感 3D 动画</b><br>
       <sub>手绘质感、克制色彩与富有叙事感的电影光影</sub><br>
       <a href="./styles/cinematic-3d-animation.md">查看风格详情</a>
