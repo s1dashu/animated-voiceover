@@ -78,19 +78,9 @@
 
 1. 确认 `libtv` 已安装、已登录，当前目录绑定正确工作区与画布。
 2. 解析目标画布 UUID，正式命令显式传入 `-p <projectUuid>`。
-3. 完整读取 [libtv/model-name-map.md](libtv/model-name-map.md) 解析用户模型名。
+3. 按主 `SKILL.md` 中的 LibTV 专属模型别名解析用户模型名。
 4. 执行 `libtv model search --type image ...` 和 `libtv model <modelName|modelKey>`，以实时 schema 为准。
 5. 确认所有参考节点属于目标画布。
-
-常用映射：
-
-| 用户名称 | LibTV `modelName` |
-| --- | --- |
-| GPT Image 2 | `Lib Image` |
-| Nano Banana Pro | `General image Pro` |
-| Seedream 5.0 Pro | `Seedream 5.0 Pro` |
-
-映射只是快照；实时结果变化时更新 `libtv/model-name-map.md`。
 
 连接任何图片参考时显式传入 `modeType=image2image`。LibTV 会拒绝带图片入边但仍处于 `text2image` 的节点。
 

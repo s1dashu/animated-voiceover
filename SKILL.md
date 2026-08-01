@@ -142,9 +142,9 @@ description: 制作哲学、心理、历史、经济、金融与科技等主题�
 
 ## LibTV 生成与拼接
 
-以下别名仅适用于 LibTV CLI：`GPT-Image-2` 对应 `Lib Image`、`Nano Banana Pro` 对应 `General image Pro`、`Midjourney` 对应 `悠船`；详见 [references/libtv/model-name-map.md](references/libtv/model-name-map.md)，正式调用前仍以 LibTV 实时搜索和 schema 为准。
+仅在使用 LibTV CLI 时，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Midjourney` 解析为 `悠船`；其他平台不得沿用这些别名，正式调用前仍以 LibTV 实时搜索和 schema 为准。
 
-按 CLI/平台拆分工具专属参考文档，避免混用不同工具的模型名称和调用约束。LibTV 文档放在 `references/libtv/`；未来正式接入 Higgsfield、即梦等其他 CLI 时，分别建立独立目录并在实际验证后补充支持。
+平台专属命令、模型名称和参数映射不得跨平台沿用；未来正式接入 Higgsfield、即梦等其他 CLI 时，分别根据各平台最新官方文档和实时能力进行适配。
 
 通过 LibTV CLI 实时查询视频模型和 schema，优先选择 Seedance 2.0 Pro；当前 LibTV 对应模型为 Seedance 2.0 VIP（`star-video2`）。当前已经验证的默认片段时长为 `duration=15`；`ratio`、`resolution` 和 `enableSound` 从当前项目配置与声音策略中读取。每次创建或重生成视频节点都显式传入实际需要的参数，不继承画布旧值、复制节点参数或模型默认值。模型展示名、`modeType`、声音开关、分辨率、比例和参考素材限制必须以当前 LibTV schema 为准，不凭经验猜测。
 
