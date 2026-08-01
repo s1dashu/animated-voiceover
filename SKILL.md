@@ -34,11 +34,11 @@ description: 制作哲学、心理、历史、经济、金融与科技等主题�
 当前内置风格：
 
 - [电影感 3D 动画](styles/cinematic-3d-animation.md)
-- [多巴胺萌趣 3D 动画](styles/dopamine-cute-3d-animation.md)
 - [黏土定格动画](styles/clay-stop-motion.md)
 - [忧郁蓝调简笔画风格](styles/melancholic-blue-simple-line-animation.md)
 - [柔和彩铅萌趣动画](styles/soft-colored-pencil-cute-animation.md)
 - [清爽线描蜡笔动画](styles/clean-line-crayon-animation.md)
+- [多巴胺萌趣 3D 动画](styles/dopamine-cute-3d-animation.md)
 
 用户未指定风格时，展示这些选项并等待选择，不静默设置默认值；自定义风格、用户参考图和已确认历史参考与内置风格具有同等优先级。
 
