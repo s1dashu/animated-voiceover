@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>Turn stories, ideas, reports, and music into AI-animated videos worth watching.</strong>
+  <strong>Turn personal stories and complex ideas into AI-animated videos worth watching.</strong>
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 <p align="center">
   <a href="./SKILL.md"><img alt="Agent Skill" src="https://img.shields.io/badge/Agent-Skill-111111"></a>
   <a href="#what-it-can-do-for-you"><img alt="Animated Explainer: production validated" src="https://img.shields.io/badge/Explainer-validated-2EA44F"></a>
-  <a href="./LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/s1dashu/animated-voiceover"></a>
+  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2EA44F"></a>
 </p>
 
 <p align="center">
@@ -26,13 +26,13 @@
   <a href="#start-with-a-single-sentence">Get Started</a>
 </p>
 
-`animated-voiceover` separates a video's editorial format from its visual look. Choose a production Mode first, then a prompt-defined style, reusable voice, and media CLI. The Skill currently routes between Storytime Animation, Animated Explainer, Animated Report, and Music Video without forcing one format's writing rules onto another.
+`animated-voiceover` separates a video's editorial format from its visual look. Choose a production Mode first, then a prompt-defined style, reusable voice, and media CLI. The current release routes between Storytime Animation and Animated Explainer without forcing one format's writing rules onto the other.
 
-Animated Explainer and Storytime Animation have both been validated in production. Storytime has completed its first five-clip English project; Animated Report and Music Video currently define honest capability boundaries while their end-to-end workflows are still being developed.
+Animated Explainer and Storytime Animation have both been validated in production. Storytime has completed its first five-clip English project, including reusable character design, direct-to-camera narration, reenactment, stable voice identity, and multi-clip generation.
 
 ## What It Can Do for You
 
-- **Choose the right production grammar.** Use first-person storytelling, concept explanation, evidence-led reporting, or music-led visual structure according to what drives the film.
+- **Choose the right production grammar.** Use first-person storytelling when the narrator's experience drives the film, or concept explanation when the goal is to make an idea understandable.
 - **Make complex ideas easy to follow.** From topic research and editorial decisions to narration structure, it helps you build a line your audience can understand and wants to keep watching.
 - **Turn a script into a production-ready animation plan.** It breaks the narrative into balanced segments, directs multiple shots for each one, and produces video prompts ready for Seedance.
 - **Keep the entire video consistent.** Prompt-defined styles, required character references, and voice anchors reduce character drift, style shifts, and voice inconsistency across clips.

@@ -1,6 +1,6 @@
 ---
 name: animated-voiceover
-description: 创作 AI 动画与解说视频，并在 Storytime Animation、Animated Explainer、Animated Report 和 Music Video 之间选择制作 Mode。适用于采集与改编第一人称故事、研究和解释知识主题、编写旁白、规划关键人物参考图、逐片段设计具体场景与多镜头视频 Prompt、维持音色一致、制作封面，或通过 LibTV、Higgsfield、即梦等 CLI 规划和执行多模态生成与拼接。当前 Animated Explainer 已完成实作验证，Storytime Animation 已建立第一版流程，其他 Mode 仍在规划中。
+description: 创作 Storytime Animation 与 Animated Explainer 视频。适用于采集和改编第一人称故事、研究和解释知识主题、编写旁白、共创或复用 Storytime 讲述者形象、规划关键人物参考图、逐片段设计具体场景与多镜头视频 Prompt、维持音色一致、制作封面，或通过 LibTV、Higgsfield、即梦等 CLI 执行多模态生成。两个公开 Mode 均已完成实际作品验证。
 ---
 
 # Animated Voiceover
@@ -17,13 +17,10 @@ description: 创作 AI 动画与解说视频，并在 Storytime Animation、Anim
 
 ## Mode 选择与路由
 
-用户已指定 Mode 时直接使用。未指定时，根据视频的核心驱动力推荐；无法判断时再询问：这支视频主要是讲一个亲历故事、解释一个概念、分析一个现实议题，还是为一首音乐制作画面？
+用户已指定 Mode 时直接使用。未指定时，根据视频的核心驱动力推荐；无法判断时再询问：这支视频主要是讲一个第一人称故事，还是解释一个概念或知识主题？
 
 - **[Storytime Animation](modes/storytime-animation/workflow.md)**（`storytime-animation`）：由第一人称讲述者与个人经历驱动，用动画重现自己、身边人或明确改编的故事。已完成首支五片段作品的生成与质量验证。
 - **[Animated Explainer](modes/animated-explainer/workflow.md)**（`animated-explainer`）：使用旁白和动画，在一支短片中讲清楚一个概念、理论、人物思想、历史事件或知识主题。这就是重构前已经完成多期实作验证的原有工作流。
-- **[Animated Report](modes/animated-report/workflow.md)**（`animated-report`）：由现实议题、时效性资料和多来源证据驱动，混合动画、真人影像、B-roll、地图、文字和数据图表。尚未完成端到端实作验证。
-- **[Music Video](modes/music-video/workflow.md)**（`music-video`）：由一首贯穿全片的音乐驱动，画面服务于歌词、情绪、节拍、段落和高潮。尚未完成端到端实作验证。
-
 选定 Mode 后，在任何采集、研究、写作、分镜或素材规划之前完整读取对应 `workflow.md` 及其指定的专属文档。不把 Animated Explainer 的旁白结构、字数、分镜、封面或纯动画切片流程默认套用到其他 Mode。
 
 ## 共享 style 与参考资产

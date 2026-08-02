@@ -13,7 +13,7 @@
 - 视频的核心是解释一个概念、机制、理论、人物思想、历史因果或知识问题。
 - 内容主要依靠完整旁白和原创动画成立。
 
-如果内容以个人经历与第一人称讲述为主，使用 [Storytime Animation](../storytime-animation/workflow.md)。如果结论主要依赖时效性资料、现实影像、数据图表和多来源证据，使用 [Animated Report](../animated-report/workflow.md)。
+如果内容以个人经历与第一人称讲述为主，使用 [Storytime Animation](../storytime-animation/workflow.md)。如果结论主要依赖时效性资料、现实影像、数据图表和多来源证据，应明确说明它不在当前公开版本已经验证的 Mode 范围内，不用 Animated Explainer 流程伪装完成。
 
 ## 必须读取
 

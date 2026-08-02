@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>把故事、知识、报道与音乐，变成让人愿意看完的 AI 动画视频。</strong>
+  <strong>把个人故事与复杂知识，变成让人愿意看完的 AI 动画视频。</strong>
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 <p align="center">
   <a href="./SKILL.md"><img alt="Agent Skill" src="https://img.shields.io/badge/Agent-Skill-111111"></a>
   <a href="#它能帮你做什么"><img alt="Animated Explainer：已通过实际生产验证" src="https://img.shields.io/badge/Explainer-validated-2EA44F"></a>
-  <a href="./LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/s1dashu/animated-voiceover"></a>
+  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2EA44F"></a>
 </p>
 
 <p align="center">
@@ -26,13 +26,13 @@
   <a href="#从一句话开始创作">开始创作</a>
 </p>
 
-`animated-voiceover` 将视频的内容模式与视觉风格分开。先选择制作 Mode，再选择由文字 Prompt 定义的 style、可复用音色和媒体 CLI。Skill 目前可以在 Storytime Animation、Animated Explainer、Animated Report 和 Music Video 之间路由，不会把一种题材的写作规则强套到另一种题材上。
+`animated-voiceover` 将视频的内容模式与视觉风格分开。先选择制作 Mode，再选择由文字 Prompt 定义的 style、可复用音色和媒体 CLI。当前正式版本可以在 Storytime Animation 与 Animated Explainer 之间路由，不会把一种题材的写作规则强套到另一种题材上。
 
-Animated Explainer 和 Storytime Animation 都已经过实际生产验证。Storytime 已完成首支五片段英文作品；Animated Report 与 Music Video 目前先明确能力边界，端到端流程仍在扩充。
+Animated Explainer 和 Storytime Animation 都已经过实际生产验证。Storytime 已完成首支五片段英文作品，并验证了可复用人物设计、面向观众讲述、事件重现、稳定音色和多片段生成。
 
 ## 它能帮你做什么
 
-- **选择正确的制作语法。** 根据视频的核心驱动力，使用第一人称故事、概念解释、证据型报道或音乐驱动的视觉结构。
+- **选择正确的制作语法。** 当讲述者经历驱动视频时使用第一人称故事；当目标是让观众理解知识时使用概念解释。
 - **把复杂知识讲清楚。** 从主题研究、内容取舍到旁白结构，帮助你建立一条观众听得懂、愿意继续听的叙事线。
 - **把一篇讲稿变成可生成的动画方案。** 自动拆分叙事节奏，为每个片段设计多镜头调度，并输出可以直接进入 Seedance 制作的视频 Prompt。
 - **让整支视频保持统一。** 通过文字 style、必要的人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。

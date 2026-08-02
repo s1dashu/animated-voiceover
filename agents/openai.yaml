@@ -1,4 +1,4 @@
 interface:
   display_name: "Animated Voiceover"
-  short_description: "创作 Storytime、科普、报道与音乐动画视频"
+  short_description: "创作 Storytime 与动画科普视频"
   default_prompt: "使用 $animated-voiceover 先选择合适的 Mode，再规划并制作一支优质动画视频。"
