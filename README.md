@@ -1,159 +1,163 @@
 <h1 align="center">Animated Voiceover</h1>
 
 <p align="center">
-  <strong>把值得讲清楚的知识，变成让人愿意看完的 AI 动画视频。</strong>
+  <strong>English</strong> · <a href="./README_CN.md">简体中文</a>
 </p>
 
 <p align="center">
-  一个面向 Agent 的开源创作 Skill，覆盖选题研究、旁白写作、视觉设计、多镜头导演、统一音色与成片制作。
+  <strong>Turn ideas worth understanding into AI-animated videos worth watching.</strong>
+</p>
+
+<p align="center">
+  An open-source creative Skill for Agents, covering topic research, narration writing, visual design, multi-shot direction, voice consistency, and final video production.
 </p>
 
 <p align="center">
   <a href="./SKILL.md"><img alt="Agent Skill" src="https://img.shields.io/badge/Agent-Skill-111111?style=for-the-badge"></a>
-  <a href="#内置视觉风格"><img alt="六种内置视觉风格" src="https://img.shields.io/badge/%E5%86%85%E7%BD%AE%E9%A3%8E%E6%A0%BC-6%20%E7%A7%8D-7C3AED?style=for-the-badge"></a>
-  <a href="#从一句话开始创作"><img alt="Seedance" src="https://img.shields.io/badge/Seedance-Ready-2563EB?style=for-the-badge"></a>
-  <a href="#工具与适用范围"><img alt="LibTV CLI" src="https://img.shields.io/badge/CLI-LibTV-F97316?style=for-the-badge"></a>
-  <a href="./LICENSE"><img alt="MIT 许可证" src="https://img.shields.io/badge/License-MIT-2EA44F?style=for-the-badge"></a>
+  <a href="#built-in-visual-styles"><img alt="Six built-in visual styles" src="https://img.shields.io/badge/Built--in%20Styles-6-7C3AED?style=for-the-badge"></a>
+  <a href="#start-with-a-single-sentence"><img alt="Seedance" src="https://img.shields.io/badge/Seedance-Ready-2563EB?style=for-the-badge"></a>
+  <a href="#tools-and-scope"><img alt="LibTV CLI" src="https://img.shields.io/badge/CLI-LibTV-F97316?style=for-the-badge"></a>
+  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-2EA44F?style=for-the-badge"></a>
 </p>
 
 <p align="center">
-  <a href="#它能帮你做什么">核心能力</a> ·
-  <a href="#视频效果参考">效果参考</a> ·
-  <a href="#内置视觉风格">视觉风格</a> ·
-  <a href="#安装">安装</a> ·
-  <a href="#从一句话开始创作">开始创作</a>
+  <a href="#what-it-can-do-for-you">Core Capabilities</a> ·
+  <a href="#video-examples">Examples</a> ·
+  <a href="#built-in-visual-styles">Visual Styles</a> ·
+  <a href="#installation">Installation</a> ·
+  <a href="#start-with-a-single-sentence">Get Started</a>
 </p>
 
-`animated-voiceover` 专为哲学、心理、历史、经济、金融和科技等知识内容而设计。你只需要提出一个主题，它会与你一起把零散的想法发展成完整讲稿，再进一步完成视觉风格、人物参考、多镜头视频 Prompt、统一音色和成片制作方案。
+`animated-voiceover` is designed for knowledge-driven content across philosophy, psychology, history, economics, finance, technology, and related fields. Start with a topic, and it will work with you to turn a rough idea into a complete narration script, then carry it forward into a visual style, character references, multi-shot video prompts, a consistent voice, and a production-ready plan.
 
-它不只是“帮你写几段提示词”。它真正解决的是知识动画最难的三个问题：**怎么把复杂概念讲得清楚，怎么把抽象思想拍得好看，以及怎么让多个 AI 视频片段看起来属于同一支作品。**
+It does more than “write a few prompts.” It addresses the three hardest problems in animated knowledge videos: **explaining complex ideas clearly, making abstract concepts visually compelling, and keeping multiple AI-generated clips consistent enough to feel like one film.**
 
-## 它能帮你做什么
+## What It Can Do for You
 
-- **把复杂知识讲清楚。** 从主题研究、内容取舍到旁白结构，帮助你建立一条观众听得懂、愿意继续听的叙事线。
-- **把抽象观点变成具体画面。** 不依赖漂浮符号和空洞意象，而是用人物、行动、场景和结果，让哲学与知识真正“发生”在镜头里。
-- **把一篇讲稿变成可生成的动画方案。** 自动拆分叙事节奏，为每个片段设计多镜头调度，并输出可以直接进入 Seedance 制作的视频 Prompt。
-- **让整支视频保持统一。** 通过画风参考、人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。
-- **从创意一路走到成片。** 不止交付文案，还能继续完成参考素材规划、片段生成、任务追踪、视频拼接与带字封面设计。
+- **Make complex ideas easy to follow.** From topic research and editorial decisions to narration structure, it helps you build a story your audience can understand and wants to keep watching.
+- **Turn abstract ideas into concrete scenes.** Instead of relying on floating symbols or empty visual metaphors, it uses characters, actions, settings, and consequences to make philosophy and knowledge actually happen on screen.
+- **Turn a script into a production-ready animation plan.** It breaks the narrative into balanced segments, directs multiple shots for each one, and produces video prompts ready for Seedance.
+- **Keep the entire video consistent.** Visual references, character references, and voice anchors reduce character drift, style shifts, and voice inconsistency across clips.
+- **Go from idea to finished video.** Beyond writing, it can continue through reference planning, clip generation, task tracking, video assembly, and title-card cover design.
 
-## 视频效果参考
+## Video Examples
 
 <table>
   <tr>
     <td width="50%">
-      <img src="./assets/examples/video-effect-01.webp" alt="动画哲学解说视频画面" width="100%">
+      <img src="./assets/examples/video-effect-01.webp" alt="Animated philosophy explainer scene" width="100%">
     </td>
     <td width="50%">
-      <img src="./assets/examples/video-effect-02.webp" alt="动画心理解说视频画面" width="100%">
+      <img src="./assets/examples/video-effect-02.webp" alt="Animated psychology explainer scene" width="100%">
     </td>
   </tr>
   <tr>
-    <td align="center"><sub><b>哲学科普</b>——让思想进入人物与故事</sub></td>
-    <td align="center"><sub><b>心理科普</b>——用具体事件解释抽象概念</sub></td>
+    <td align="center"><sub><b>Philosophy</b> — bringing ideas into characters and stories</sub></td>
+    <td align="center"><sub><b>Psychology</b> — explaining abstract concepts through concrete events</sub></td>
   </tr>
 </table>
 
-## 内置视觉风格
+## Built-in Visual Styles
 
-Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔动画均可直接选择。每套风格不仅描述“画面长什么样”，也包含它在人物造型、材质、色彩、镜头运动和动画节奏上的创作方法。
+The Skill includes six carefully developed visual languages, ranging from cinematic 3D to hand-drawn crayon animation. Each style defines more than what the image should look like: it also provides creative direction for character design, materials, color, camera movement, and animation rhythm.
 
-这些风格是创作起点，不是套模板。Skill 会围绕每一期的内容重新设计场景、人物与镜头；你也可以提供自己的风格说明或参考图，创作完全不同的视觉方向。
+These styles are starting points, not templates. The Skill redesigns the setting, characters, and shots around each new topic. You can also provide your own style description or reference image to create an entirely different visual direction.
 
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp" alt="电影感 3D 动画效果图" height="220"></a><br>
-      <b>电影感 3D 动画</b><br>
-      <sub>手绘质感、克制色彩与富有叙事感的电影光影</sub><br>
-      <a href="./styles/cinematic-3d-animation.md">查看风格详情</a>
+      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp" alt="Cinematic 3D animation preview" height="220"></a><br>
+      <b>Cinematic 3D Animation</b><br>
+      <sub>Painterly surfaces, restrained color, and story-rich cinematic lighting</sub><br>
+      <a href="./styles/cinematic-3d-animation.md">View style guide</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/clay-stop-motion.webp"><img src="./assets/style-previews/clay-stop-motion.webp" alt="黏土定格动画效果图" height="220"></a><br>
-      <b>黏土定格动画</b><br>
-      <sub>手工黏土偶、微缩布景与真实可触的逐帧质感</sub><br>
-      <a href="./styles/clay-stop-motion.md">查看风格详情</a>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/melancholic-blue-simple-line-animation.webp"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.webp" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
-      <b>忧郁蓝调简笔画</b><br>
-      <sub>冷灰蓝纸面、笨拙铅笔线与安静内省的情绪</sub><br>
-      <a href="./styles/melancholic-blue-simple-line-animation.md">查看风格详情</a>
-    </td>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/soft-colored-pencil-cute-animation.webp"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.webp" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
-      <b>柔和彩铅萌趣动画</b><br>
-      <sub>柔软轮廓、温暖纸纹与轻松亲切的可爱表达</sub><br>
-      <a href="./styles/soft-colored-pencil-cute-animation.md">查看风格详情</a>
+      <a href="./assets/style-previews/clay-stop-motion.webp"><img src="./assets/style-previews/clay-stop-motion.webp" alt="Clay stop-motion preview" height="220"></a><br>
+      <b>Clay Stop-Motion</b><br>
+      <sub>Handmade clay figures, miniature sets, and tactile frame-by-frame motion</sub><br>
+      <a href="./styles/clay-stop-motion.md">View style guide</a>
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/clean-line-crayon-animation.webp"><img src="./assets/style-previews/clean-line-crayon-animation.webp" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
-      <b>清爽线描蜡笔动画</b><br>
-      <sub>明快色块、清楚线描与清爽有序的二维世界</sub><br>
-      <a href="./styles/clean-line-crayon-animation.md">查看风格详情</a>
+      <a href="./assets/style-previews/melancholic-blue-simple-line-animation.webp"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.webp" alt="Melancholic blue line animation preview" height="220"></a><br>
+      <b>Melancholic Blue Line Animation</b><br>
+      <sub>Cool blue-gray paper, awkward pencil lines, and a quiet introspective mood</sub><br>
+      <a href="./styles/melancholic-blue-simple-line-animation.md">View style guide</a>
     </td>
     <td width="50%" align="center">
-      <a href="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp"><img src="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
-      <b>多巴胺萌趣 3D 动画</b><br>
-      <sub>Q 弹角色、明亮配色与充满活力的画面层次</sub><br>
-      <a href="./styles/dopamine-cute-3d-animation.md">查看风格详情</a>
+      <a href="./assets/style-previews/soft-colored-pencil-cute-animation.webp"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.webp" alt="Soft colored-pencil cute animation preview" height="220"></a><br>
+      <b>Soft Colored-Pencil Animation</b><br>
+      <sub>Gentle outlines, warm paper texture, and an approachable playful tone</sub><br>
+      <a href="./styles/soft-colored-pencil-cute-animation.md">View style guide</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/clean-line-crayon-animation.webp"><img src="./assets/style-previews/clean-line-crayon-animation.webp" alt="Clean-line crayon animation preview" height="220"></a><br>
+      <b>Clean-Line Crayon Animation</b><br>
+      <sub>Bright color blocks, clear hand-drawn lines, and an orderly 2D world</sub><br>
+      <a href="./styles/clean-line-crayon-animation.md">View style guide</a>
+    </td>
+    <td width="50%" align="center">
+      <a href="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp"><img src="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp" alt="Dopamine cute 3D animation preview" height="220"></a><br>
+      <b>Dopamine Cute 3D Animation</b><br>
+      <sub>Bouncy characters, vibrant colors, and energetic layered compositions</sub><br>
+      <a href="./styles/dopamine-cute-3d-animation.md">View style guide</a>
     </td>
   </tr>
 </table>
 
-## 不只是画风，还有可复用的声音与参考资产
+## More Than a Look: Reusable Voices and Reference Assets
 
-除了六套视觉风格，Skill 还随包提供经过整理的图像参考和多种标准化中文音色，包括沉静青年男声、明亮活力男声、温柔成年女声与灵动年轻女声。
+Alongside the six visual styles, the Skill includes curated image references and multiple standardized Chinese voices: a calm young male voice, a bright and energetic male voice, a warm adult female voice, and a lively young female voice.
 
-你可以直接选用现成资产，快速建立统一的作品气质；也可以从第一个片段开始创造本期专属声音。Skill 会先与你确认选择，不会擅自替你决定风格或音色。
+You can use these assets to establish a consistent identity quickly, or create a dedicated voice for the current production from the first clip. The Skill asks you to make the choice—it never silently decides the style or voice for you.
 
-完整资产清单见[内置参考资产库](./references/reference-asset-library.md)。
+See the complete [built-in reference asset library](./references/reference-asset-library.md).
 
-## 一套为知识动画设计的完整工作流
+## A Complete Workflow Designed for Animated Knowledge Videos
 
-1. **确定讲什么。** 围绕主题、受众和时长研究资料，完成一篇结构清楚的旁白讲稿。
-2. **确定长什么样。** 选择内置风格、自定义风格或参考图，建立统一的视觉方向和人物形象。
-3. **把文字导演成画面。** 将讲稿拆成节奏均衡的片段，为每段设计具体事件、多镜头调度和可直接生成的视频 Prompt。
-4. **先验证，再批量制作。** 先完成第一个片段，确认画面与声音方向，再锁定音色和参考素材，继续生成其余内容。
-5. **组合为完整作品。** 汇总全部片段并完成拼接；需要发布包装时，还可以继续制作带字封面。
+1. **Decide what to say.** Research the topic around your audience and target duration, then write a clear, well-structured narration script.
+2. **Decide how it should look.** Choose a built-in style, a custom style, or a reference image to establish a consistent visual direction and character identity.
+3. **Direct the words into scenes.** Break the script into balanced segments and design concrete events, multi-shot direction, and generation-ready prompts for each one.
+4. **Validate before scaling.** Produce the first clip, confirm the visual and vocal direction, then lock the voice and reference assets before generating the rest.
+5. **Assemble the complete film.** Bring every clip together in sequence, and create a title-card cover when the video needs publishing artwork.
 
-目前经过实际验证的创作节奏是：将 1–5 分钟视频拆成 15 秒片段，每段中文旁白约 60 个汉字，并用约 5 个镜头保持画面变化与叙事密度。这些参数会服务于内容，而不是反过来限制创作。
+The production rhythm validated so far breaks a 1–5 minute video into 15-second clips, with roughly 60 Chinese characters of narration and about five shots per clip. These numbers serve the content rather than constrain it.
 
-## 安装
+## Installation
 
-将本仓库克隆或复制到你的 Agent 可以读取的 skills 目录。
+Clone or copy this repository into a skills directory your Agent can access.
 
-如果你使用 Codex，也可以直接告诉它：
+If you use Codex, you can also tell it directly:
 
-> 从 `https://github.com/s1dashu/animated-voiceover` 安装 `$animated-voiceover` skill。
+> Install the `$animated-voiceover` skill from `https://github.com/s1dashu/animated-voiceover`.
 
-## 从一句话开始创作
+## Start with a Single Sentence
 
-安装后，你可以这样开始：
+Once installed, you can begin with a request like this:
 
-> 使用 `animated-voiceover` Skill 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义。
+> Use the `animated-voiceover` Skill to create a two-minute animated explainer: “Stoicism in Two Minutes.”
 
-也可以带上自己的要求：
+Or include more creative direction:
 
-> 使用 `animated-voiceover` Skill 把“为什么人会拖延”做成一支 90 秒心理科普动画。希望语气温柔，使用手绘风格，先和我确认讲稿与视觉方案。
+> Use the `animated-voiceover` Skill to turn “Why do people procrastinate?” into a 90-second psychology explainer. Use a gentle tone and a hand-drawn style, and confirm the script and visual direction with me first.
 
-Skill 会引导你完成必要选择，你不需要提前了解 Seedance Prompt、音色锚点或多模态素材连接方式。
+The Skill will guide you through the necessary choices. You do not need to understand Seedance prompting, voice anchors, or multimodal asset connections in advance.
 
-## 工具与适用范围
+## Tools and Scope
 
-当前正式维护并经过实际制作验证的媒体执行路径是 [LibTV CLI](https://libtv.ai/)。这套关于讲稿结构、视觉一致性、人物参考、多镜头导演和音色管理的方法并不依赖单一平台；在查阅目标平台的最新官方文档后，也可以适配 Higgsfield、即梦及其他支持多模态生成的 CLI。
+The officially maintained and production-tested media execution path currently uses [LibTV CLI](https://libtv.ai/). The underlying methods for narration structure, visual consistency, character references, multi-shot direction, and voice management are not tied to a single platform. After reviewing the latest official documentation for the target platform, they can also be adapted to Higgsfield, Jimeng, and other multimodal generation CLIs.
 
-目前的工作流主要针对由多个 15 秒片段组成的 1–5 分钟视频。Seedance 2.5 Pro 的 30 秒片段尚未完成系统性验证，因此没有被宣传为当前版本的默认能力。
+The current workflow is designed primarily for 1–5 minute videos assembled from multiple 15-second clips. Seedance 2.5 Pro's 30-second clips have not yet been systematically validated, so they are not presented as a default capability of this release.
 
-想了解完整执行规则，可以阅读 [SKILL.md](./SKILL.md)。旁白、视频 Prompt、音色参考与封面制作方法分别收录在 [`references/`](./references/) 中。
+For the full execution rules, read [SKILL.md](./SKILL.md). The methods for narration, video prompts, voice references, and cover production are organized under [`references/`](./references/).
 
-## 许可证
+## License
 
-本仓库的原创内容采用 [MIT License](./LICENSE) 开源。第三方文档和外部链接内容仍遵循各自权利人的许可条款。
+Original content in this repository is released under the [MIT License](./LICENSE). Third-party documentation and externally linked content remain subject to their respective licenses and rights.
 
 <p align="center">
-  <strong>如果你也想把知识做得更好看，欢迎试用、分享，并为这个项目点一个 Star。</strong>
+  <strong>If you want to make knowledge more watchable too, try it, share it, and give the project a Star.</strong>
 </p>
