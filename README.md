@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  An open-source creative Skill for Agents, covering topic research, narration writing, visual design, multi-shot direction, voice consistency, and final video production.
+  <img src="./assets/repository-covers/animated-voiceover-cover.png" alt="Animated Voiceover — an Agent workflow for AI animated explainer videos" width="100%">
 </p>
 
 <p align="center">

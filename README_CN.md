@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  一个面向 Agent 的开源创作 Skill，覆盖选题研究、旁白写作、视觉设计、多镜头导演、统一音色与成片制作。
+  <img src="./assets/repository-covers/animated-voiceover-cover.png" alt="Animated Voiceover：AI 动画解说视频 Agent 工作流" width="100%">
 </p>
 
 <p align="center">
