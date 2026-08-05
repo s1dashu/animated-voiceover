@@ -16,7 +16,7 @@ LibTV CLI 是本 skill 当前唯一正式维护、实际验证最充分的图片
 
 ## 模型与参数
 
-- 仅在 LibTV 中，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Midjourney` 解析为 `悠船`；其他 CLI 不得沿用。
+- 仅在 LibTV 中，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Nano Banana 2` 解析为 `General image V2`、`Midjourney` 解析为 `悠船`；其他 CLI 不得沿用。
 - 给 `libtv node ... -s "model=..."` 传模型时，逐字使用 `libtv model search` 返回的 `matches[].modelName`，包括空格、大小写与标点；不改用 `modelKey`。
 - 当前已验证的 Seedance 默认选择是 Seedance 2.0 Pro；LibTV 中对应 Seedance 2.0 VIP（`star-video2`）。正式调用仍以实时搜索与 schema 为准。
 - 每次创建或重生成节点都显式传入实际 `duration`、`ratio`、`resolution`、`enableSound`、`count` 和 `modeType`，不继承旧画布、复制节点或模型默认值。
