@@ -71,7 +71,7 @@ style 文件定义跨作品稳定的媒介、材质、线条、造型、色彩�
 
 ### LibTV 执行规则
 
-- 仅在 LibTV 中，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Midjourney` 解析为 `悠船`；其他平台不得沿用。正式调用前仍以实时搜索和 schema 为准。
+- 仅在 LibTV 中，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Nano Banana 2` 解析为 `General image V2`、`Midjourney` 解析为 `悠船`；其他平台不得沿用。正式调用前仍以实时搜索和 schema 为准。
 - 给 `libtv node ... -s "model=..."` 传模型时，必须逐字使用 `libtv model search` 返回的 `matches[].modelName`，包括其中的空格、大小写与标点；不得改用 `modelKey`，也不得使用 `libtv model <nameOrId>` 完整 schema 顶层可能出现的不一致 `modelName`。例如搜索结果是 `Seedream 5.0 Pro`，就必须传 `-s "model=Seedream 5.0 Pro"`，不能写成 `Seedream5.0 Pro`。完整 schema 只用于校验能力与参数。
 - 实时查询模型和 schema，优先使用 Seedance 2.0 Pro；当前 LibTV 对应 Seedance 2.0 VIP（`star-video2`）。已验证默认值为 `duration=15`；`ratio`、`resolution`和`enableSound`从用户要求或项目配置读取。模型展示名、`modeType`和素材限制均不得凭经验猜测。
 - 使用 Seedance 2.0 系列时，用户未明确要求 `1080p`、`4K` 或其他更高档位，`resolution` 默认使用 `720p`；即使模型或旧节点带有更高默认值，也必须在 CLI 中显式传入 `720p`。用户明确要求更高分辨率时，先以实时 schema 确认该档位确实受支持，不支持则停止并说明，不静默降级或改用其他模型。
