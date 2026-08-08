@@ -1,23 +1,21 @@
-<h1 align="center">Animated Voiceover</h1>
+<h1 align="center">director</h1>
 
 <p align="center">
   <a href="./README.md">English</a> · <strong>简体中文</strong>
 </p>
 
 <p align="center">
-  <strong>把值得讲清楚的知识，变成让人愿意看完的 AI 动画视频。</strong>
+  <strong>从第一个想法开始，导演并制作一支完整视频。</strong>
 </p>
 
 <p align="center">
-  <img src="./assets/repository-covers/animated-voiceover-cover.png" alt="Animated Voiceover：AI 动画解说视频 Agent 工作流" width="100%">
+  <img src="./repository-assets/repository-covers/director-cover.png" alt="director：用于导演和制作多类型视频的多 Mode Agent Skill" width="100%">
 </p>
 
 <p align="center">
-  <a href="./SKILL.md"><img alt="Agent Skill" src="https://img.shields.io/badge/Agent-Skill-111111?style=for-the-badge"></a>
-  <a href="#内置视觉风格"><img alt="六种内置视觉风格" src="https://img.shields.io/badge/%E5%86%85%E7%BD%AE%E9%A3%8E%E6%A0%BC-6%20%E7%A7%8D-7C3AED?style=for-the-badge"></a>
-  <a href="#从一句话开始创作"><img alt="Seedance" src="https://img.shields.io/badge/Seedance-Ready-2563EB?style=for-the-badge"></a>
-  <a href="#工具与适用范围"><img alt="LibTV CLI" src="https://img.shields.io/badge/CLI-LibTV-F97316?style=for-the-badge"></a>
-  <a href="./LICENSE"><img alt="MIT 许可证" src="https://img.shields.io/badge/License-MIT-2EA44F?style=for-the-badge"></a>
+  <a href="./SKILL.md"><img alt="Agent Skill" src="https://img.shields.io/badge/Agent-Skill-111111"></a>
+  <a href="#它能帮你做什么"><img alt="Animated Explainer：已通过实际生产验证" src="https://img.shields.io/badge/Explainer-validated-2EA44F"></a>
+  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2EA44F"></a>
 </p>
 
 <p align="center">
@@ -28,27 +26,31 @@
   <a href="#从一句话开始创作">开始创作</a>
 </p>
 
-`animated-voiceover` 专为哲学、心理、历史、经济、金融和科技等知识内容而设计。你只需要提出一个主题，它会与你一起把零散的想法发展成完整讲稿，再进一步完成视觉风格、人物参考、多镜头视频 Prompt、统一音色和成片制作方案。
+`director` 是一个用于导演和制作完整视频的多 Mode Agent Skill。它先判断你正在创作哪一种作品，再通过合适的 Mode 统筹研究、写作、视觉开发、人物、声音、分镜、生成与交付。
 
-它不只是“帮你写几段提示词”。它真正解决的是知识动画最难的三个问题：**怎么把复杂概念讲得清楚，怎么把抽象思想拍得好看，以及怎么让多个 AI 视频片段看起来属于同一支作品。**
+它不再由“动画”或“旁白”定义。每个 Mode 管理一种视频类型的创作语法，跨 Mode 的 references 与 tools 只保留真正能够复用的能力。微电影、短片、短剧、音乐视频等类型可以在工作流完成开发并通过真实作品验证后，作为独立 Mode 加入。
+
+Animated Explainer 和 Storytime Animation 都已经过实际生产验证。Storytime 已完成首支五片段英文作品，并验证了可复用人物设计、面向观众讲述、事件重现、稳定音色和多片段生成。
+
+Visual Journalism 是开发中的第三个 Mode，用于以证据和现实素材驱动的议题，混合纪录片实拍、解释性动画与动态图表；它尚未完成端到端生产验证。
 
 ## 它能帮你做什么
 
+- **选择正确的导演语法。** 根据作品由个人经历、知识解释、现实证据还是戏剧行动驱动，选择对应工作流。
 - **把复杂知识讲清楚。** 从主题研究、内容取舍到旁白结构，帮助你建立一条观众听得懂、愿意继续听的叙事线。
-- **把抽象观点变成具体画面。** 不依赖漂浮符号和空洞意象，而是用人物、行动、场景和结果，让哲学与知识真正“发生”在镜头里。
-- **把一篇讲稿变成可生成的动画方案。** 自动拆分叙事节奏，为每个片段设计多镜头调度，并输出可以直接进入 Seedance 制作的视频 Prompt。
-- **让整支视频保持统一。** 通过画风参考、人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。
-- **从创意一路走到成片。** 不止交付文案，还能继续完成参考素材规划、片段生成、任务追踪、视频拼接与带字封面设计。
+- **把文字变成可生产的导演方案。** 将叙事拆成可执行单元，设计镜头、表演与调度，并按照当前 Mode 输出可生成的 Prompt。
+- **让整支视频保持统一。** 通过文字 style、必要的人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。
+- **从创意一路走到可剪辑片段。** 不止交付文案，还能继续完成参考素材规划、片段生成和任务追踪，再把全部素材交给剪辑工具完成最终拼接与轻量修整。
 
 ## 视频效果参考
 
 <table>
   <tr>
     <td width="50%">
-      <img src="./assets/examples/video-effect-01.webp" alt="动画哲学解说视频画面" width="100%">
+      <img src="./repository-assets/examples/video-effect-01.webp" alt="动画哲学解说视频画面" width="100%">
     </td>
     <td width="50%">
-      <img src="./assets/examples/video-effect-02.webp" alt="动画心理解说视频画面" width="100%">
+      <img src="./repository-assets/examples/video-effect-02.webp" alt="动画心理解说视频画面" width="100%">
     </td>
   </tr>
   <tr>
@@ -59,72 +61,76 @@
 
 ## 内置视觉风格
 
-Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔动画均可直接选择。每套风格不仅描述“画面长什么样”，也包含它在人物造型、材质、色彩、镜头运动和动画节奏上的创作方法。
+Skill 当前内置六套已经 Animated Explainer 验证的视觉语言，以及一套 Storytime Animation 专属风格。每个 Mode 管理自己已验证的 style，不向用户暴露未验证组合；只有 style 在多个 Mode 的真实作品中验证成功后，才提升为跨 Mode 共享。
 
-这些风格是创作起点，不是套模板。Skill 会围绕每一期的内容重新设计场景、人物与镜头；你也可以提供自己的风格说明或参考图，创作完全不同的视觉方向。
+这些风格是创作起点，不是套模板。Skill 会围绕每一期的内容重新设计场景、人物与镜头；你也可以为当前 Mode 提供自己的文字风格说明。视觉 style 不依赖图片参考资产。
 
 <table>
   <tr>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp"><img src="./assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp" alt="电影感 3D 动画效果图" height="220"></a><br>
+    <td width="50%" align="center" valign="top">
+      <a href="./repository-assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp"><img src="./repository-assets/style-previews/cinematic-3d-animation-nietzsche-16x9-v3.webp" alt="电影感 3D 动画效果图" height="220"></a><br>
       <b>电影感 3D 动画</b><br>
       <sub>手绘质感、克制色彩与富有叙事感的电影光影</sub><br>
-      <a href="./styles/cinematic-3d-animation.md">查看风格详情</a>
+      <a href="./modes/animated-explainer/styles/cinematic-3d-animation.md">查看风格详情</a>
     </td>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/clay-stop-motion.webp"><img src="./assets/style-previews/clay-stop-motion.webp" alt="黏土定格动画效果图" height="220"></a><br>
+    <td width="50%" align="center" valign="top">
+      <a href="./repository-assets/style-previews/clay-stop-motion.webp"><img src="./repository-assets/style-previews/clay-stop-motion.webp" alt="黏土定格动画效果图" height="220"></a><br>
       <b>黏土定格动画</b><br>
       <sub>手工黏土偶、微缩布景与真实可触的逐帧质感</sub><br>
-      <a href="./styles/clay-stop-motion.md">查看风格详情</a>
+      <a href="./modes/animated-explainer/styles/clay-stop-motion.md">查看风格详情</a>
     </td>
   </tr>
   <tr>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/melancholic-blue-simple-line-animation.webp"><img src="./assets/style-previews/melancholic-blue-simple-line-animation.webp" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
+    <td width="50%" align="center" valign="top">
+      <a href="./repository-assets/style-previews/melancholic-blue-simple-line-animation.webp"><img src="./repository-assets/style-previews/melancholic-blue-simple-line-animation.webp" alt="忧郁蓝调简笔画风格效果图" height="220"></a><br>
       <b>忧郁蓝调简笔画</b><br>
       <sub>冷灰蓝纸面、笨拙铅笔线与安静内省的情绪</sub><br>
-      <a href="./styles/melancholic-blue-simple-line-animation.md">查看风格详情</a>
+      <a href="./modes/animated-explainer/styles/melancholic-blue-simple-line-animation.md">查看风格详情</a>
     </td>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/soft-colored-pencil-cute-animation.webp"><img src="./assets/style-previews/soft-colored-pencil-cute-animation.webp" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
+    <td width="50%" align="center" valign="top">
+      <a href="./repository-assets/style-previews/soft-colored-pencil-cute-animation.webp"><img src="./repository-assets/style-previews/soft-colored-pencil-cute-animation.webp" alt="柔和彩铅萌趣动画效果图" height="220"></a><br>
       <b>柔和彩铅萌趣动画</b><br>
       <sub>柔软轮廓、温暖纸纹与轻松亲切的可爱表达</sub><br>
-      <a href="./styles/soft-colored-pencil-cute-animation.md">查看风格详情</a>
+      <a href="./modes/animated-explainer/styles/soft-colored-pencil-cute-animation.md">查看风格详情</a>
     </td>
   </tr>
   <tr>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/clean-line-crayon-animation.webp"><img src="./assets/style-previews/clean-line-crayon-animation.webp" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
+    <td width="50%" align="center" valign="top">
+      <a href="./repository-assets/style-previews/clean-line-crayon-animation.webp"><img src="./repository-assets/style-previews/clean-line-crayon-animation.webp" alt="清爽线描蜡笔动画效果图" height="220"></a><br>
       <b>清爽线描蜡笔动画</b><br>
       <sub>明快色块、清楚线描与清爽有序的二维世界</sub><br>
-      <a href="./styles/clean-line-crayon-animation.md">查看风格详情</a>
+      <a href="./modes/animated-explainer/styles/clean-line-crayon-animation.md">查看风格详情</a>
     </td>
-    <td width="50%" align="center">
-      <a href="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp"><img src="./assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
+    <td width="50%" align="center" valign="top">
+      <a href="./repository-assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp"><img src="./repository-assets/style-previews/dopamine-cute-3d-animation-16x9-v2.webp" alt="多巴胺萌趣 3D 动画效果图" height="220"></a><br>
       <b>多巴胺萌趣 3D 动画</b><br>
       <sub>Q 弹角色、明亮配色与充满活力的画面层次</sub><br>
-      <a href="./styles/dopamine-cute-3d-animation.md">查看风格详情</a>
+      <a href="./modes/animated-explainer/styles/dopamine-cute-3d-animation.md">查看风格详情</a>
     </td>
   </tr>
 </table>
 
-## 不只是画风，还有可复用的声音与参考资产
+Storytime Animation 拥有自己的[清爽白色圆身 Storytime 动画](./modes/storytime-animation/styles/clean-white-character-storytime-animation.md)：白色圆身二维人物、利落黑色粗线、有限平涂色块、清楚的喜剧表演，以及比人物更具体的环境。
 
-除了六套视觉风格，Skill 还随包提供经过整理的图像参考和多种标准化中文音色，包括沉静青年男声、明亮活力男声、温柔成年女声与灵动年轻女声。
+## 不只是画风，还有可复用的声音
 
-你可以直接选用现成资产，快速建立统一的作品气质；也可以从第一个片段开始创造本期专属声音。Skill 会先与你确认选择，不会擅自替你决定风格或音色。
+除了七套由文字 Prompt 定义的视觉风格，Skill 还随包提供多种标准化中文与英文音色。
 
-完整资产清单见[内置参考资产库](./references/reference-asset-library.md)。
+你可以直接选用现成音色，也可以从第一个片段开始创造本期专属声音。Skill 会先与你确认选择，不会擅自替你决定风格或音色。
 
-## 一套为知识动画设计的完整工作流
+完整音色清单见[内置音色库](./references/reference-asset-library.md)。
+
+## 已完成生产验证的工作流
+
+Storytime Animation 增加第一人称故事采集、Storytime 专属[人物形象库](./modes/storytime-animation/characters/character-library.md)、对话式人物共创、讲述者表演，以及面向观众讲述与事件重现之间的灵活切换。Animated Explainer 则保留引入 Mode 架构前已经验证的原有工作流。
 
 1. **确定讲什么。** 围绕主题、受众和时长研究资料，完成一篇结构清楚的旁白讲稿。
-2. **确定长什么样。** 选择内置风格、自定义风格或参考图，建立统一的视觉方向和人物形象。
+2. **确定长什么样。** 选择由文字 Prompt 定义的内置或自定义风格，并只为必须稳定辨认的人物建立参考图。
 3. **把文字导演成画面。** 将讲稿拆成节奏均衡的片段，为每段设计具体事件、多镜头调度和可直接生成的视频 Prompt。
-4. **先验证，再批量制作。** 先完成第一个片段，确认画面与声音方向，再锁定音色和参考素材，继续生成其余内容。
-5. **组合为完整作品。** 汇总全部片段并完成拼接；需要发布包装时，还可以继续制作带字封面。
+4. **先验证，再批量制作。** 先完成第一个片段，确认画面与声音方向，再锁定音色和必要人物参考，继续生成其余内容。
+5. **在剪辑工具中收尾。** 下载全部生成片段后，由用户手动排序和拼接，轻量修剪边缘废帧、片尾极短声音毛刺，并检查节奏与切点。只有用户明确要求时才自动拼接。
 
-目前经过实际验证的创作节奏是：将 1–5 分钟视频拆成 15 秒片段，每段中文旁白约 60 个汉字，并用约 5 个镜头保持画面变化与叙事密度。这些参数会服务于内容，而不是反过来限制创作。
+目前经过实际验证的创作节奏是：将 1–5 分钟视频拆成 15 秒片段。Animated Explainer 通常以约 60 个汉字或约 32 个英文单词、约 5 镜为起点；英文 Storytime 以 30 个实际朗读单词为目标，通常保持 28–32 词，并使用 3–5 镜，约 4 镜是当前稳定起点。
 
 ## 安装
 
@@ -132,17 +138,27 @@ Skill 内置六套经过整理的视觉语言，从电影感 3D 到手绘蜡笔�
 
 如果你使用 Codex，也可以直接告诉它：
 
-> 从 `https://github.com/s1dashu/animated-voiceover` 安装 `$animated-voiceover` skill。
+> 从 `https://github.com/s1dashu/director` 安装 `director` skill。
+
+在 Codex 中，显式调用 skill 时需要使用 `$` 前缀，所以写作 `$director`。Skill 本身的名称仍然只是 `director`；其他 Agent 使用各自运行环境的调用约定。
+
+### 从 `animated-voiceover` 迁移
+
+本项目由 `animated-voiceover` 原地重命名为 `director`。GitHub 会保留仓库历史、Stars、Issues，并把旧仓库地址重定向到新地址；但用户本地复制安装的 skill 目录不会自动改名。
+
+- 将已有 Git remote 更新为 `https://github.com/s1dashu/director.git`。
+- 安装 `director` 后删除本地旧 `animated-voiceover` skill 目录，避免 Agent 同时发现两份不同版本的工作流。
+- Codex 中把 `$animated-voiceover` 改为 `$director`；其他 Agent 使用各自的 skill 调用方式。
 
 ## 从一句话开始创作
 
 安装后，你可以这样开始：
 
-> 使用 `animated-voiceover` Skill 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义。
+> 使用 `director` skill 创作一支两分钟的动画科普视频，主题是：两分钟了解斯多葛主义。
 
 也可以带上自己的要求：
 
-> 使用 `animated-voiceover` Skill 把“为什么人会拖延”做成一支 90 秒心理科普动画。希望语气温柔，使用手绘风格，先和我确认讲稿与视觉方案。
+> 使用 `director` skill 把“为什么人会拖延”做成一支 90 秒心理科普动画。希望语气温柔，使用手绘风格，先和我确认讲稿与视觉方案。
 
 Skill 会引导你完成必要选择，你不需要提前了解 Seedance Prompt、音色锚点或多模态素材连接方式。
 
@@ -159,5 +175,5 @@ Skill 会引导你完成必要选择，你不需要提前了解 Seedance Prompt�
 本仓库的原创内容采用 [MIT License](./LICENSE) 开源。第三方文档和外部链接内容仍遵循各自权利人的许可条款。
 
 <p align="center">
-  <strong>如果你也想把知识做得更好看，欢迎试用、分享，并为这个项目点一个 Star。</strong>
+  <strong>如果你也想和 Agent 一起导演出更好的视频，欢迎试用、分享，并为这个项目点一个 Star。</strong>
 </p>

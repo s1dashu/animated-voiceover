@@ -1,100 +1,146 @@
 ---
-name: animated-voiceover
-description: 制作哲学、心理、历史、经济、金融与科技等主题的 AI 动画解说视频。适用于 Agent 研究和组织选题、编写旁白、将 1–5 分钟视频拆成均衡的 Seedance 片段、按关键人物数量生成人物参考图、逐片段设计具体场景与多镜头视频提示词、保持旁白音色一致、制作带字封面，或规划基于 CLI 的多模态生成与拼接流程。当前正式维护的执行路径使用 LibTV CLI；查阅最新官方文档后，也可将该生产方法适配到 Higgsfield、即梦及其他同类多模态 CLI。
+name: director
+description: 导演并制作多类型视频，从创意、研究、剧本、视觉开发、人物与声音设计、分镜和生成 Prompt，一直推进到素材生成、任务追踪与交付。适用于 Storytime Animation、Animated Explainer 与开发中的 Visual Journalism，以及为未来微电影、短片、短剧、音乐视频等独立 Mode 建立制作方法。Storytime 与 Explainer 已完成实际作品验证，Visual Journalism 尚在实作验证中；尚未建立专属 Mode 的类型不得冒充已支持流程。
 ---
 
-# Animated Voiceover
+# director
 
-## 整体工作流程
+`director` 是视频创作与制作的顶层导演 skill，不以动画、旁白或任何单一题材定义自身。它负责先判断作品类型和创作目标，再把任务路由到经过验证的 Mode、style、共享资产与执行工具。
 
-1. **写作、拆分并保存确认后的完整讲稿。** 先向用户确认主题、受众和成片时长，再完成全文、核查事实并按语义拆成片段。执行前完整读取 [旁白讲稿写作指南](references/narration-script-guide.md)；将完整讲稿和拆分结果交给用户审阅。用户确认后立即按照旁白指南保存为当前作品统一文档目录中的独立 `旁白.md`，再进入视觉设计。
-2. **规划关键人物并只生成人物参考图。** 完整读取[人物参考图指南](references/character-reference-image-guide.md)，根据定稿讲稿和全部片段判断本片实际有几个需要稳定身份的关键人物。数量完全由内容决定，不机械固定为 1–3 个，也不为一次性群演生成参考图。先建立人物清单和“人物—出现片段”对应表，再为每个关键人物分别生成一张纯白背景、同一人物正面与背面并列的人物参考图；需要几个人物就生成几张并逐张确认。动画视频不生成独立场景图、画风参考图或风格参考图。
-3. **逐片段编写并分别保存视频 Prompt。** 旁白和全部关键人物参考图确认后，完整读取所选 style 的视频指导、[视频提示词写作指南](references/video-prompt-guide.md)和 [Seedance 2.0 官方提示词指南](references/official-seedance-2.0-prompt-guide.md)，按片段编号逐个设计素材职责、场景、镜头、动作和切换。只连接当前片段实际需要的关键人物参考图，Prompt 开头逐张写清“参考图 N 为哪个人物”，用稳定特征定义人物身份。每个片段根据自身叙事需求重新写清具体地点、时代、环境、材质、色彩、光线和渲染风格；不依赖统一场景图，也不要求不同片段复刻同一场景内容。把旁白中的思想优先改写成发生在可识别场景里的具体人物、物体、行动和结果，不用抽象概念画面承担主要表达。每完成一个片段，就按照视频提示词指南立即保存为一个独立的 Markdown 文件，并与 `旁白.md`、人物与参考素材计划等生产文档平铺在同一个作品文档目录；不得把多个片段合并在同一文件中，也不得只保留在对话中。
-4. **选择音色路线并只生成片段 1。** 正式生成视频前，读取 skill 的[内置参考资产库](references/reference-asset-library.md)，明确询问用户使用其中的现成音色、宿主项目额外登记的私有音色，还是通过片段 1 新建音色。选择已有音色时，列出可用项并等待用户指定，从片段 1 起连接所选标准化音频；选择新建音色时，先确认声音描述，片段 1 不连接音频参考，让音色随片段 1 一起生成。两条路线都先只生成片段 1；确认任务成功返回后交给用户审阅，获得用户确认再继续。
-5. **锁定统一音色锚点。** 完整读取 [音色参考与音频转换指南](references/voice-reference-guide.md)。已有音色路线继续复用同一份库内标准化音频，不从片段 1 再抽取替代品；新建音色路线则从已确认片段 1 剥离纯音频，转换、验证并上传为目标平台可接受的独立音频素材。
-6. **并行生成后续片段。** 从片段 2 开始，全部使用步骤 5 锁定的同一份纯音频或同一音色 ID；当前片段的准确旁白仍只由当前 Prompt 决定。核对素材、Prompt 和参数后并行提交。
-7. **确认返回并拼接。** 生成后只确认每个视频任务已成功返回、终态为成功、节点 ID、任务 ID 和资源 URL 均存在，并把所有视频直接下载到当前作品的 `video/` 目录。默认不播放、不抽帧、不听写，也不检查具体内容。全部片段成功后按顺序拼接；只有用户明确要求，或任务失败、资源缺失、平台返回异常时，才执行针对性内容检查。需要封面时，另行读取 [视频封面生成指南](references/video-cover-image-guide.md)。
+## 核心架构
+
+把每支视频拆成三层选择：
+
+1. **Mode** 决定内容目标、叙事方式、素材结构、声音角色、写作重点和制作流程。
+2. **Mode 专属 style 与共享资产** 决定视觉语言，并在需要时提供可跨 Mode 复用的人物参考与音色。
+3. **Tool** 决定如何在用户选定的 CLI 平台上查询模型、上传素材、生成、跟踪、下载和拼接。
+
+三者不互相替代。先选择 Mode，再从该 Mode 的 `styles/` 中选择 style 并确认共享资产，最后选择执行 CLI。
+
+## Mode 选择与路由
+
+用户已指定 Mode 时直接使用。未指定时，根据视频的核心驱动力推荐；无法判断时再询问作品主要由个人经历、知识解释、现实证据，还是人物行动与戏剧冲突驱动。不要因为当前已实现的 Mode 以旁白驱动为主，就把所有视频默认解释成动画解说。
+
+- **[Storytime Animation](modes/storytime-animation/workflow.md)**（`storytime-animation`）：由第一人称讲述者与个人经历驱动，用动画重现自己、身边人或明确改编的故事。已完成首支五片段作品的生成与质量验证。
+- **[Animated Explainer](modes/animated-explainer/workflow.md)**（`animated-explainer`）：使用旁白和动画，在一支短片中讲清楚一个概念、理论、人物思想、历史事件或知识主题。这就是重构前已经完成多期实作验证的原有工作流。
+- **[Visual Journalism](modes/visual-journalism/workflow.md)**（`visual-journalism`）：研究并解释财经、时政、产业或其他现实议题，以证据、现实素材和论点驱动叙事，混合纪录片实拍、档案材料、地图、解释性动画与动态图表。当前已建立首轮候选工作流，尚未完成端到端实作验证。
+选定 Mode 后，在任何采集、研究、写作、分镜或素材规划之前完整读取对应 `workflow.md` 及其指定的专属文档。不把 Animated Explainer 的旁白结构、字数、分镜、封面或纯动画切片流程默认套用到其他 Mode。
+
+## 当前能力与扩展边界
+
+当前只有上方列出的三个 Mode 属于已进入实现的制作能力，其中 Storytime Animation 与 Animated Explainer 已完成作品验证，Visual Journalism 仍是候选工作流。微电影、短片、短剧、音乐视频及其他类型属于 `director` 的计划扩展范围，但只有建立独立 Mode、完成真实作品验证并得到用户确认后，才能标记为可用或已验证。
+
+用户要求尚未建立专属 Mode 的视频类型时，明确说明当前缺少该类型的专属工作流；可以与用户共同定义目标、输入、叙事结构、素材策略、质量门槛和验证作品，但不得静默套用 Animated Explainer 或 Storytime Animation。新增 Mode 应放入 `modes/<mode>/`，把类型专属流程、style 和 Prompt 方法留在该 Mode 内；只有真正跨类型复用的能力才提升到 `references/`。
+
+声音是各 Mode 的创作选择，不是 `director` 的身份边界。未来 Mode 可以由对白、同期声、音乐、纯画面或多种声音结构驱动；只有当前 Mode 明确要求统一旁白或声音身份时，才进入音色锚点流程。
+
+## Mode 专属 style 与共享参考资产
+
+每个 style 默认只属于一个 Mode，并与该 Mode 的内容目标、素材结构和 Prompt 方法一起验证。不向用户展示其他 Mode 的 style，也不在未验证时默认跨 Mode 混用。只有一个 style 已经通过多个 Mode 的实际作品验证并得到用户确认后，才将它提升为明确的跨 Mode 共享 style。
+
+**Storytime Animation**
+
+- [清爽白色圆身 Storytime 动画](modes/storytime-animation/styles/clean-white-character-storytime-animation.md)
+
+**Animated Explainer**
+
+- [电影感 3D 动画](modes/animated-explainer/styles/cinematic-3d-animation.md)
+- [黏土定格动画](modes/animated-explainer/styles/clay-stop-motion.md)
+- [忧郁蓝调简笔画风格](modes/animated-explainer/styles/melancholic-blue-simple-line-animation.md)
+- [柔和彩铅萌趣动画](modes/animated-explainer/styles/soft-colored-pencil-cute-animation.md)
+- [清爽线描蜡笔动画](modes/animated-explainer/styles/clean-line-crayon-animation.md)
+- [多巴胺萌趣 3D 动画](modes/animated-explainer/styles/dopamine-cute-3d-animation.md)
+
+**Visual Journalism**
+
+- [现代编辑部 Visual Journalism](modes/visual-journalism/styles/modern-editorial-visual-journalism.md)（首轮候选，待样片验证）
+
+用户未指定 style 时，只展示当前 Mode 的内置或候选选项并等待选择，不设置静默默认值；自定义文字 style 与该 Mode 的内置 style 具有同等优先级。style 只定义跨作品稳定的媒介、材质、线条、造型、色彩和运动语言，不是固定 Prompt、场景或镜头模板。候选 style 必须明确验证状态，样片经用户确认后才可标记为已验证。
+
+共享 references 只维护跨 Mode 能复用的能力：
+
+- [人物参考图指南](references/character-reference-image-guide.md)：当 Mode 需要稳定的生成人物时读取。
+- [Storytime 人物形象库](modes/storytime-animation/characters/character-library.md)：仅供 Storytime 选择、保存或改编经过用户确认的常用讲述者形象；不作为其他 Mode 的默认共享人物库。
+- [内置音色库](references/reference-asset-library.md)：选择随 skill 分发的音色时读取。
+- [音色参考与音频转换指南](references/voice-reference-guide.md)：当 Mode 使用旁白、对白或稳定声音身份时读取。
+- [共享视频生成 Prompt 指南](references/video-generation-prompt-guide.md)：编写生成片段 Prompt 时读取；它不取代 Mode 专属的内容与视觉方法。
+- [Seedance 2.0 官方提示词指南](references/official-seedance-2.0-prompt-guide.md)：使用 Seedance 时读取。
+- [Seedance 社区导演与连续性笔记](references/community-directing-notes.md)：处理循环动作、重复运镜或切镜僵硬时补充读取。
+
+当 Mode 需要人物参考时，只为必须稳定识别的人物生成参考图，不为一次性群演生成。人物参考只承担身份、相貌、比例、服装与材质职责。对当前已实现的动画 Mode，不生成或连接统一场景图、画风参考图或风格参考图；场景与画风由所选 style 和每个片段的具体文字 Prompt 直接定义。
+
+内置音色的唯一正式媒体源为顶级目录 `voices/`，权威清单为[内置音色库](references/reference-asset-library.md)。宿主项目可以额外登记私有人物与音色，但不得扫描历史作品冒充正式资产库。`repository-assets/` 只保存 README 封面、效果示例和 style 预览等仓库展示素材，不属于 skill 执行资产，也不得被工作流当作生成输入。
+
+## 执行工具路由
+
+Mode 和执行工具相互独立：Mode 决定制作什么，工具文档决定如何在用户选定的平台上生成、管理和下载媒体。任意 Mode 都可在平台能力足够时选择任意已适配 CLI。
+
+1. 用户已指定 CLI 时，完整读取对应工具文档并使用该路径。
+2. 用户未指定时，先检查宿主项目已配置的媒体 CLI；有可用工具时向用户说明选择。
+3. 没有任何可用 CLI 时，优先建议安装 LibTV CLI，但不未经用户同意自动安装。
+4. 当前工具缺少必要能力、登录或最新文档时停止，不猜测命令，不静默切换其他平台。
+
+当前工具文档：
+
+- **[LibTV CLI](tools/libtv-cli.md)**：当前正式维护且验证最充分的执行路径。
+- **[Higgsfield CLI](tools/higgsfield-cli.md)**：已完成安装、认证、workspace、实时 schema、素材、Seedance 2.0、任务跟踪与结果边界的文档适配，尚未完成付费生成和完整作品的端到端实作验证。
+- **[即梦 CLI](tools/jimeng-cli.md)**：已完成 OAuth、session、生成模式、Seedance 2.0 全能参考、异步查询与 CLI 下载的文档适配，尚未完成付费生成和完整作品的端到端实作验证。
+
+工具专属命令、模型别名、输入模式、参数映射、任务跟踪和下载规则只在对应 `tools/` 文档中维护，不在 Mode、style 或共享 references 中复制。
+
+## 全 Mode 共享的片段规则
+
+- Animated Explainer 和 Storytime Animation 使用 15 秒中文口播片段时，默认约 60 个汉字；英文 Storytime 默认目标 30 个实际朗读单词，通常保持 28–32 个且超过 32 个必须先缩短确认，Animated Explainer 以约 32 个英文单词作为可调整目标。两者都以语义自然完整、实际能够说完为先。Visual Journalism 不继承固定字数目标，按证据密度、图表阅读时间和目标音色实测。
+- 任何 Mode 编写多镜头视频 Prompt 时，相邻镜头默认直接硬切，不写擦除、形变、融化或其他装饰性转场。只有连续性本身是创作重点的特殊长镜头，尤其长时间动作、追逐或打斗编排，才设计不中断的连续调度。
+
+## 旁白驱动动画的共享生产流程
+
+以下流程当前适用于 Animated Explainer 和 Storytime Animation；各 Mode 的采集、研究、结构、写作、视觉职责和质量门槛以对应 Mode 文件为准。
+
+1. **按 Mode 完成讲稿。** 完整执行对应 Mode 的前期与写作流程，并遵循上方共享片段规则。将讲稿和拆分结果交给用户审阅；确认后立即保存为作品文档目录中的独立 `旁白.md`。
+2. **规划必要人物参考。** 完整读取人物指南，允许 Animated Explainer 没有关键人物；Storytime Animation 的讲述者默认是关键人物。按实际需要生成、确认并记录人物映射。
+3. **逐片段编写并保存 Prompt。** 完整读取当前 Mode 的专属 Prompt 指南（如果已有）、所选 style、共享视频 Prompt 指南和目标模型官方指南。每完成一个片段，立即保存为作品文档目录中的独立 Markdown 文件。
+4. **选择音色路线并只生成片段 1。** 正式生成前，读取内置音色库，明确询问用户使用已有音色还是通过片段 1 新建音色。已有音色从片段 1 起连接；新建音色的片段 1 不连接音频参考。两条路线都只先生成片段 1，交给用户确认。
+5. **锁定统一音色锚点。** 已有音色路线继续复用同一份标准化音频；新建音色路线按音色指南从已确认片段 1 建立独立音频素材。
+6. **并行生成后续片段。** 从片段 2 开始全部使用已锁定的同一音色锚点；当前片段的准确旁白仍只由当前 Prompt 决定。
+7. **确认返回并交付剪辑。** 使用选定工具文档完成任务跟踪与下载。默认只确认成功终态、可追溯 ID 和资源完整性，不播放、不抽帧、不听写；用户明确要求或返回异常时才做针对性内容检查。全部片段生成后，提示用户在剪辑工具中手动拼接并轻量修剪局部废帧、片尾画面或声音毛刺。只有用户明确要求时，才由 Agent 执行自动拼接。
+
+需要封面时读取当前 Mode 的封面指南。目前只有 [Animated Explainer 封面指南](modes/animated-explainer/video-cover-image-guide.md) 已建立专属流程；不将它默认套用到其他 Mode。
 
 ## 任务路由
 
 | 任务 | 必须完整读取 |
 | --- | --- |
-| 编写、改写或拆分旁白 | [旁白讲稿写作指南](references/narration-script-guide.md) |
-| 根据讲稿规划关键人物并生成或使用人物参考图 | [人物参考图指南](references/character-reference-image-guide.md)和当前选择的 [style 文件](#视觉风格与参考资产) |
-| 选择内置风格、编写图像或视频 Prompt | 当前选择的 [style 文件](#视觉风格与参考资产) |
-| 选择或使用随 skill 分发的音色 | [内置参考资产库](references/reference-asset-library.md) |
-| 编写、改写或排查 Seedance Prompt | [视频提示词写作指南](references/video-prompt-guide.md)和 [Seedance 2.0 官方提示词指南](references/official-seedance-2.0-prompt-guide.md) |
-| 选择、建立、转换或更换本期音色锚点 | [音色参考与音频转换指南](references/voice-reference-guide.md) |
-| 处理循环动作、重复运镜或切镜僵硬 | 在上述视频资料之外，再读 [社区导演实践笔记](references/community-directing-notes.md) |
-| 生成、比较、修改或质检封面 | [视频封面生成指南](references/video-cover-image-guide.md) |
+| 选择 Mode，或开始采集、研究、写作、分镜与制作 | 当前选定的 [Mode 文件](#mode-选择与路由) |
+| 编写、改写或拆分 Animated Explainer 旁白 | [Animated Explainer 流程](modes/animated-explainer/workflow.md)和[旁白讲稿写作指南](modes/animated-explainer/narration-script-guide.md) |
+| 采集、改编或编写第一人称故事 | [Storytime Animation 流程](modes/storytime-animation/workflow.md) |
+| 研究现实议题，或编写 Visual Journalism 旁白与素材结构 | [Visual Journalism 流程](modes/visual-journalism/workflow.md)和[研究与证据指南](modes/visual-journalism/research-and-evidence-guide.md) |
+| 编写、改写或排查 Visual Journalism 视频 Prompt | [Visual Journalism 流程](modes/visual-journalism/workflow.md)、[专属视频 Prompt 指南](modes/visual-journalism/video-prompt-guide.md)、所选 style、[共享视频生成 Prompt 指南](references/video-generation-prompt-guide.md)和目标模型官方指南 |
+| 规划或生成人物参考 | [人物参考图指南](references/character-reference-image-guide.md)、当前 Mode 和所选 style；Storytime 另读[人物形象库](modes/storytime-animation/characters/character-library.md) |
+| 编写、改写或排查视频生成 Prompt | 当前 Mode、[共享视频生成 Prompt 指南](references/video-generation-prompt-guide.md)和目标模型官方指南 |
+| 选择、建立、转换或更换音色 | [内置音色库](references/reference-asset-library.md)和[音色参考与音频转换指南](references/voice-reference-guide.md) |
+| 生成、比较、修改或质检 Animated Explainer 封面 | [Animated Explainer 封面指南](modes/animated-explainer/video-cover-image-guide.md) |
+| 安装、选择或执行媒体 CLI | 选定的 [Tool 文件](#执行工具路由) |
 
-官方指南较长，定向排查时优先搜索：`基础公式`、`多模态参考`、`编辑视频`、`延长视频`、`定义主体`、`使用分镜时序`、`动作描述要求`、`运镜写法`、`特殊字符规范`、`音色参考不准`、`人物 ID 漂移`、`风格漂移`、`视频延长 vs 分段拼接`、`视频结尾有噪音`和`中文发音不准`。社区笔记只补充已核验的导演实践，不替代官方指南和本 skill 的已确认规则。
+Seedance 官方指南较长，定向排查时优先搜索：`基础公式`、`多模态参考`、`编辑视频`、`延长视频`、`定义主体`、`使用分镜时序`、`动作描述要求`、`运镜写法`、`特殊字符规范`、`音色参考不准`、`人物 ID 漂移`、`风格漂移`、`视频延长 vs 分段拼接`、`视频结尾有噪音`和`中文发音不准`。
 
-## 视觉风格与参考资产
+## 共享质量门槛与失败条件
 
-当前内置风格：
+进入生成前，先通过当前 Mode 的专属质量门槛和共享视频 Prompt 检查。以下任一情况存在时，不得进入后续批量生成或最终交付：
 
-- [电影感 3D 动画](styles/cinematic-3d-animation.md)
-- [黏土定格动画](styles/clay-stop-motion.md)
-- [忧郁蓝调简笔画风格](styles/melancholic-blue-simple-line-animation.md)
-- [柔和彩铅萌趣动画](styles/soft-colored-pencil-cute-animation.md)
-- [清爽线描蜡笔动画](styles/clean-line-crayon-animation.md)
-- [多巴胺萌趣 3D 动画](styles/dopamine-cute-3d-animation.md)
+- 当前 Mode 尚未选定，或未完整读取对应工作流。
+- 用户要求的 Mode 尚未建立必要执行能力，但仍试图用另一 Mode 的流程伪装完成。
+- 任一必须稳定识别的人物缺少已确认人物参考，或参考素材职责、编号与实际连接顺序不一致。
+- 当前 Mode 需要统一音色，但片段 1 的音色尚未确认，或后续片段没有实际使用已锁定音色锚点。
+- 选定 CLI 缺少登录、最新能力信息、必要模型能力或可追溯任务信息。
+- 任一媒体任务未返回成功终态，或任务 ID、节点／项目 ID、资源 URL 等目标平台应提供的关键追踪信息缺失。
 
-用户未指定风格时，展示这些选项并等待选择，不静默设置默认值；自定义文字风格与内置风格具有同等优先级。
-
-style 文件定义跨作品稳定的媒介、材质、线条、造型、色彩和运动语言，不是可以整段复制的固定 Prompt 或镜头模板。每个作品、片段和镜头仍要根据内容重新决定主体、场景、时代、构图、光线、动作、机位、运镜和转场；不得因复用 style 而重复固定画面与运镜组合。
-
-使用 style 的图像指导只生成人物参考图：每张图仅包含同一个关键人物在纯白背景上的正面和背面形象。参考图数量等于当前影片需要稳定身份的关键人物数量，不预设上限或固定数量；一次性群演不生成参考图。动画视频不生成场景图或画风参考图。详细规划、生成规格和图片指代写法由[人物参考图指南](references/character-reference-image-guide.md)维护。
-
-场景与画风由每个片段的文字 Prompt 直接定义。不同片段可以使用完全不同的地点、时代、天气、道具和构图，但必须用所选 style 的稳定媒介、造型、材质、色彩原则和渲染语言维持整体统一；不要通过复刻固定场景内容来制造一致性。
-
-随 skill 分发的正式音色登记在[内置参考资产库](references/reference-asset-library.md)，其 `assets/reference-library/voices/` 文件是公开音色库的唯一正式媒体源。正式生成视频前读取内置音色清单，明确询问用户使用已有音色还是新建音色，不设置静默默认值。宿主项目可以额外提供私有人物参考和音色，但不得扫描历史作品音频冒充库资产。人物参考跨画布使用时，先通过正式 CLI 下载再上传，不直接跨画布连接节点。
-
-## 工具路由与支持边界
-
-本 skill 当前唯一正式维护和实际验证的图片、音频和视频执行路径是 **LibTV CLI**。完整讲稿、片段拆分、素材职责、人物一致性、多镜头导演、画幅、音色和任务返回确认方法本身与平台解耦，也可用于 Higgsfield、即梦或其他能够通过 CLI 完成多模态生成与素材管理的平台。
-
-使用其他平台时：
-
-1. 先阅读该平台最新官方 CLI 文档，不根据 LibTV 命令猜测或直译参数。
-2. 确认 CLI 已安装并登录，实时查询模型、schema、输入模式、素材数量与格式限制、片段时长、画幅、分辨率、声音开关、异步任务、下载和拼接方式。
-3. 按目标 CLI 映射本 skill 的素材职责与步骤，并保留任务 ID、失败状态、stderr 或等价日志。
-4. 平台专属命令、模型名和参数映射分别维护，不跨平台混用。缺少最新文档、登录状态或必要能力时明确停止，不编造命令，也不静默切换平台。
-
-官方入口：
-
-- [Higgsfield CLI](https://github.com/higgsfield-ai/cli)及其[最新正式版本](https://github.com/higgsfield-ai/cli/releases/latest)
-- [即梦 CLI 使用指南](https://bytedance.larkoffice.com/wiki/FVTwwm0bGiishxkKOoScdHR2nsg)（可能需要飞书／Lark 权限）
-
-当前已验证的默认节奏是将 1–5 分钟成片拆成多个 15 秒片段，每段旁白约 60 个汉字、一般 5 个镜头。Seedance 2.5 Pro 虽支持最长 30 秒，但旁白长度、镜头密度、连续性、音频稳定性和跨片段策略尚未系统优化；正式验证前不机械翻倍 15 秒规则，也不将 30 秒设为默认。
-
-### LibTV 执行规则
-
-- 仅在 LibTV 中，将 `GPT-Image-2` 解析为 `Lib Image`、`Nano Banana Pro` 解析为 `General image Pro`、`Nano Banana 2` 解析为 `General image V2`、`Midjourney` 解析为 `悠船`；其他平台不得沿用。正式调用前仍以实时搜索和 schema 为准。
-- 给 `libtv node ... -s "model=..."` 传模型时，必须逐字使用 `libtv model search` 返回的 `matches[].modelName`，包括其中的空格、大小写与标点；不得改用 `modelKey`，也不得使用 `libtv model <nameOrId>` 完整 schema 顶层可能出现的不一致 `modelName`。例如搜索结果是 `Seedream 5.0 Pro`，就必须传 `-s "model=Seedream 5.0 Pro"`，不能写成 `Seedream5.0 Pro`。完整 schema 只用于校验能力与参数。
-- 实时查询模型和 schema，优先使用 Seedance 2.0 Pro；当前 LibTV 对应 Seedance 2.0 VIP（`star-video2`）。已验证默认值为 `duration=15`；`ratio`、`resolution`和`enableSound`从用户要求或项目配置读取。模型展示名、`modeType`和素材限制均不得凭经验猜测。
-- 使用 Seedance 2.0 系列时，用户未明确要求 `1080p`、`4K` 或其他更高档位，`resolution` 默认使用 `720p`；即使模型或旧节点带有更高默认值，也必须在 CLI 中显式传入 `720p`。用户明确要求更高分辨率时，先以实时 schema 确认该档位确实受支持，不支持则停止并说明，不静默降级或改用其他模型。
-- 每次创建或重生成节点都显式传入实际参数，不继承旧画布、复制节点或模型默认值。`duration`、`ratio`、`resolution`、`enableSound`、`count`和`modeType`只写入 CLI 参数，不写进创作 Prompt。
-- 当音频承担音色参考职责时，即使只连接一份音频，也一般显式选择实时 schema 支持的全能参考模式 `mixed2video`，不得仅因输入中只有一份音频就改用 `audio2video`。`audio2video` 不等于“单音频参考音色模式”；平台若要求有效视觉输入，应连接当前片段真实需要的人物或视频参考，不为通过校验接入无关素材。正式生成前仍须实时确认输入限制。
-- 解析画布 UUID 后，正式创建节点、生成、上传和下载均显式传入 `-p <projectUuid>`；返回后核对实际画布 UUID、节点 ID 和任务 ID，并保留失败状态与 stderr。
-- 当前作品的所有独立视频片段与最终合成视频统一下载到 `<作品目录>/video/`，文件直接平铺在该目录下；使用片段编号保证顺序，例如 `片段01.mp4`、`片段02.mp4`，不创建 `segments/segment-xx-*` 等逐片子目录。
-- 不自行拼接 LibTV HTTP 请求，不使用个人 API Key 绕过 CLI。项目工具策略与本 skill 冲突时先停止并说明，不静默选择其中一套。
-
-## 质量门槛与失败条件
-
-生成前执行[视频提示词写作指南](references/video-prompt-guide.md)中的提交前检查。生成后默认只确认任务返回和资源完整性。以下情况不得进入后续批量生成或最终拼接：
-
-- 片段 1 的音色尚未确认；已有音色路线未从片段 1 起实际连接所选库内音频；或任一路线的后续片段未实际连接已锁定的统一纯音频／音色 ID。
-- 未根据讲稿完成主要人物数量规划；任一需要固定形象的主要人物缺少已确认人物参考图；人物参考图没有按要求同时展示纯白背景上的正面与背面；或参考素材职责、编号与实际连接顺序不一致。
-- 视频 Prompt 仍以抽象空间、漂浮符号、概念形变或纯色彩变化承担主要表达，没有把思想落实为具体事件、人物行动、物体关系和可观察结果。
-- CLI 缺少登录、实时 schema、必要模型能力或可追踪的任务与节点信息。
-- 任一视频任务未返回成功终态，节点 ID、任务 ID 或资源 URL 缺失，资源无法下载，或平台报告其他异常。
-
-默认不播放视频、不抽帧、不听写旁白，也不检查人物、画风、动作、实际画幅或片尾音频。只有用户明确要求，或任务失败、资源缺失、平台返回异常时，才执行与异常相关的内容检查。失败时保留任务 ID、节点 ID、参数、状态与 stderr；修正真实原因后重新生成，不静默换模型或用其他兜底掩盖问题。
+失败时保留 Mode、style、工具、模型、参数、素材映射、任务 ID、终态和 stderr 或等价日志。修正真实原因后重新执行，不静默换 Mode、style、模型或平台。
 
 ## 交付原则与信息优先级
 
-旁白和视频 Prompt 的具体结构分别以对应写作指南为唯一来源。旁白及其他创作草稿默认先在对话中用普通 Markdown 段落展示，不放进 `text`、`plaintext`或其他代码块；旁白一经用户确认就必须保存为独立 `旁白.md`，每个视频 Prompt 片段也必须分别保存为独立 Markdown 文件。以上文件与人物、素材等生产文档统一平铺在当前作品的同一个文档目录，并向用户返回文件路径。技术命令、JSON 和参数示例在必要时仍可使用代码块。
+默认使用用户当前使用的语言回复；用户明确指定其他输出语言时，遵循用户指定的语言。
 
-信息冲突时按以下来源判断：传给节点的模型展示名以 `libtv model search` 的 `matches[].modelName` 为准，输入能力和参数以当前 CLI 的实时 schema 为准；Seedance 提示词能力以官方指南为准；视觉语言以用户选择的 style 与已确认参考图为准；15 秒、约 60 个汉字和一般 5 镜等节奏以本 skill 的已验证生产经验为准。
+创作草稿默认先在对话中使用普通 Markdown 段落展示，不放入 `text`、`plaintext` 或其他代码块。讲稿经用户确认后保存为独立 `旁白.md`；每个视频 Prompt 片段也分别保存为独立 Markdown 文件。这些文件与人物、素材等生产文档平铺在当前作品的同一文档目录，并向用户返回文件路径。
+
+信息冲突时：内容与叙事方法以当前 Mode 为准；视觉语言以用户选择的 style 和已确认人物参考为准；模型提示能力以最新官方指南为准；平台命令、模型名、输入能力与参数以当前 CLI 和实时 schema 为准。

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Animated Voiceover"
-  short_description: "按关键人物参考与逐片场景提示创作知识类动画解说视频"
-  default_prompt: "使用 $animated-voiceover 创作一支按关键人物规划并逐片描述具体场景的优质动画解说视频。"
+  display_name: "director"
+  short_description: "从创意、研究、剧本和分镜一路导演并制作多类型完整视频"
+  default_prompt: "使用 $director 选择合适的 Mode，并把一个视频创意推进到可交付成果。"
