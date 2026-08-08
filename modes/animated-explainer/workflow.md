@@ -13,7 +13,7 @@
 - 视频的核心是解释一个概念、机制、理论、人物思想、历史因果或知识问题。
 - 内容主要依靠完整旁白和原创动画成立。
 
-如果内容以个人经历与第一人称讲述为主，使用 [Storytime Animation](../storytime-animation/workflow.md)。如果结论主要依赖时效性资料、现实影像、数据图表和多来源证据，应明确说明它不在当前公开版本已经验证的 Mode 范围内，不用 Animated Explainer 流程伪装完成。
+如果内容以个人经历与第一人称讲述为主，使用 [Storytime Animation](../storytime-animation/workflow.md)。如果结论主要依赖时效性资料、现实影像、数据图表和多来源证据，使用尚在实作验证中的 [Visual Journalism](../visual-journalism/workflow.md)，不用 Animated Explainer 流程伪装完成。
 
 ## 必须读取
 
@@ -24,7 +24,7 @@
 开始人物规划时完整读取：
 
 - [人物参考图指南](../../references/character-reference-image-guide.md)
-- 用户已选择的 [style](../../SKILL.md#共享-style-与参考资产)
+- 用户已从 Animated Explainer 专属列表选择的 [style](../../SKILL.md#mode-专属-style-与共享参考资产)
 
 开始视频 Prompt 时完整读取：
 

@@ -123,7 +123,7 @@
 
 开始视频 Prompt 前完整读取：
 
-- 用户已选择的 [style](../../SKILL.md#共享-style-与参考资产)
+- 用户已从 Storytime Animation 专属列表选择的 [style](../../SKILL.md#mode-专属-style-与共享参考资产)
 - [共享视频生成 Prompt 指南](../../references/video-generation-prompt-guide.md)
 - [Seedance 2.0 官方提示词指南](../../references/official-seedance-2.0-prompt-guide.md)
 

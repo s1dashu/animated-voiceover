@@ -1,41 +1,61 @@
 ---
-name: animated-voiceover
-description: 创作 Storytime Animation 与 Animated Explainer 视频。适用于采集和改编第一人称故事、研究和解释知识主题、编写旁白、共创或复用 Storytime 讲述者形象、规划关键人物参考图、逐片段设计具体场景与多镜头视频 Prompt、维持音色一致、制作封面，或通过 LibTV、Higgsfield、即梦等 CLI 执行多模态生成。两个公开 Mode 均已完成实际作品验证。
+name: director
+description: 导演并制作多类型视频，从创意、研究、剧本、视觉开发、人物与声音设计、分镜和生成 Prompt，一直推进到素材生成、任务追踪与交付。适用于 Storytime Animation、Animated Explainer 与开发中的 Visual Journalism，以及为未来微电影、短片、短剧、音乐视频等独立 Mode 建立制作方法。Storytime 与 Explainer 已完成实际作品验证，Visual Journalism 尚在实作验证中；尚未建立专属 Mode 的类型不得冒充已支持流程。
 ---
 
-# Animated Voiceover
+# director
+
+`director` 是视频创作与制作的顶层导演 skill，不以动画、旁白或任何单一题材定义自身。它负责先判断作品类型和创作目标，再把任务路由到经过验证的 Mode、style、共享资产与执行工具。
 
 ## 核心架构
 
-把每支视频拆成三个相互独立的选择：
+把每支视频拆成三层选择：
 
-1. **Mode** 决定内容目标、叙事方式、素材结构、写作重点和制作流程。
-2. **Style 与共享资产** 决定视觉语言，并在需要时提供可跨 Mode 复用的人物参考与音色。
+1. **Mode** 决定内容目标、叙事方式、素材结构、声音角色、写作重点和制作流程。
+2. **Mode 专属 style 与共享资产** 决定视觉语言，并在需要时提供可跨 Mode 复用的人物参考与音色。
 3. **Tool** 决定如何在用户选定的 CLI 平台上查询模型、上传素材、生成、跟踪、下载和拼接。
 
-三者不互相替代。先选择 Mode，再选择 style 和共享资产，最后选择执行 CLI。
+三者不互相替代。先选择 Mode，再从该 Mode 的 `styles/` 中选择 style 并确认共享资产，最后选择执行 CLI。
 
 ## Mode 选择与路由
 
-用户已指定 Mode 时直接使用。未指定时，根据视频的核心驱动力推荐；无法判断时再询问：这支视频主要是讲一个第一人称故事，还是解释一个概念或知识主题？
+用户已指定 Mode 时直接使用。未指定时，根据视频的核心驱动力推荐；无法判断时再询问作品主要由个人经历、知识解释、现实证据，还是人物行动与戏剧冲突驱动。不要因为当前已实现的 Mode 以旁白驱动为主，就把所有视频默认解释成动画解说。
 
 - **[Storytime Animation](modes/storytime-animation/workflow.md)**（`storytime-animation`）：由第一人称讲述者与个人经历驱动，用动画重现自己、身边人或明确改编的故事。已完成首支五片段作品的生成与质量验证。
 - **[Animated Explainer](modes/animated-explainer/workflow.md)**（`animated-explainer`）：使用旁白和动画，在一支短片中讲清楚一个概念、理论、人物思想、历史事件或知识主题。这就是重构前已经完成多期实作验证的原有工作流。
+- **[Visual Journalism](modes/visual-journalism/workflow.md)**（`visual-journalism`）：研究并解释财经、时政、产业或其他现实议题，以证据、现实素材和论点驱动叙事，混合纪录片实拍、档案材料、地图、解释性动画与动态图表。当前已建立首轮候选工作流，尚未完成端到端实作验证。
 选定 Mode 后，在任何采集、研究、写作、分镜或素材规划之前完整读取对应 `workflow.md` 及其指定的专属文档。不把 Animated Explainer 的旁白结构、字数、分镜、封面或纯动画切片流程默认套用到其他 Mode。
 
-## 共享 style 与参考资产
+## 当前能力与扩展边界
 
-当前内置 style：
+当前只有上方列出的三个 Mode 属于已进入实现的制作能力，其中 Storytime Animation 与 Animated Explainer 已完成作品验证，Visual Journalism 仍是候选工作流。微电影、短片、短剧、音乐视频及其他类型属于 `director` 的计划扩展范围，但只有建立独立 Mode、完成真实作品验证并得到用户确认后，才能标记为可用或已验证。
 
-- [清爽白色圆身 Storytime 动画](styles/clean-white-character-storytime-animation.md)
-- [电影感 3D 动画](styles/cinematic-3d-animation.md)
-- [黏土定格动画](styles/clay-stop-motion.md)
-- [忧郁蓝调简笔画风格](styles/melancholic-blue-simple-line-animation.md)
-- [柔和彩铅萌趣动画](styles/soft-colored-pencil-cute-animation.md)
-- [清爽线描蜡笔动画](styles/clean-line-crayon-animation.md)
-- [多巴胺萌趣 3D 动画](styles/dopamine-cute-3d-animation.md)
+用户要求尚未建立专属 Mode 的视频类型时，明确说明当前缺少该类型的专属工作流；可以与用户共同定义目标、输入、叙事结构、素材策略、质量门槛和验证作品，但不得静默套用 Animated Explainer 或 Storytime Animation。新增 Mode 应放入 `modes/<mode>/`，把类型专属流程、style 和 Prompt 方法留在该 Mode 内；只有真正跨类型复用的能力才提升到 `references/`。
 
-用户未指定 style 时，展示内置选项并等待选择，不设置静默默认值；自定义文字 style 与内置 style 具有同等优先级。style 只定义跨作品稳定的媒介、材质、线条、造型、色彩和运动语言，不是固定 Prompt、场景或镜头模板。
+声音是各 Mode 的创作选择，不是 `director` 的身份边界。未来 Mode 可以由对白、同期声、音乐、纯画面或多种声音结构驱动；只有当前 Mode 明确要求统一旁白或声音身份时，才进入音色锚点流程。
+
+## Mode 专属 style 与共享参考资产
+
+每个 style 默认只属于一个 Mode，并与该 Mode 的内容目标、素材结构和 Prompt 方法一起验证。不向用户展示其他 Mode 的 style，也不在未验证时默认跨 Mode 混用。只有一个 style 已经通过多个 Mode 的实际作品验证并得到用户确认后，才将它提升为明确的跨 Mode 共享 style。
+
+**Storytime Animation**
+
+- [清爽白色圆身 Storytime 动画](modes/storytime-animation/styles/clean-white-character-storytime-animation.md)
+
+**Animated Explainer**
+
+- [电影感 3D 动画](modes/animated-explainer/styles/cinematic-3d-animation.md)
+- [黏土定格动画](modes/animated-explainer/styles/clay-stop-motion.md)
+- [忧郁蓝调简笔画风格](modes/animated-explainer/styles/melancholic-blue-simple-line-animation.md)
+- [柔和彩铅萌趣动画](modes/animated-explainer/styles/soft-colored-pencil-cute-animation.md)
+- [清爽线描蜡笔动画](modes/animated-explainer/styles/clean-line-crayon-animation.md)
+- [多巴胺萌趣 3D 动画](modes/animated-explainer/styles/dopamine-cute-3d-animation.md)
+
+**Visual Journalism**
+
+- [现代编辑部 Visual Journalism](modes/visual-journalism/styles/modern-editorial-visual-journalism.md)（首轮候选，待样片验证）
+
+用户未指定 style 时，只展示当前 Mode 的内置或候选选项并等待选择，不设置静默默认值；自定义文字 style 与该 Mode 的内置 style 具有同等优先级。style 只定义跨作品稳定的媒介、材质、线条、造型、色彩和运动语言，不是固定 Prompt、场景或镜头模板。候选 style 必须明确验证状态，样片经用户确认后才可标记为已验证。
 
 共享 references 只维护跨 Mode 能复用的能力：
 
@@ -70,7 +90,7 @@ Mode 和执行工具相互独立：Mode 决定制作什么，工具文档决定�
 
 ## 全 Mode 共享的片段规则
 
-- 任何 Mode 使用 15 秒口播片段时，中文旁白默认约 60 个汉字。英文长度按 Mode 决定：Storytime 默认目标 30 个实际朗读单词，通常保持 28–32 个且超过 32 个必须先缩短确认；Animated Explainer 仍以约 32 个英文单词作为可调整目标。两者都以语义自然完整、实际能够说完为先。
+- Animated Explainer 和 Storytime Animation 使用 15 秒中文口播片段时，默认约 60 个汉字；英文 Storytime 默认目标 30 个实际朗读单词，通常保持 28–32 个且超过 32 个必须先缩短确认，Animated Explainer 以约 32 个英文单词作为可调整目标。两者都以语义自然完整、实际能够说完为先。Visual Journalism 不继承固定字数目标，按证据密度、图表阅读时间和目标音色实测。
 - 任何 Mode 编写多镜头视频 Prompt 时，相邻镜头默认直接硬切，不写擦除、形变、融化或其他装饰性转场。只有连续性本身是创作重点的特殊长镜头，尤其长时间动作、追逐或打斗编排，才设计不中断的连续调度。
 
 ## 旁白驱动动画的共享生产流程
@@ -94,6 +114,8 @@ Mode 和执行工具相互独立：Mode 决定制作什么，工具文档决定�
 | 选择 Mode，或开始采集、研究、写作、分镜与制作 | 当前选定的 [Mode 文件](#mode-选择与路由) |
 | 编写、改写或拆分 Animated Explainer 旁白 | [Animated Explainer 流程](modes/animated-explainer/workflow.md)和[旁白讲稿写作指南](modes/animated-explainer/narration-script-guide.md) |
 | 采集、改编或编写第一人称故事 | [Storytime Animation 流程](modes/storytime-animation/workflow.md) |
+| 研究现实议题，或编写 Visual Journalism 旁白与素材结构 | [Visual Journalism 流程](modes/visual-journalism/workflow.md)和[研究与证据指南](modes/visual-journalism/research-and-evidence-guide.md) |
+| 编写、改写或排查 Visual Journalism 视频 Prompt | [Visual Journalism 流程](modes/visual-journalism/workflow.md)、[专属视频 Prompt 指南](modes/visual-journalism/video-prompt-guide.md)、所选 style、[共享视频生成 Prompt 指南](references/video-generation-prompt-guide.md)和目标模型官方指南 |
 | 规划或生成人物参考 | [人物参考图指南](references/character-reference-image-guide.md)、当前 Mode 和所选 style；Storytime 另读[人物形象库](modes/storytime-animation/characters/character-library.md) |
 | 编写、改写或排查视频生成 Prompt | 当前 Mode、[共享视频生成 Prompt 指南](references/video-generation-prompt-guide.md)和目标模型官方指南 |
 | 选择、建立、转换或更换音色 | [内置音色库](references/reference-asset-library.md)和[音色参考与音频转换指南](references/voice-reference-guide.md) |
