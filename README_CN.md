@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="#它能帮你做什么">核心能力</a> ·
-  <a href="#完整视频样片">效果参考</a> ·
+  <a href="#视频效果参考">效果参考</a> ·
   <a href="#内置视觉风格">视觉风格</a> ·
   <a href="#安装">安装</a> ·
   <a href="#从一句话开始创作">开始创作</a>
@@ -32,20 +32,6 @@
 - **Storytime Animation（故事动画）**——把第一人称经历制作成动画故事，结合面向观众的讲述与事件重现。
 - **Visual Journalism（视觉新闻）**——围绕时事、财经、产业等现实议题，以证据驱动叙事，结合纪录片实拍、解释性动画、地图、图表和动态图形。
 
-## 完整视频样片
-
-### Animated Explainer：《两分钟学习尼采》
-
-一支完整的两分钟 Animated Explainer 成片，把尼采哲学转化为具体人物、事件与电影化动画场景。
-
-<video src="./repository-assets/examples/nietzsche-full.mp4" controls width="100%"></video>
-
-### Storytime Animation：Vibe Coder Story
-
-一支完整的 Storytime Animation 成片，在面向观众的直接讲述与故事事件重现之间自然切换。
-
-<video src="./repository-assets/examples/storytime-full.mp4" controls width="100%"></video>
-
 ## 它能帮你做什么
 
 - **选择正确的导演语法。** 根据作品由个人经历、知识解释、现实证据还是戏剧行动驱动，选择对应工作流。
@@ -53,6 +39,23 @@
 - **把文字变成可生产的导演方案。** 将叙事拆成可执行单元，设计镜头、表演与调度，并按照当前 Mode 输出可生成的 Prompt。
 - **让整支视频保持统一。** 通过文字 style、必要的人物参考与音色锚点，减少跨片段的人物漂移、画风跳变和声音不一致。
 - **从创意一路走到可剪辑片段。** 不止交付文案，还能继续完成参考素材规划、片段生成和任务追踪，再把全部素材交给剪辑工具完成最终拼接与轻量修整。
+
+## 视频效果参考
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./repository-assets/examples/video-effect-01.webp" alt="动画哲学解说视频画面" width="100%">
+    </td>
+    <td width="50%">
+      <img src="./repository-assets/examples/video-effect-02.webp" alt="动画心理解说视频画面" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>哲学科普</b>——让思想进入人物与故事</sub></td>
+    <td align="center"><sub><b>心理科普</b>——用具体事件解释抽象概念</sub></td>
+  </tr>
+</table>
 
 ## 内置视觉风格
 
