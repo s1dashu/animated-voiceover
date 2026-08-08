@@ -26,13 +26,11 @@
   <a href="#start-with-a-single-sentence">Get Started</a>
 </p>
 
-`director` is a multi-mode Agent skill for directing and producing complete videos. It starts with the kind of work you are making, then coordinates research, writing, visual development, characters, sound, shot design, generation, and delivery through the right production Mode.
+`director` is an Agent skill for directing and producing complete videos, from the initial idea and script to shot design, media generation, and delivery.
 
-It is not defined by animation or voiceover. A Mode owns the creative grammar for one format; shared references and tools provide only the capabilities that genuinely transfer across formats. Micro films, short films, short dramas, music videos, and other formats can be added as independent Modes after their workflows have been implemented and validated in real productions.
-
-Animated Explainer and Storytime Animation have both been validated in production. Storytime has completed its first five-clip English project, including reusable character design, direct-to-camera narration, reenactment, stable voice identity, and multi-clip generation.
-
-Visual Journalism is the third Mode under development. It is designed for evidence-led real-world topics that combine documentary footage, explanatory animation, and motion graphics; its end-to-end workflow is not yet production-validated.
+- **Animated Explainer** — Explain concepts, ideas, history, or knowledge through clear narration and animated scenes.
+- **Storytime Animation** — Turn first-person experiences into animated stories that combine direct-to-camera narration with reenacted moments.
+- **Visual Journalism** — Cover current affairs, business, industry, and other real-world topics through evidence-led storytelling that combines documentary footage, explanatory animation, maps, charts, and motion graphics.
 
 ## What It Can Do for You
 
