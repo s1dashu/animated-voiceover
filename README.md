@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="#what-it-can-do-for-you">Core Capabilities</a> ·
-  <a href="#video-examples">Examples</a> ·
+  <a href="#complete-video-examples">Examples</a> ·
   <a href="#built-in-visual-styles">Visual Styles</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#start-with-a-single-sentence">Get Started</a>
@@ -32,6 +32,20 @@
 - **Storytime Animation** — Turn first-person experiences into animated stories that combine direct-to-camera narration with reenacted moments.
 - **Visual Journalism** — Cover current affairs, business, industry, and other real-world topics through evidence-led storytelling that combines documentary footage, explanatory animation, maps, charts, and motion graphics.
 
+## Complete Video Examples
+
+### Animated Explainer — Nietzsche
+
+A complete two-minute Animated Explainer production that turns Nietzsche's philosophy into concrete characters, events, and cinematic scenes.
+
+<video src="./repository-assets/examples/nietzsche-full.mp4" controls width="100%"></video>
+
+### Storytime Animation — Vibe Coder Story
+
+A complete Storytime Animation production that moves between direct-to-camera narration and reenacted moments.
+
+<video src="./repository-assets/examples/storytime-full.mp4" controls width="100%"></video>
+
 ## What It Can Do for You
 
 - **Choose the right directing grammar.** Match the workflow to the force driving the video: personal experience, concept explanation, real-world evidence, or dramatic action.
@@ -39,23 +53,6 @@
 - **Turn a script into a production-ready directing plan.** It breaks the narrative into workable units, directs shots and performances, and produces generation-ready prompts for the selected Mode.
 - **Keep the entire video consistent.** Prompt-defined styles, required character references, and voice anchors reduce character drift, style shifts, and voice inconsistency across clips.
 - **Go from idea to editable clips.** Beyond writing, it can continue through reference planning, clip generation, and task tracking, then hand the generated clips to your editor for final assembly and light cleanup.
-
-## Video Examples
-
-<table>
-  <tr>
-    <td width="50%">
-      <img src="./repository-assets/examples/video-effect-01.webp" alt="Animated philosophy explainer scene" width="100%">
-    </td>
-    <td width="50%">
-      <img src="./repository-assets/examples/video-effect-02.webp" alt="Animated psychology explainer scene" width="100%">
-    </td>
-  </tr>
-  <tr>
-    <td align="center"><sub><b>Philosophy</b> — bringing ideas into characters and stories</sub></td>
-    <td align="center"><sub><b>Psychology</b> — explaining abstract concepts through concrete events</sub></td>
-  </tr>
-</table>
 
 ## Built-in Visual Styles
 
